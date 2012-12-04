@@ -4,32 +4,32 @@
  */
 package br.ufms.facom.petsistemas.model.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Rodrigo Kuninari
  */
-public class Tutor
+@Entity
+@Table(name = "TUTOR")
+public class Tutor extends Pessoa implements Serializable
 {
 
-    private Long id;
-
+    @Column(name = "rg", updatable = false, nullable = false, length = 30)
     private String rg;
 
+    @Column(name = "dataEntrada", updatable = false, nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataEntrada;
 
+    @Column(name = "dataSaida", updatable = false, nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSaida;
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
 
     public String getRg()
     {
