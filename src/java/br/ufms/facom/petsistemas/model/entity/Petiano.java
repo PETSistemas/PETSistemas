@@ -8,15 +8,24 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
+ * Classe que representa a Entidade Petiano. Herda atributos e métodos da Classe
+ * Pessoa.
  *
  * @author Rodrigo Kuninari
  */
 @Entity
 @Table(name = "PETIANO")
+@NamedQueries(
+{
+    @NamedQuery(name = "Petiano.buscarPetianoPeloCPF", query = "SELECT p FROM Petiano AS p WHERE p.cpf = :cpf ORDER BY p.nome"),
+    @NamedQuery(name = "Petiano.buscarPetianoPeloCurso", query = "SELECT p FROM Petiano AS p WHERE p.curso = :curso ORDER BY p.nome")
+})
 public class Petiano extends Pessoa implements Serializable
 {
 
@@ -45,6 +54,18 @@ public class Petiano extends Pessoa implements Serializable
 
     @Column(name = "endereco", updatable = false, nullable = false, length = 250)
     private String endereco;
+
+    public Petiano(int curso, String nomePai, String nomeMae, String rg, String cpf, Date dataEntrada, String endereco, String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
+    {
+        super(nome, dataNascimento, email, linkLattes, arquivo);
+        this.curso = curso;
+        this.nomePai = nomePai;
+        this.nomeMae = nomeMae;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.dataEntrada = dataEntrada;
+        this.endereco = endereco;
+    }
 
     public int getCurso()
     {

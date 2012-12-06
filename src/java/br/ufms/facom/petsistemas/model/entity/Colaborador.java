@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
+ * Classe que representa a Entidade Colaborador. Herda atributos e métodos da
+ * Classe Pessoa.
  *
  * @author Rodrigo Kuninari
  */
