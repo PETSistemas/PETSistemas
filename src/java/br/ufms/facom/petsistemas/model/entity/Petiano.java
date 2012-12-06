@@ -55,6 +55,10 @@ public class Petiano extends Pessoa implements Serializable
     @Column(name = "endereco", updatable = false, nullable = false, length = 250)
     private String endereco;
 
+    public Petiano()
+    {
+    }
+
     public Petiano(int curso, String nomePai, String nomeMae, String rg, String cpf, Date dataEntrada, String endereco, String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
     {
         super(nome, dataNascimento, email, linkLattes, arquivo);
