@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 04/12/2012, 11:09:31
+    Document   : salvarPetiano
+    Created on : 05/12/2012, 10:01:08
     Author     : Rodrigo Kuninari
 --%>
 
@@ -9,11 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>PET Sistemas</title>
+        <title>Petiano Cadastrado</title>
     </head>
     <body>
         <div>
-            <p><a href="${pageContext.request.contextPath}/petiano">Petianos</a></p>
+            <p>${mensagem}</p>
+            <p><a href="${pageContext.request.contextPath}/petiano">OK</a></p>
         </div>
     </body>
 </html>

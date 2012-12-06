@@ -11,13 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
+ * Classe que representa a Entidade Arquivo.
  *
- * @author rkuninari
+ * @author Rodrigo Kuninari
  */
 @Entity
 @Table(name = "ARQUIVO")
@@ -48,7 +48,6 @@ public class Arquivo implements Serializable
     @Column(name = "tipo", updatable = true, nullable = false)
     private int tipo;
 
-    @OneToOne(mappedBy = "arquivo")
     private Pessoa pessoa;
 
     public Long getId()

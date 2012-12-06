@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
+ * Classe abstrata que representa a Entidade Pessoa. Seus atributos irão ser
+ * criados nas Entidades Filhas.
  *
  * @author Rodrigo Kuninari
  */
@@ -41,9 +43,22 @@ public abstract class Pessoa implements Serializable
     @Column(name = "linkLattes", updatable = true, nullable = false, length = 100)
     private String linkLattes;
 
-    @JoinColumn(name = "arquivo", updatable = true, nullable = true)
     @OneToOne
+    @JoinColumn(name = "arquivo", updatable = true, nullable = true)
     private Arquivo arquivo;
+
+    public Pessoa()
+    {
+    }
+
+    public Pessoa(String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
+    {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.linkLattes = linkLattes;
+        this.arquivo = arquivo;
+    }
 
     public Long getId()
     {
