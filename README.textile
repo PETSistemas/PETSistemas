@@ -1,0 +1,31 @@
+h1. *PETSistemas*
+
+h2. _Descrição_
+
+O Sistema tem por objetivo auxiliar o gerenciamento das atividades do grupo PET-Sistemas. O sistema deve permitir o gerenciamento de notícias, pessoas(petianos, tutores e colaboradores), projetos (ensino, pesquisa e extensão), publicações (artigos, relatórios técnicos, tutoriais, manuais), bem como downloads de arquivos e instruções de ingresso (faça parte).
+O Sistemas deve exibir dados de notícias, pessoas (petianos, tutores e colaboradores), projetos (ensino, pesquisa e extesão), publicação, download e dados de ingresso.
+
+h2. _Tecnologias/Linguagens Utilizadas_
+
+* IDE: NetBeans  7.2.1
+* Plataforma: Java Enterprise Edition 6
+* Banco de Dados: MySQL Community Server 5.5.28
+* Servidor de Aplicação: GlassFish Server Open Source Edition 3.1.2.2 
+* Arquitetura: MVC (Model-View-Controller)
+* Padrões de Projeto: DAO (Data Access Object)
+* Apresentação via HTML, JSP, Javascript e JQuery
+
+h2. _Frameworks_
+
+* Hibernate (JPA 1.0)
+
+h2. _Equipe de Desenvolvimento_
+
+* "Bruno de Freitas Monteiro":https://github.com/brunogok
+* "Daivid Santos Silverio":https://github.com/daividssilverio
+* Gabriel Leme Medeiros
+* "Lillydi Cacere":https://github.com/lillydi
+* "Rebecca França Alves":https://github.com/rebeccafalves
+* "Rodrigo Kuninari":https://github.com/rkn1312
+* "Tamara Florentin Mendes":https://github.com/TamaraMendes
+* "Thiago Yudi Fukunaga":https://github.com/thiagoyf
