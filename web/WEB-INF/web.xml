@@ -6,8 +6,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
+        <url-pattern>/exibirPetianoCPF</url-pattern>
         <url-pattern>/listarPetiano</url-pattern>
         <url-pattern>/petiano</url-pattern>
+        <url-pattern>/buscarPetiano</url-pattern>
         <url-pattern>/novoPetiano</url-pattern>
         <url-pattern>/salvarPetiano</url-pattern>
     </servlet-mapping>

@@ -20,6 +20,7 @@
             </c:forEach>
 
             <p><a href="${pageContext.request.contextPath}/novoPetiano">Cadastrar Petiano</a></p>
+            <p><a href="${pageContext.request.contextPath}/buscarPetiano">Buscar Petiano</a></p>
         </div>
     </body>
 </html>

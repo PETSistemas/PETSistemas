@@ -78,6 +78,25 @@ public class PetianoServlet extends HttpServlet
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
     }
 
+    private void buscarPetianoCPF(HttpServletRequest request)
+    {
+
+        String cpf = request.getParameter("cpf");
+        Petiano petiano = controladorBD.buscarPetianoPeloCPF(cpf);
+
+        request.setAttribute("nome", petiano.getNome());
+        request.setAttribute("dataNascimento", utilitarios.dataParaString(petiano.getDataNascimento()));
+        request.setAttribute("email", petiano.getEmail());
+        request.setAttribute("lattes", petiano.getLinkLattes());
+        request.setAttribute("curso", petiano.getCurso());
+        request.setAttribute("pai", petiano.getNomePai());
+        request.setAttribute("mae", petiano.getNomeMae());
+        request.setAttribute("rg", petiano.getRg());
+        request.setAttribute("cpf", petiano.getCpf());
+        request.setAttribute("endereco", petiano.getEndereco());
+        request.setAttribute("dataEntrada", utilitarios.dataParaString(petiano.getDataEntrada()));
+    }
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -112,6 +131,15 @@ public class PetianoServlet extends HttpServlet
         else if (request.getRequestURI().endsWith("/listarPetiano"))
         {
             jsp = "/listarPetiano.jsp";
+        }
+        else if (request.getRequestURI().endsWith("/buscarPetiano"))
+        {
+            jsp = "/buscarPetiano.jsp";
+        }
+        else if (request.getRequestURI().endsWith("/exibirPetianoCPF"))
+        {
+            buscarPetianoCPF(request);
+            jsp = "/exibirPetianoCPF.jsp";
         }
         else
         {
