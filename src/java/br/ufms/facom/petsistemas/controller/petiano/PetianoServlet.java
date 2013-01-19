@@ -27,8 +27,6 @@ public class PetianoServlet extends HttpServlet
 
     PetianoDAO controladorBD;
 
-    Utilitarios utilitarios;
-
     /**
      * Método executado na inicialização da Classe
      *
@@ -38,18 +36,6 @@ public class PetianoServlet extends HttpServlet
     public void init() throws ServletException
     {
         controladorBD = new PetianoDAOImplementacao();
-        utilitarios = new Utilitarios();
-    }
-
-    /**
-     * Método responsável pela pesquisa de todos os petianos cadastrados
-     *
-     * @param request
-     */
-    private void listarPetianos(HttpServletRequest request)
-    {
-        List<Petiano> petianos = controladorBD.listarTodosPetianos();
-        request.setAttribute("petianos", petianos);
     }
 
     /**
@@ -61,7 +47,7 @@ public class PetianoServlet extends HttpServlet
     {
         String nome = request.getParameter("nome");
         String dataNasc = request.getParameter("dataNascimento");
-        Date dataNascimento = utilitarios.stringParaData(dataNasc);
+        Date dataNascimento = Utilitarios.stringParaData(dataNasc);
         String email = request.getParameter("email");
         String lattes = request.getParameter("lattes");
         int curso = Integer.valueOf(request.getParameter("curso"));
@@ -71,7 +57,7 @@ public class PetianoServlet extends HttpServlet
         String cpf = request.getParameter("cpf");
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
-        Date dataEntrada = utilitarios.stringParaData(dataEnt);
+        Date dataEntrada = Utilitarios.stringParaData(dataEnt);
 
         Petiano petiano = new Petiano(curso, nomePai, nomeMae, rg, cpf, dataEntrada, endereco, nome, dataNascimento, email, lattes, null);
         controladorBD.inserir(petiano);
@@ -85,7 +71,7 @@ public class PetianoServlet extends HttpServlet
         Petiano petiano = controladorBD.buscarPetianoPeloCPF(cpf);
 
         request.setAttribute("nome", petiano.getNome());
-        request.setAttribute("dataNascimento", utilitarios.dataParaString(petiano.getDataNascimento()));
+        request.setAttribute("dataNascimento", Utilitarios.dataParaString(petiano.getDataNascimento()));
         request.setAttribute("email", petiano.getEmail());
         request.setAttribute("lattes", petiano.getLinkLattes());
         request.setAttribute("curso", petiano.getCurso());
@@ -94,7 +80,7 @@ public class PetianoServlet extends HttpServlet
         request.setAttribute("rg", petiano.getRg());
         request.setAttribute("cpf", petiano.getCpf());
         request.setAttribute("endereco", petiano.getEndereco());
-        request.setAttribute("dataEntrada", utilitarios.dataParaString(petiano.getDataEntrada()));
+        request.setAttribute("dataEntrada", Utilitarios.dataParaString(petiano.getDataEntrada()));
     }
 
     /**
@@ -114,38 +100,38 @@ public class PetianoServlet extends HttpServlet
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/petiano"))
+        if (request.getRequestURI().endsWith("/novoPetiano"))
         {
-            listarPetianos(request);
-            jsp = "/petiano.jsp";
-        }
-        else if (request.getRequestURI().endsWith("/novoPetiano"))
-        {
-            jsp = "/novoPetiano.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "novoPetiano");
         }
         else if (request.getRequestURI().endsWith("/salvarPetiano"))
         {
             salvarPetiano(request);
-            jsp = "/salvarPetiano.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "salvarPetiano");
         }
         else if (request.getRequestURI().endsWith("/listarPetiano"))
         {
-            jsp = "/listarPetiano.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "petiano");
         }
         else if (request.getRequestURI().endsWith("/buscarPetiano"))
         {
-            jsp = "/buscarPetiano.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "buscarPetiano");
         }
         else if (request.getRequestURI().endsWith("/exibirPetianoCPF"))
         {
             buscarPetianoCPF(request);
-            jsp = "/exibirPetianoCPF.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "exibirPetianoCPF");
         }
         else
         {
-            jsp = "/petiano.jsp";
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "petiano");
         }
-
 
         if (jsp == null)
         {
@@ -200,5 +186,4 @@ public class PetianoServlet extends HttpServlet
     {
         return "Short description";
     }// </editor-fold>
-
 }

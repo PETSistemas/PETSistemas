@@ -15,18 +15,13 @@ import java.util.Date;
  */
 public class Utilitarios
 {
-
-    public Utilitarios()
-    {
-    }
-
     /**
      * Método responsável por converter uma String para um Objeto do tipo Date.
      *
      * @param data String (no formato dd/MM/yyyy) da data a ser convertida.
      * @return Objeto Date com a data convertida.
      */
-    public Date stringParaData(String data)
+    public static Date stringParaData(String data)
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
@@ -48,7 +43,7 @@ public class Utilitarios
      * @param data Objeto do tipo Date a ser convertido.
      * @return String (no formato dd/MM/yyyy) contendo data convertida.
      */
-    public String dataParaString(Date data)
+    public static String dataParaString(Date data)
     {
         return new SimpleDateFormat("dd/MM/yyyy").format(data);
     }
