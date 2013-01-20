@@ -2,42 +2,66 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufms.facom.petsistemas.controller;
+package br.ufms.facom.petsistemas.controller.noticia;
 
-import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
-import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
-import br.ufms.facom.petsistemas.model.entity.Petiano;
+import br.ufms.facom.petsistemas.model.dao.noticia.NoticiaDAO;
+import br.ufms.facom.petsistemas.model.dao.noticia.NoticiaDAOImplementacao;
+import br.ufms.facom.petsistemas.model.entity.Noticia;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Classe Controladora da Entidade Noticia. Responsável pela comunicação da View
+ * com o código Java.
  *
  * @author Rodrigo Kuninari
  */
-@WebServlet(name = "GerenciadorServlet", urlPatterns =
-{
-    "/GerenciadorServlet"
-})
-public class GerenciadorServlet extends HttpServlet
+public class NoticiaServlet extends HttpServlet
 {
 
-    PetianoDAO petianoBD;
+    NoticiaDAO controladorBD;
 
     /**
-     * Método responsável pela pesquisa de todos os petianos cadastrados
+     * Método executado na inicialização da Classe
+     *
+     * @throws ServletException
+     */
+    @Override
+    public void init() throws ServletException
+    {
+        controladorBD = new NoticiaDAOImplementacao();
+    }
+
+    /**
+     * Método responsável pela pesquisa de todas as notícias cadastradas
      *
      * @param request
      */
-    private void listarPetianos(HttpServletRequest request)
+    private void listarNoticias(HttpServletRequest request)
     {
-        petianoBD = new PetianoDAOImplementacao();
-        List<Petiano> petianos = petianoBD.listarTodosPetianos();
-        request.setAttribute("petianos", petianos);
+        List<Noticia> noticias = controladorBD.listarTodasNoticias();
+        request.setAttribute("noticias", noticias);
+    }
+
+    /**
+     * Método responsável pela criação de um novo petiano
+     *
+     * @param request
+     */
+    private void salvarNoticia(HttpServletRequest request)
+    {
+        request.setAttribute("mensagem", "Noticia cadastrado com sucesso!");
+    }
+
+    private void buscarNoticiaTitulo(HttpServletRequest request)
+    {
+
+        String titulo = request.getParameter("titulo");
+        Noticia noticia = controladorBD.buscarNoticiaPeloTitulo(titulo);
     }
 
     /**
@@ -57,17 +81,12 @@ public class GerenciadorServlet extends HttpServlet
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/index"))
+        if (request.getRequestURI().endsWith("/noticia"))
         {
             jsp = "/index.jsp";
+            request.setAttribute("pagina", "noticia");
         }
-        else if (request.getRequestURI().endsWith("/petiano"))
-        {
-            listarPetianos(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "petiano");
-        }
-        else if (request.getRequestURI().endsWith("/noticia"))
+        else
         {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "noticia");
