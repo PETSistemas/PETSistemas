@@ -16,6 +16,7 @@
     <class>br.ufms.facom.petsistemas.model.entity.Colaborador</class>
     <class>br.ufms.facom.petsistemas.model.entity.Petiano</class>
     <class>br.ufms.facom.petsistemas.model.entity.Tutor</class>
+    <class>br.ufms.facom.petsistemas.model.entity.Noticia</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

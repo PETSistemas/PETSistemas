@@ -10,17 +10,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Notícia</title>
+        <title>Petiano</title>
     </head>
     <body>
         <div>
-            <h1>Notícia</h1>
-            <c:forEach var="noticia" items="${noticias}" varStatus="status" >
-                <p>${status.count}: ${noticia.titulo}</p>
+            <h1>Petiano</h1>
+            <c:forEach var="petiano" items="${petianos}" varStatus="status" >
+                <p>${status.count}: ${petiano.nome}</p>
             </c:forEach>
 
-            <p><a href="${pageContext.request.contextPath}/novaNoticia">Cadastrar Notícia</a></p>
-            <p><a href="${pageContext.request.contextPath}/buscarNotícia">Buscar Notícia</a></p>
+            <p><a href="${pageContext.request.contextPath}/novoPetiano">Cadastrar Petiano</a></p>
+            <p><a href="${pageContext.request.contextPath}/buscarPetiano">Buscar Petiano</a></p>
         </div>
     </body>
 </html>

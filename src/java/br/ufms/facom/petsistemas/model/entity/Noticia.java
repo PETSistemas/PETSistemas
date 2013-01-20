@@ -12,14 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
  * Classe que representa a Entidade Noticia
+ *
  * @author Rodrigo Kuninari
  */
 @Entity
@@ -53,12 +54,22 @@ public class Noticia implements Serializable
     @Column(name = "tipo", updatable = true, nullable = false)
     private int tipo;
 
-    @OneToMany
-    @JoinColumn(name = "pessoa", updatable = true, nullable = true)
-    private Pessoa pessoa;
+    @JoinColumn(name = "petiano", updatable = true, nullable = true)
+    @ManyToOne
+    private Petiano petiano;
 
     public Noticia()
     {
+    }
+
+    public Noticia(String titulo, String conteudo, Date dataInicial, Date dataFinal, int tipo, Petiano petiano)
+    {
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.tipo = tipo;
+        this.petiano = petiano;
     }
 
     public Long getId()
@@ -121,13 +132,13 @@ public class Noticia implements Serializable
         this.tipo = tipo;
     }
 
-    public Pessoa getPessoa()
+    public Petiano getPetiano()
     {
-        return pessoa;
+        return petiano;
     }
 
-    public void setPessoa(Pessoa pessoa)
+    public void setPetiano(Petiano petiano)
     {
-        this.pessoa = pessoa;
+        this.petiano = petiano;
     }
 }
