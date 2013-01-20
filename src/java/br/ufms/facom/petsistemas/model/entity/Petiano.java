@@ -6,10 +6,12 @@ package br.ufms.facom.petsistemas.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -54,6 +56,9 @@ public class Petiano extends Pessoa implements Serializable
 
     @Column(name = "endereco", updatable = false, nullable = false, length = 250)
     private String endereco;
+
+    @OneToMany(mappedBy = "petiano")
+    private List<Noticia> noticias;
 
     public Petiano()
     {
@@ -151,4 +156,13 @@ public class Petiano extends Pessoa implements Serializable
         this.endereco = endereco;
     }
 
+    public List<Noticia> getNoticias()
+    {
+        return noticias;
+    }
+
+    public void setNoticias(List<Noticia> noticias)
+    {
+        this.noticias = noticias;
+    }
 }

@@ -119,5 +119,4 @@ public abstract class Pessoa implements Serializable
     {
         this.arquivo = arquivo;
     }
-
 }
