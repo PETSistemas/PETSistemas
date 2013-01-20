@@ -4,10 +4,15 @@
  */
 package br.ufms.facom.petsistemas.controller.noticia;
 
+import br.ufms.facom.petsistemas.controller.Utilitarios;
 import br.ufms.facom.petsistemas.model.dao.noticia.NoticiaDAO;
 import br.ufms.facom.petsistemas.model.dao.noticia.NoticiaDAOImplementacao;
+import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
+import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Noticia;
+import br.ufms.facom.petsistemas.model.entity.Petiano;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +29,8 @@ public class NoticiaServlet extends HttpServlet
 {
 
     NoticiaDAO controladorBD;
+
+    PetianoDAO controladorPetianoBD;
 
     /**
      * Método executado na inicialização da Classe
@@ -48,20 +55,53 @@ public class NoticiaServlet extends HttpServlet
     }
 
     /**
-     * Método responsável pela criação de um novo petiano
+     * Método responsável pela pesquisa de todos os petianos
+     *
+     * @param request
+     */
+    private void listarPetianos(HttpServletRequest request)
+    {
+        controladorPetianoBD = new PetianoDAOImplementacao();
+        List petianos = controladorPetianoBD.listarTodosPetianos();
+        request.setAttribute("petianos", petianos);
+    }
+
+    /**
+     * Método responsável pela criação de uma nova noticia
      *
      * @param request
      */
     private void salvarNoticia(HttpServletRequest request)
     {
-        request.setAttribute("mensagem", "Noticia cadastrado com sucesso!");
+        String titulo = request.getParameter("titulo");
+        String conteudo = request.getParameter("conteudo");
+        Date dataInicial = Utilitarios.stringParaData(request.getParameter("dataInicial"));
+        Date dataFinal = Utilitarios.stringParaData(request.getParameter("dataFinal"));
+        int tipo = Integer.valueOf(request.getParameter("tipo"));
+        Petiano petiano = controladorPetianoBD.retrieve(Long.valueOf(request.getParameter("petiano")));
+
+        Noticia noticia = new Noticia(titulo, conteudo, dataInicial, dataFinal, tipo, petiano);
+        controladorBD.inserir(noticia);
+        request.setAttribute("mensagem", "Noticia cadastrada com sucesso!");
     }
 
+    /**
+     * Método responsável pela pesquisa de nóticia através do título
+     *
+     * @param request
+     */
     private void buscarNoticiaTitulo(HttpServletRequest request)
     {
 
         String titulo = request.getParameter("titulo");
         Noticia noticia = controladorBD.buscarNoticiaPeloTitulo(titulo);
+
+        request.setAttribute("titulo", noticia.getTitulo());
+        request.setAttribute("conteudo", noticia.getConteudo());
+        request.setAttribute("dataInicial", Utilitarios.dataParaString(noticia.getDataInicial()));
+        request.setAttribute("dataFinal", Utilitarios.dataParaString(noticia.getDataFinal()));
+        request.setAttribute("tipo", noticia.getTipo());
+        request.setAttribute("petiano", noticia.getPetiano().getNome());
     }
 
     /**
@@ -83,8 +123,32 @@ public class NoticiaServlet extends HttpServlet
         //redirect for the correct method in accordance with to received uri:
         if (request.getRequestURI().endsWith("/noticia"))
         {
+            listarNoticias(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "noticia");
+        }
+        else if (request.getRequestURI().endsWith("/novaNoticia"))
+        {
+            listarPetianos(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "novaNoticia");
+        }
+        else if (request.getRequestURI().endsWith("/salvarNoticia"))
+        {
+            salvarNoticia(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "salvarNoticia");
+        }
+        else if (request.getRequestURI().endsWith("/buscarNoticia"))
+        {
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "buscarNoticia");
+        }
+        else if (request.getRequestURI().endsWith("/exibirNoticiaTitulo"))
+        {
+            buscarNoticiaTitulo(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "exibirNoticiaTitulo");
         }
         else
         {

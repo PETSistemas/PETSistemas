@@ -27,24 +27,40 @@
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
                     <c:if test="${pagina!=''}">
+                        <!-- ********************************************************************** -->
+                        <!-- PETIANO -->
                         <c:if test="${pagina=='petiano'}">
-                            <%@ include file="petiano.jsp" %>  
+                            <%@ include file="site/petiano/petiano.jsp" %>  
                         </c:if>
                         <c:if test="${pagina=='novoPetiano'}">
-                            <%@ include file="novoPetiano.jsp" %>  
+                            <%@ include file="site/petiano/novoPetiano.jsp" %>  
                         </c:if>
                         <c:if test="${pagina=='salvarPetiano'}">
-                            <%@ include file="salvarPetiano.jsp" %>  
+                            <%@ include file="site/petiano/salvarPetiano.jsp" %>  
                         </c:if>
                         <c:if test="${pagina=='buscarPetiano'}">
-                            <%@ include file="buscarPetiano.jsp" %>  
+                            <%@ include file="site/petiano/buscarPetiano.jsp" %>  
                         </c:if>
                         <c:if test="${pagina=='exibirPetianoCPF'}">
-                            <%@ include file="exibirPetianoCPF.jsp" %>  
+                            <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
                         </c:if>
 
+                        <!-- ********************************************************************** -->
+                        <!-- NOTICIA -->
                         <c:if test="${pagina=='noticia'}">
-                            <%@ include file="noticia.jsp" %>  
+                            <%@ include file="site/noticia/noticia.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='novaNoticia'}">
+                            <%@ include file="site/noticia/novaNoticia.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='salvarNoticia'}">
+                            <%@ include file="site/noticia/salvarNoticia.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='buscarNoticia'}">
+                            <%@ include file="site/noticia/buscarNoticia.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='exibirNoticiaTitulo'}">
+                            <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
                         </c:if>
                     </c:if>
                 </div>
