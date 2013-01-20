@@ -39,6 +39,17 @@ public class PetianoServlet extends HttpServlet
     }
 
     /**
+     * Método responsável pela pesquisa de todos os petianos cadastrados
+     *
+     * @param request
+     */
+    private void listarPetianos(HttpServletRequest request)
+    {
+        List<Petiano> petianos = controladorBD.listarTodosPetianos();
+        request.setAttribute("petianos", petianos);
+    }
+
+    /**
      * Método responsável pela criação de um novo petiano
      *
      * @param request
@@ -100,7 +111,17 @@ public class PetianoServlet extends HttpServlet
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/novoPetiano"))
+        if (request.getRequestURI().endsWith("/index"))
+        {
+            jsp = "/index.jsp";
+        }
+        else if (request.getRequestURI().endsWith("/petiano"))
+        {
+            listarPetianos(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "petiano");
+        }
+        else if (request.getRequestURI().endsWith("/novoPetiano"))
         {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "novoPetiano");
@@ -135,7 +156,7 @@ public class PetianoServlet extends HttpServlet
 
         if (jsp == null)
         {
-            response.sendRedirect(request.getContextPath() + "/petiano");
+            response.sendRedirect(request.getContextPath() + "/index");
         }
         else if (!"empty".equals(jsp))
         {
