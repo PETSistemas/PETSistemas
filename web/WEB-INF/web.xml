@@ -8,8 +8,14 @@
         <servlet-name>GerenciadorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.GerenciadorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NoticiaServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.noticia.NoticiaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/petiano</url-pattern>
         <url-pattern>/exibirPetianoCPF</url-pattern>
         <url-pattern>/listarPetiano</url-pattern>
         <url-pattern>/buscarPetiano</url-pattern>
@@ -17,9 +23,7 @@
         <url-pattern>/salvarPetiano</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GerenciadorServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/petiano</url-pattern>
+        <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
     </servlet-mapping>
     <session-config>
