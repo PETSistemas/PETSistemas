@@ -19,7 +19,7 @@ h2. _Frameworks_
 
 * Hibernate (JPA 1.0)
 
-h2. _Equipe de Desenvolvimento_
+h2. _Equipe PET de Desenvolvimento_
 
 * "Bruno de Freitas Monteiro":https://github.com/brunogok
 * "Daivid Santos Silverio":https://github.com/daividssilverio
