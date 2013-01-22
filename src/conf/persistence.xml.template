@@ -19,9 +19,14 @@
         <class>br.ufms.facom.petsistemas.model.entity.Noticia</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <!-- Configuracoes do banco de dados -->
+            <!-- Configuracoes do banco de dados MySQL-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            
+            <!-- Configuracoes do banco de dados PostgreSQL-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            
             <!-- Configuracoes: username, password e url do banco de dados -->
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="petadmin"/>
