@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Arquivo exemplo de configuracao de acesso ao banco. 
+    Nao modifique o conteudo desse template. Simplesmente copie e renomeie o arquivo para "persistence.xml".
+    As configuracoes de username, password e url do banco provavelmente precisarao ser alteradas.
+    Modifique as propriedades hibernate.connection.username, hibernate.connection.password e hibernate.connection.url respectivamente.
+    
+    Caso o banco ainda nao esteja criado, descomente a linha <property name="hibernate.hbm2ddl.auto" value="update"/>
+    e modifique a propriedade hibernate.hbm2ddl.auto com o valor create:
+    <property name="hibernate.hbm2ddl.auto" value="create"/>
+-->
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+    <persistence-unit name="PETSistemasPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>br.ufms.facom.petsistemas.model.entity.Arquivo</class>
+        <class>br.ufms.facom.petsistemas.model.entity.Colaborador</class>
+        <class>br.ufms.facom.petsistemas.model.entity.Petiano</class>
+        <class>br.ufms.facom.petsistemas.model.entity.Tutor</class>
+        <class>br.ufms.facom.petsistemas.model.entity.Noticia</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <!-- Configuracoes do banco de dados -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <!-- Configuracoes: username, password e url do banco de dados -->
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="petadmin"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/PETSistemas"/>
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <property name="hibernate.showSql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
