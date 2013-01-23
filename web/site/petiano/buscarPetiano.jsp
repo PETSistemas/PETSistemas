@@ -15,9 +15,12 @@
     <body>
         <div>
             <form method="POST" action="${pageContext.request.contextPath}/exibirPetianoCPF">
-                <p>CPF: <input type="text" name="cpf" size="14"></p>
-                <p><input type="submit" value="Pesquisar">
-                    <input type="reset" value="Limpar"></p>
+                <fieldset>
+                    <legend>Pesquisa de Petiano</legend>
+                    <p>CPF: <input type="text" name="cpf" size="14"></p>
+                    <p><input type="submit" value="Pesquisar">
+                        <input type="reset" value="Limpar"></p>
+                </fieldset>
             </form>
         </div>
         <p><a href="${pageContext.request.contextPath}/petiano">Voltar</a></p>
