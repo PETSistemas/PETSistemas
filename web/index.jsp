@@ -44,6 +44,9 @@
                         <c:if test="${pagina=='exibirPetianoCPF'}">
                             <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
                         </c:if>
+                        <c:if test="${pagina=='listarPetiano'}">
+                            <%@ include file="site/petiano/listarPetiano.jsp" %>  
+                        </c:if>
 
                         <!-- ********************************************************************** -->
                         <!-- NOTICIA -->

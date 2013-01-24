@@ -14,8 +14,7 @@ import javax.persistence.Query;
  *
  * @author Rodrigo Kuninari
  */
-public abstract class DAOImplementacao<T, ID extends Serializable> implements DAO<T, ID>, Serializable
-{
+public abstract class DAOImplementacao<T, ID extends Serializable> implements DAO<T, ID>, Serializable {
 
     /**
      * Metodo para retornar a classe do parametro T
@@ -24,44 +23,36 @@ public abstract class DAOImplementacao<T, ID extends Serializable> implements DA
      */
     public abstract Class<T> getDomainClass();
 
-    public EntityManager getEntityManager()
-    {
+    public EntityManager getEntityManager() {
         return GerenciadorEntidade.getEntityManager();
     }
 
     @Override
-    public void inserir(T obj)
-    {
+    public void inserir(T obj) {
         GerenciadorEntidade.inserir(obj);
 
     }
 
     @Override
-    public T retrieve(ID id)
-    {
+    public T retrieve(ID id) {
         return (T) getEntityManager().find(getDomainClass(), id);
 
     }
 
     @Override
-    public List<T> retornarLista()
-    {
+    public List<T> retornarLista() {
         String queryS = "SELECT obj FROM " + getDomainClass().getSimpleName() + " obj";
         Query query = GerenciadorEntidade.criarConsulta(queryS);
 
-        try
-        {
+        try {
             return query.getResultList();
-        }
-        catch (NoResultException nre)
-        {
+        } catch (NoResultException nre) {
             return null;
         }
     }
 
     @Override
-    public T deletar(T obj)
-    {
+    public T deletar(T obj) {
         obj = (T) GerenciadorEntidade.atualizar(obj);
         GerenciadorEntidade.remover(obj);
 
@@ -70,12 +61,10 @@ public abstract class DAOImplementacao<T, ID extends Serializable> implements DA
     }
 
     @Override
-    public T atualizar(T obj)
-    {
+    public T atualizar(T obj) {
         T objReturn = null;
 
-        if (obj != null)
-        {
+        if (obj != null) {
             objReturn = (T) GerenciadorEntidade.atualizar(obj);
         }
 
@@ -83,87 +72,87 @@ public abstract class DAOImplementacao<T, ID extends Serializable> implements DA
     }
 
     @Override
-    public Query criarConsulta(String query)
-    {
+    public Query criarConsulta(String query) {
         return GerenciadorEntidade.criarConsulta(query);
     }
 
     @Override
-    public Query criarNamedQuery(String query)
-    {
+    public Query criarNamedQuery(String query) {
         return GerenciadorEntidade.criarNamedQuery(query);
     }
 
     @Override
-    public T executarConsultaSimples(ParametrosConsulta parameter)
-    {
+    public T executarConsultaSimples(ParametrosConsulta parameter) {
         String sql = "SELECT o FROM " + getDomainClass().getSimpleName()
-                     + "AS o WHERE o." + parameter.getName() + " = :" + parameter.getValue();
+                + "AS o WHERE o." + parameter.getName() + " = :" + parameter.getValue();
         Query query = criarConsulta(sql);
         query.setParameter(parameter.getName(), parameter.getValue());
 
-        try
-        {
+        try {
             return (T) query.getSingleResult();
-        }
-        catch (NoResultException nre)
-        {
+        } catch (NoResultException nre) {
             return null;
         }
     }
 
-    @Override
-    public List<T> executarNamedQuery(String namedQuery, ParametrosConsulta parameter)
-    {
+    public List<T> executarNamedQuerySemParametro(String namedQuery) {
         Query query = criarNamedQuery(namedQuery);
-        query.setParameter(parameter.getName(), parameter.getValue());
 
-        try
-        {
+        try {
             return (List<T>) query.getResultList();
-        }
-        catch (NoResultException nre)
-        {
+        } catch (NoResultException nre) {
             return null;
         }
     }
 
     @Override
-    public T executarNamedQuerySimples(String namedQuery, ParametrosConsulta parameter)
-    {
+    public List<T> executarNamedQuery(String namedQuery, ParametrosConsulta parameter) {
         Query query = criarNamedQuery(namedQuery);
         query.setParameter(parameter.getName(), parameter.getValue());
 
-        try
-        {
-            return (T) query.getSingleResult();
-        }
-        catch (NoResultException nre)
-        {
+        try {
+            return (List<T>) query.getResultList();
+        } catch (NoResultException nre) {
             return null;
         }
     }
 
     @Override
-    public T executarConsulta(String sql)
-    {
+    public T executarNamedQuerySimples(String namedQuery, ParametrosConsulta parameter) {
+        Query query = criarNamedQuery(namedQuery);
+        query.setParameter(parameter.getName(), parameter.getValue());
+
+        try {
+            return (T) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
+    public T executarNamedQuerySimplesSemParametro(String namedQuery) {
+        Query query = criarNamedQuery(namedQuery);
+
+        try {
+            return (T) query.getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
+    @Override
+    public T executarConsulta(String sql) {
         Query query = criarConsulta(sql);
 
-        try
-        {
+        try {
             return (T) query.getSingleResult();
-        }
-        catch (NoResultException nre)
-        {
+        } catch (NoResultException nre) {
             return null;
         }
     }
 
     @PreDestroy
     @Override
-    public void finalizeAccess()
-    {
+    public void finalizeAccess() {
         GerenciadorEntidade.close();
     }
-
 }

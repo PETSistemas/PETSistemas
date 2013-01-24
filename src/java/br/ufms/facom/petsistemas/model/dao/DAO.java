@@ -15,8 +15,7 @@ import javax.persistence.Query;
  *
  * @author Rodrigo Kuninari
  */
-public interface DAO<T, ID extends Serializable>
-{
+public interface DAO<T, ID extends Serializable> {
 
     /**
      * Metodo para inserir um novo objeto do tipo T no banco.
@@ -83,6 +82,15 @@ public interface DAO<T, ID extends Serializable>
     public T executarConsultaSimples(ParametrosConsulta parameter);
 
     /**
+     * Método responsável pela execução de uma consulta simples no banco de
+     * dados.
+     *
+     * @param namedQuery String com o nome da NamedQuery a ser executada.
+     * @return
+     */
+    public T executarNamedQuerySimplesSemParametro(String namedQuery);
+
+    /**
      * Método responsável pela execução de uma NamedQuery no banco de dados.
      *
      * @param namedQuery String com o nome da NamedQuery a ser executada.
@@ -91,6 +99,14 @@ public interface DAO<T, ID extends Serializable>
      * @return Objeto resultante da consulta.
      */
     public List<T> executarNamedQuery(String namedQuery, ParametrosConsulta parameter);
+
+    /**
+     * Método responsável pela execução de uma NamedQuery no banco de dados.
+     *
+     * @param namedQuery String com o nome da NamedQuery a ser executada.
+     * @return Objeto resultante da consulta.
+     */
+    public List<T> executarNamedQuerySemParametro(String namedQuery);
 
     /**
      * Método responsável pela execução de uma NamedQuery no banco de dados.
@@ -111,5 +127,4 @@ public interface DAO<T, ID extends Serializable>
     public T executarConsulta(String sql);
 
     public void finalizeAccess();
-
 }

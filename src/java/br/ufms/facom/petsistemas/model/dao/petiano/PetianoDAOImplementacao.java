@@ -47,5 +47,20 @@ public class PetianoDAOImplementacao extends DAOImplementacao<Petiano, Long> imp
         List<Petiano> petianos = executarNamedQuery(namedQuery, parametros);
         return petianos;
     }
+    
+    public List<Petiano> buscarPetianoPelaSituacao(int situacao) {
+
+
+        if (situacao == 1) {
+            String namedQuery = "Petiano.buscarPetianoAtivo";
+            List<Petiano> petianos = executarNamedQuerySemParametro(namedQuery);
+            return petianos;
+        }
+        else {
+            String namedQuery = "Petiano.buscarPetianoDesativo";
+            List<Petiano> petianos = executarNamedQuerySemParametro(namedQuery);
+            return petianos;
+        }
+    }
 
 }

@@ -26,7 +26,9 @@ import javax.persistence.Temporal;
 @NamedQueries(
 {
     @NamedQuery(name = "Petiano.buscarPetianoPeloCPF", query = "SELECT p FROM Petiano AS p WHERE p.cpf = :cpf ORDER BY p.nome"),
-    @NamedQuery(name = "Petiano.buscarPetianoPeloCurso", query = "SELECT p FROM Petiano AS p WHERE p.curso = :curso ORDER BY p.nome")
+    @NamedQuery(name = "Petiano.buscarPetianoPeloCurso", query = "SELECT p FROM Petiano AS p WHERE p.curso = :curso ORDER BY p.nome"),
+    @NamedQuery(name = "Petiano.buscarPetianoAtivo", query = "SELECT p FROM Petiano AS p WHERE p.dataSaida is null"),
+    @NamedQuery(name = "Petiano.buscarPetianoDesativo", query = "SELECT p FROM Petiano AS p WHERE p.dataSaida is not null")
 })
 public class Petiano extends Pessoa implements Serializable
 {
@@ -64,7 +66,7 @@ public class Petiano extends Pessoa implements Serializable
     {
     }
 
-    public Petiano(int curso, String nomePai, String nomeMae, String rg, String cpf, Date dataEntrada, String endereco, String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
+    public Petiano(int curso, String nomePai, String nomeMae, String rg, String cpf, Date dataEntrada, Date dataSaida, String endereco, String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
     {
         super(nome, dataNascimento, email, linkLattes, arquivo);
         this.curso = curso;
@@ -74,6 +76,7 @@ public class Petiano extends Pessoa implements Serializable
         this.cpf = cpf;
         this.dataEntrada = dataEntrada;
         this.endereco = endereco;
+        this.dataSaida = dataSaida;
     }
 
     public int getCurso()

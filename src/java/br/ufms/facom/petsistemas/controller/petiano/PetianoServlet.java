@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rodrigo Kuninari
  */
-public class PetianoServlet extends HttpServlet
-{
+public class PetianoServlet extends HttpServlet {
 
     PetianoDAO controladorBD;
 
@@ -33,8 +32,7 @@ public class PetianoServlet extends HttpServlet
      * @throws ServletException
      */
     @Override
-    public void init() throws ServletException
-    {
+    public void init() throws ServletException {
         controladorBD = new PetianoDAOImplementacao();
     }
 
@@ -43,8 +41,7 @@ public class PetianoServlet extends HttpServlet
      *
      * @param request
      */
-    private void listarPetianos(HttpServletRequest request)
-    {
+    private void listarPetianos(HttpServletRequest request) {
         List<Petiano> petianos = controladorBD.listarTodosPetianos();
         request.setAttribute("petianos", petianos);
     }
@@ -54,8 +51,7 @@ public class PetianoServlet extends HttpServlet
      *
      * @param request
      */
-    private void salvarPetiano(HttpServletRequest request)
-    {
+    private void salvarPetiano(HttpServletRequest request) {
         String nome = request.getParameter("nome");
         String dataNasc = request.getParameter("dataNascimento");
         Date dataNascimento = Utilitarios.stringParaData(dataNasc);
@@ -69,14 +65,20 @@ public class PetianoServlet extends HttpServlet
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
         Date dataEntrada = Utilitarios.stringParaData(dataEnt);
+        String dataSai = request.getParameter("dataSaida");
+        Date dataSaida = Utilitarios.stringParaData(dataSai);
 
-        Petiano petiano = new Petiano(curso, nomePai, nomeMae, rg, cpf, dataEntrada, endereco, nome, dataNascimento, email, lattes, null);
+        Petiano petiano = new Petiano(curso, nomePai, nomeMae, rg, cpf, dataEntrada, dataSaida, endereco, nome, dataNascimento, email, lattes, null);
         controladorBD.inserir(petiano);
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
     }
 
-    private void buscarPetianoCPF(HttpServletRequest request)
-    {
+    /**
+     * Método responsável pela busca de Petiano pelo CPF
+     *
+     * @param request
+     */
+    private void buscarPetianoCPF(HttpServletRequest request) {
 
         String cpf = request.getParameter("cpf");
         Petiano petiano = controladorBD.buscarPetianoPeloCPF(cpf);
@@ -95,6 +97,22 @@ public class PetianoServlet extends HttpServlet
     }
 
     /**
+     * Método responsável por buscar Petianos ativos e Desativos
+     * Separa os ativos dos desativos em variáveis diferentes
+     * 
+     * @param request
+     */
+    private void buscarPetianoSituacao(HttpServletRequest request) {
+
+        List<Petiano> petianos = controladorBD.buscarPetianoPelaSituacao(1);
+        request.setAttribute("petianosAtivos", petianos);
+
+        petianos = controladorBD.buscarPetianoPelaSituacao(0);
+        request.setAttribute("petianosDesativos", petianos);
+
+    }
+
+    /**
      * Processes requests for both HTTP
      * <code>GET</code> and
      * <code>POST</code> methods.
@@ -105,61 +123,44 @@ public class PetianoServlet extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/index"))
-        {
+        if (request.getRequestURI().endsWith("/index")) {
             jsp = "/index.jsp";
-        }
-        else if (request.getRequestURI().endsWith("/petiano"))
-        {
+        } else if (request.getRequestURI().endsWith("/petiano")) {
             listarPetianos(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "petiano");
-        }
-        else if (request.getRequestURI().endsWith("/novoPetiano"))
-        {
+        } else if (request.getRequestURI().endsWith("/novoPetiano")) {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "novoPetiano");
-        }
-        else if (request.getRequestURI().endsWith("/salvarPetiano"))
-        {
+        } else if (request.getRequestURI().endsWith("/salvarPetiano")) {
             salvarPetiano(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "salvarPetiano");
-        }
-        else if (request.getRequestURI().endsWith("/listarPetiano"))
-        {
+        } else if (request.getRequestURI().endsWith("/listarPetiano")) {
+
+            buscarPetianoSituacao(request);
             jsp = "/index.jsp";
-            request.setAttribute("pagina", "petiano");
-        }
-        else if (request.getRequestURI().endsWith("/buscarPetiano"))
-        {
+            request.setAttribute("pagina", "listarPetiano");
+        } else if (request.getRequestURI().endsWith("/buscarPetiano")) {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "buscarPetiano");
-        }
-        else if (request.getRequestURI().endsWith("/exibirPetianoCPF"))
-        {
+        } else if (request.getRequestURI().endsWith("/exibirPetianoCPF")) {
             buscarPetianoCPF(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "exibirPetianoCPF");
-        }
-        else
-        {
+        } else {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "petiano");
         }
 
-        if (jsp == null)
-        {
+        if (jsp == null) {
             response.sendRedirect(request.getContextPath() + "/index");
-        }
-        else if (!"empty".equals(jsp))
-        {
+        } else if (!"empty".equals(jsp)) {
             request.getRequestDispatcher(jsp).forward(request, response);
         }
     }
@@ -176,8 +177,7 @@ public class PetianoServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -192,8 +192,7 @@ public class PetianoServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -203,8 +202,7 @@ public class PetianoServlet extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 }

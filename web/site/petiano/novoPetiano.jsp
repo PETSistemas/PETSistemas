@@ -34,6 +34,7 @@
                     <p>Endereço:</p>
                     <textarea name="endereco" rows="10" cols="50"></textarea>
                     <p>Data de Entrada: <input type="text" name="dataEntrada" size="10"></p>
+                    <p>Data de Saida <input type="text" name="dataSaida" size="10"></p>
                     <p><input type="submit" value="Salvar">
                         <input type="reset" value="Limpar"></p>
                 </fieldset>

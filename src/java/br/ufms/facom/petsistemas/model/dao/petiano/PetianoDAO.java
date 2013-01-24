@@ -15,8 +15,7 @@ import java.util.List;
  *
  * @author Rodrigo Kuninari
  */
-public interface PetianoDAO extends DAO<Petiano, Long>
-{
+public interface PetianoDAO extends DAO<Petiano, Long> {
 
     /**
      * Método responsável por consultar um Petiano através do CPF.
@@ -42,4 +41,14 @@ public interface PetianoDAO extends DAO<Petiano, Long>
      */
     public List<Petiano> buscarPetianoPeloCurso(int curso);
 
+    /**
+     * Método responsável por consultar todos os Petianos com uma determinada
+     * situação
+     *
+     * @param situacao Inteiro que representa 1 para ativo e qualquer outro
+     * número, desativo Quando ativo, Petiano possui uma data de saída. Quando
+     * Desativo, Petiano não possui data de saída nula
+     * @return
+     */
+    public List<Petiano> buscarPetianoPelaSituacao(int situacao);
 }
