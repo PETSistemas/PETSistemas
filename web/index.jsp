@@ -23,6 +23,7 @@
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petiano">Petianos</a></p>
                     <p><a href="${pageContext.request.contextPath}/noticia">Notícias</a></p>
+                    <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
                 </div>
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
@@ -65,6 +66,20 @@
                         <c:if test="${pagina=='exibirNoticiaTitulo'}">
                             <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
                         </c:if>
+                        
+                        <!-- ********************************************************************** -->                        
+                        <!-- LOGIN -->
+                       
+                        <c:if test="${pagina=='login'}">
+                            <%@ include file="site/login/login.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='logado'}">
+                            <%@ include file="site/administrativo/index.jsp" %>  
+                        </c:if>
+                        <c:if test="${pagina=='logar'}">
+                            <%@ include file="site/login/loginErro.jsp" %>  
+                        </c:if>
+                        
                     </c:if>
                 </div>
                 <div id = "links">
