@@ -27,44 +27,47 @@
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
                     <c:if test="${pagina!=''}">
-                        <!-- ********************************************************************** -->
-                        <!-- PETIANO -->
-                        <c:if test="${pagina=='petiano'}">
-                            <%@ include file="site/petiano/petiano.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='novoPetiano'}">
-                            <%@ include file="site/petiano/novoPetiano.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='salvarPetiano'}">
-                            <%@ include file="site/petiano/salvarPetiano.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='buscarPetiano'}">
-                            <%@ include file="site/petiano/buscarPetiano.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='exibirPetianoCPF'}">
-                            <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='listarPetiano'}">
-                            <%@ include file="site/petiano/listarPetiano.jsp" %>  
-                        </c:if>
+                        <c:choose>
 
-                        <!-- ********************************************************************** -->
-                        <!-- NOTICIA -->
-                        <c:if test="${pagina=='noticia'}">
-                            <%@ include file="site/noticia/noticia.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='novaNoticia'}">
-                            <%@ include file="site/noticia/novaNoticia.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='salvarNoticia'}">
-                            <%@ include file="site/noticia/salvarNoticia.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='buscarNoticia'}">
-                            <%@ include file="site/noticia/buscarNoticia.jsp" %>  
-                        </c:if>
-                        <c:if test="${pagina=='exibirNoticiaTitulo'}">
-                            <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
-                        </c:if>
+                            <%-- ********************************************************************** --%>
+                            <%-- PETIANO --%>
+                            <c:when test="${pagina=='petiano'}">
+                                <%@ include file="site/petiano/petiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoPetiano'}">
+                                <%@ include file="site/petiano/novoPetiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='salvarPetiano'}">
+                                <%@ include file="site/petiano/salvarPetiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='buscarPetiano'}">
+                                <%@ include file="site/petiano/buscarPetiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='exibirPetianoCPF'}">
+                                <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='listarPetiano'}">
+                                <%@ include file="site/petiano/listarPetiano.jsp" %>  
+                            </c:when>
+
+                            <%-- ********************************************************************** --%>
+                            <%-- NOTICIA --%>
+                            <c:when test="${pagina=='noticia'}">
+                                <%@ include file="site/noticia/noticia.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novaNoticia'}">
+                                <%@ include file="site/noticia/novaNoticia.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='salvarNoticia'}">
+                                <%@ include file="site/noticia/salvarNoticia.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='buscarNoticia'}">
+                                <%@ include file="site/noticia/buscarNoticia.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='exibirNoticiaTitulo'}">
+                                <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
+                            </c:when>
+                        </c:choose>
                     </c:if>
                 </div>
                 <div id = "links">
