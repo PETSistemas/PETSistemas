@@ -23,7 +23,7 @@
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petiano">Petianos</a></p>
                     <p><a href="${pageContext.request.contextPath}/noticia">Notícias</a></p>
-                    <p><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></p>
+                     <p><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></p>
                     <p><a href="${pageContext.request.contextPath}/projeto">Projetos</a></p>
                     <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
                 </div>
@@ -97,17 +97,17 @@
                                 <%@ include file="site/login/loginErro.jsp" %>  
                             </c:when>
                             --%>
-
-                            <%-- ********************************************************************** --%>
+                            
+                             <%-- ********************************************************************** --%>
                             <%-- PUBLICAÇÃO --%>
-
+                            <%--
                             <c:when test="${pagina=='publicacao'}">
                                 <%@ include file="site/publicacao/publicacao.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='novaPublicacao'}">
                                 <%@ include file="site/publicacao/novaPublicacao.jsp" %>  
                             </c:when>
-
+                            --%>
                         </c:choose>
                     </c:if>
                 </div>
