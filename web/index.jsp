@@ -100,14 +100,14 @@
 
                             <%-- ********************************************************************** --%>
                             <%-- PUBLICAÇÃO --%>
-
-                            <c:when test="${pagina=='publicacao'}">
-                                <%@ include file="site/publicacao/publicacao.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='novaPublicacao'}">
-                                <%@ include file="site/publicacao/novaPublicacao.jsp" %>  
-                            </c:when>
-
+                            <%-- 
+                                                        <c:when test="${pagina=='publicacao'}">
+                                                            <%@ include file="site/publicacao/publicacao.jsp" %>  
+                                                        </c:when>
+                                                        <c:when test="${pagina=='novaPublicacao'}">
+                                                            <%@ include file="site/publicacao/novaPublicacao.jsp" %>  
+                                                        </c:when>
+                            --%>
                         </c:choose>
                     </c:if>
                 </div>
