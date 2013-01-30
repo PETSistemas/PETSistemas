@@ -73,7 +73,7 @@
 
                             <%-- ********************************************************************** --%>                        
                             <%-- LOGIN --%>
-
+                            <%--
                             <c:when test="${pagina=='login'}">
                                 <%@ include file="site/login/login.jsp" %>  
                             </c:when>
@@ -83,6 +83,7 @@
                             <c:when test="${pagina=='logar'}">
                                 <%@ include file="site/login/loginErro.jsp" %>  
                             </c:when>
+                            --%>
                         </c:choose>
                     </c:if>
                 </div>
