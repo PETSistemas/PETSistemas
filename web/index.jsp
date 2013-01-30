@@ -1,4 +1,4 @@
-<%-- 
+s<%-- 
     Document   : index
     Created on : 05/12/2012, 11:19:50
     Author     : Rodrigo Kuninari
@@ -23,6 +23,7 @@
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petiano">Petianos</a></p>
                     <p><a href="${pageContext.request.contextPath}/noticia">Notícias</a></p>
+                    <p><a href="${pageContext.request.contextPath}/projeto">Projetos</a></p>
                     <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
                 </div>
                 <div id = "conteudo">
@@ -32,7 +33,7 @@
 
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
-                            
+
                             <c:when test="${pagina=='petiano'}">
                                 <%@ include file="site/petiano/petiano.jsp" %>  
                             </c:when>
@@ -54,7 +55,7 @@
 
                             <%-- ********************************************************************** --%>
                             <%-- NOTICIA --%>
-                            
+
                             <c:when test="${pagina=='noticia'}">
                                 <%@ include file="site/noticia/noticia.jsp" %>  
                             </c:when>
@@ -69,6 +70,17 @@
                             </c:when>
                             <c:when test="${pagina=='exibirNoticiaTitulo'}">
                                 <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
+                            </c:when>
+
+                            <%-- ********************************************************************** --%>                        
+                            <%-- PROJETOS --%>
+
+                            <c:when test="${pagina == 'projeto'}">
+                                <%@include file="site/projeto/projeto.jsp" %>
+                            </c:when>
+
+                            <c:when test="${pagina == 'novoProjeto'}">
+                                <%@include file="site/projeto/novoProjeto.jsp" %>
                             </c:when>
 
                             <%-- ********************************************************************** --%>                        
