@@ -11,6 +11,7 @@
         <fieldset>
             <legend>Cadastro de Petiano</legend>
             <p>Nome: <input type="text" name="nome" size="60"></p>
+            <p>Senha: <input type="password" name="senha" size="20"></p>
             <p>Data de Nascimento: <input type="text" name="dataNascimento" size="10"></p>
             <p>E-mail: <input type="text" name="email" size="40"></p>
             <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40"></p>
