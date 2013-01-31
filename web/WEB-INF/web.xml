@@ -8,6 +8,10 @@
         <servlet-name>NoticiaServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.noticia.NoticiaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublicacaoServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.publicacao.PublicacaoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -25,6 +29,15 @@
         <url-pattern>/salvarNoticia</url-pattern>
         <url-pattern>/buscarNoticia</url-pattern>
         <url-pattern>/exibirNoticiaTitulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicacaoServlet</servlet-name>
+        <url-pattern>/novaPublicacao</url-pattern>
+        <url-pattern>/buscarPublicacao</url-pattern>
+        <url-pattern>/exibirPublicacaoTitulo</url-pattern>
+        <url-pattern>/salvarPublicacao</url-pattern>
+        <url-pattern>/listarPublicacao</url-pattern>
+        <url-pattern>/publicacao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
