@@ -26,6 +26,8 @@
                     <p><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></p>
                     <p><a href="${pageContext.request.contextPath}/projeto">Projetos</a></p>
                     <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
+                    <p><a href="${pageContext.request.contextPath}/download">Downloads</a></p>
+
                 </div>
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
@@ -119,7 +121,30 @@
                             <c:when test="${pagina=='listarPublicacao'}">
                                 <%@ include file="site/publicacao/listarPublicacao.jsp" %>  
                             </c:when>
+                            <%-- ********************************************************************** --%>
+                            <%-- DOWNLOAD --%>
 
+                            <c:when test="${pagina=='download'}">
+                                <%@ include file="site/download/download.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoDownload'}">
+                                <%@ include file="site/download/novoDownload.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='alterarDownload'}">
+                                <%@ include file="site/download/alterarDownload.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='salvarDownload'}">
+                                <%@ include file="site/download/salvarDownload.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='buscarDownload'}">
+                                <%@ include file="site/download/buscarDownload.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='listarDownload'}">
+                                <%@ include file="site/download/listarDownload.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirDownload'}">
+                                <%@ include file="site/download/excluirDownload.jsp" %>  
+                            </c:when>
                         </c:choose>
                     </c:if>
                 </div>

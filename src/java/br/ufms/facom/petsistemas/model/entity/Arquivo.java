@@ -29,8 +29,8 @@ public class Arquivo implements Serializable
     @Column(name = "id", updatable = false, nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "caminho", updatable = true, nullable = false)
-    private String caminho;
+   // @Column(name = "caminho", updatable = true, nullable = false)
+   // private String caminho;
 
     @Column(name = "dataCriacao", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -48,7 +48,19 @@ public class Arquivo implements Serializable
     @Column(name = "tipo", updatable = true, nullable = false)
     private int tipo;
 
-    private Pessoa pessoa;
+  
+    
+     public Arquivo()
+     {
+     }
+   public Arquivo(String titulo, int categoria, Date data, int tamanho, int tipo) {
+       this.titulo = titulo;
+       this.categoria = categoria;
+       this.dataCriacao = data;
+       this.tamanho = tamanho;
+       this.tipo = tipo;
+       
+   }
 
     public Long getId()
     {
@@ -60,15 +72,15 @@ public class Arquivo implements Serializable
         this.id = id;
     }
 
-    public String getCaminho()
-    {
-        return caminho;
-    }
+  //  public String getCaminho()
+   // {
+   //     return caminho;
+   // }
 
-    public void setCaminho(String caminho)
-    {
-        this.caminho = caminho;
-    }
+  //  public void setCaminho(String caminho)
+   // {
+   //     this.caminho = caminho;
+  //  }
 
     public Date getDataCriacao()
     {
@@ -120,14 +132,14 @@ public class Arquivo implements Serializable
         this.tipo = tipo;
     }
 
-    public Pessoa getPessoa()
-    {
-        return pessoa;
-    }
+   // public Pessoa getPessoa()
+   // {
+   //     return pessoa;
+   // }
 
-    public void setPessoa(Pessoa pessoa)
-    {
-        this.pessoa = pessoa;
-    }
+   // public void setPessoa(Pessoa pessoa)
+   // {
+   //     this.pessoa = pessoa;
+   // }
 
 }

@@ -12,6 +12,10 @@
         <servlet-name>PublicacaoServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.publicacao.PublicacaoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.download.DownloadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -38,6 +42,16 @@
         <url-pattern>/salvarPublicacao</url-pattern>
         <url-pattern>/listarPublicacao</url-pattern>
         <url-pattern>/publicacao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/salvarDownload</url-pattern>
+        <url-pattern>/listarDownload</url-pattern>
+        <url-pattern>/novoDownload</url-pattern>
+        <url-pattern>/alterarDownload</url-pattern>
+        <url-pattern>/download</url-pattern>
+        <url-pattern>/buscarDownload</url-pattern>
+        <url-pattern>/excluirDownload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
