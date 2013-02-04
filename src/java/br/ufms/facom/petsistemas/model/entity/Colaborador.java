@@ -6,6 +6,8 @@ package br.ufms.facom.petsistemas.model.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ import javax.persistence.Table;
  * @author Rodrigo Kuninari
  */
 @Entity
+@DiscriminatorValue(value = "C")
 @Table(name = "COLABORADOR")
 public class Colaborador extends Pessoa implements Serializable
 {

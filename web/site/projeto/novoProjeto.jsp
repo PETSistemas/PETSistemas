@@ -5,27 +5,32 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <form action="salvarProjeto" method="post">
 
     <label for="nome">Nome do Projeto:</label><br>
     <input type="text" id="nome" name="nome"/><br>
     <label for="tipo">Tipo de Projeto:</label><br>
-    <input type="checkbox" name="tipo" id="tipo" value="Ensino">Ensino<br>
-    <input type="checkbox" name="tipo" id="tipo" value="Pesquisa">Pesquisa<br>
-    <input type="checkbox" name="tipo" id="tipo" value="Extensao">Extensão<br>
+    <input type="checkbox" name="tipo" id="tipo" value="1">Ensino<br>
+    <input type="checkbox" name="tipo" id="tipo" value="2">Pesquisa<br>
+    <input type="checkbox" name="tipo" id="tipo" value="4">Extensão<br>
 
     <label for="resumo">Resumo do Projeto:</label><br>
     <textarea id="resumo" name="resumo" maxlength="100">Resumo do Projeto
     </textarea><br>
 
     <label for="data_inicio">Data de Início:</label><br>
-    <input type="date" id="data_inicio" name="data_inicio" />
+    <input type="text" id="data_inicio" name="data_inicio" />
 
-    <select id="pessoa" name="pessoa">
+    <select id="lista_pessoas" multiple="multiple">
         <c:forEach var="pessoa" begin="0" items="${requestScope.pessoas}">
-            <option value="${pessoa.id}">${pessoa.nome} - ${pessoa.class.name}</option>
+            <option value="${pessoa.id}">${pessoa.nome}</option>
         </c:forEach>
     </select>
+    <button type="button" id="inserir">&rightarrow;</button>
+    <button type="button" id="remover">&leftarrow;</button>
+    <select id="pessoas_selecionadas" name="pessoas_selecionadas" multiple="multiple"></select>
 
     <input type="submit" value="Salvar"/>
 </form>
+

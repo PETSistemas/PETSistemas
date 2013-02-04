@@ -12,6 +12,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PET Sistemas</title>
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="resources/js/jquery-1.9.0.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#inserir").click(function() {
+                    $("#pessoas_selecionadas").prepend($("#lista_pessoas option:selected"));
+                });
+                $("#remover").click(function() {
+                    $("#lista_pessoas").prepend($("#pessoas_selecionadas option:selected"));
+                });
+            });
+        </script>
+
     </head>
     <body>
         <div id = "corpo">
@@ -84,6 +96,11 @@
 
                             <c:when test="${pagina == 'novoProjeto'}">
                                 <%@include file="site/projeto/novoProjeto.jsp" %>
+                            </c:when>
+                            
+                            
+                            <c:when test="${pagina == 'listarProjeto'}">
+                                <%@include file="site/projeto/listarProjeto.jsp" %>
                             </c:when>
 
                             <%-- ********************************************************************** --%>                        

@@ -16,6 +16,10 @@
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.download.DownloadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProjetoServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.projeto.ProjetoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -52,6 +56,13 @@
         <url-pattern>/download</url-pattern>
         <url-pattern>/buscarDownload</url-pattern>
         <url-pattern>/excluirDownload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/listarProjeto</url-pattern>
+        <url-pattern>/novoProjeto</url-pattern>
+        <url-pattern>/salvarProjeto</url-pattern>
+        <url-pattern>/projeto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
