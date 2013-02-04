@@ -68,3 +68,43 @@ body
     float: right;
     position: relative;
 }
+
+.lista_dupla {
+    width: 500px;
+    margin-top: -35px;
+    margin-left: 30px;
+}
+
+.lista_dupla, .lista_dupla_box {
+    min-height: 100px;
+}
+
+.lista_dupla_box {
+    width: 200px;
+}
+
+fieldset.box {
+    width: 510px;
+    clear: both;
+}
+
+fieldset.box > input[type=text], textarea {
+    width: 510px;
+}
+
+fieldset.box > input, textarea {
+    margin-bottom: 15px;
+}
+
+.lista_dupla div {
+    display: inline-block;
+}
+
+.lista_dupla div * {
+    display: block;
+}
+
+.lista_dupla .lista_dupla_buttons {
+    position: relative;
+    top: 70px;
+}
