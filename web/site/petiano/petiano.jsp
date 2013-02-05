@@ -12,6 +12,7 @@
         <p>${status.count}: ${petiano.nome}</p>
     </c:forEach>
 
+    <p><a href="${pageContext.request.contextPath}/novoPetiano">Cadastrar Petiano</a></p>
     <p><a href="${pageContext.request.contextPath}/buscarPetiano">Buscar Petiano</a></p>
     <p><a href="${pageContext.request.contextPath}/listarPetiano">Listar Petianos</a></p>
 
