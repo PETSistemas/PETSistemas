@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
  *
  * @author Rodrigo Kuninari
  */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TIPO_PESSOA")
@@ -39,6 +40,9 @@ public abstract class Pessoa implements Serializable
     @Column(name = "nome", updatable = true, nullable = false, length = 60)
     private String nome;
 
+    @Column(name = "cpf", updatable = false, nullable = false, length = 14)
+    private String cpf;
+    
     @Column(name = "dataNascimento", updatable = true, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
@@ -57,9 +61,10 @@ public abstract class Pessoa implements Serializable
     {
     }
 
-    public Pessoa(String nome, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
+    public Pessoa(String nome, String cpf, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
     {
         this.nome = nome;
+        this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.linkLattes = linkLattes;
@@ -79,6 +84,14 @@ public abstract class Pessoa implements Serializable
     public String getNome()
     {
         return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public void setNome(String nome)

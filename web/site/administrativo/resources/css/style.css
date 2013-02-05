@@ -1,0 +1,70 @@
+/* 
+    Document   : style
+    Created on : 20/01/2013, 14:16:19
+    Author     : Rodrigo Kuninari
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html
+{ 
+    margin: 0px;
+    padding: 0px;
+}
+
+body
+{ 
+    margin: 0px;
+    padding: 0px;
+}
+
+#corpo
+{
+    border-style: solid;
+    width: 100%;
+    position: absolute;
+    margin: auto;
+}
+
+#cabecalho
+{
+    height: 100px;
+    border-style: solid;
+}
+
+#meio
+{
+    width: 100%;
+    border-style: solid;
+    position: relative;
+}
+
+#menu
+{
+    width: 20%;
+    border-style: solid;
+    float: left;
+}
+
+#conteudo
+{
+    width: 58%;
+    border-style: solid;
+    float: left;
+}
+
+#links
+{
+    width: 20%;
+    border-style: solid;
+    float: right;
+}
+
+#rodape
+{
+    height: 100px;
+    border-style: solid;
+    width: 100%;
+    float: right;
+    position: relative;
+}

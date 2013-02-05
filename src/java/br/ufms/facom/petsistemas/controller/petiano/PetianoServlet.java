@@ -62,13 +62,14 @@ public class PetianoServlet extends HttpServlet {
         String nomeMae = request.getParameter("mae");
         String rg = request.getParameter("rg");
         String cpf = request.getParameter("cpf");
+        String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
         Date dataEntrada = Utilitarios.stringParaData(dataEnt);
         String dataSai = request.getParameter("dataSaida");
         Date dataSaida = Utilitarios.stringParaData(dataSai);
 
-        Petiano petiano = new Petiano(curso, nomePai, nomeMae, rg, cpf, dataEntrada, dataSaida, endereco, nome, dataNascimento, email, lattes, null);
+        Petiano petiano = new Petiano(curso, senha, nomePai, nomeMae, rg, cpf, dataEntrada, dataSaida, endereco, nome, dataNascimento, email, lattes, null);
         controladorBD.inserir(petiano);
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
     }
@@ -95,11 +96,29 @@ public class PetianoServlet extends HttpServlet {
         request.setAttribute("endereco", petiano.getEndereco());
         request.setAttribute("dataEntrada", Utilitarios.dataParaString(petiano.getDataEntrada()));
     }
+    
+    private void buscarPetianoNome(HttpServletRequest request) {
+
+        String cpf = request.getParameter("cpf");
+        Petiano petiano = controladorBD.buscarPetianoPeloCPF(cpf);
+
+        request.setAttribute("nome", petiano.getNome());
+        request.setAttribute("dataNascimento", Utilitarios.dataParaString(petiano.getDataNascimento()));
+        request.setAttribute("email", petiano.getEmail());
+        request.setAttribute("lattes", petiano.getLinkLattes());
+        request.setAttribute("curso", petiano.getCurso());
+        request.setAttribute("pai", petiano.getNomePai());
+        request.setAttribute("mae", petiano.getNomeMae());
+        request.setAttribute("rg", petiano.getRg());
+        request.setAttribute("cpf", petiano.getCpf());
+        request.setAttribute("endereco", petiano.getEndereco());
+        request.setAttribute("dataEntrada", Utilitarios.dataParaString(petiano.getDataEntrada()));
+    }
 
     /**
-     * Método responsável por buscar Petianos ativos e Desativos
-     * Separa os ativos dos desativos em variáveis diferentes
-     * 
+     * Método responsável por buscar Petianos ativos e Desativos Separa os
+     * ativos dos desativos em variáveis diferentes
+     *
      * @param request
      */
     private void buscarPetianoSituacao(HttpServletRequest request) {
@@ -134,13 +153,21 @@ public class PetianoServlet extends HttpServlet {
             listarPetianos(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "petiano");
-        } else if (request.getRequestURI().endsWith("/novoPetiano")) {
-            jsp = "/index.jsp";
+        } else if (request.getRequestURI().endsWith("/petianoADM")) {
+            listarPetianos(request);
+            jsp = "site/administrativo/index.jsp";
+            request.setAttribute("pagina", "petianoADM");
+        } else if (request.getRequestURI().endsWith("/buscarNome")) {
+            
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "buscarNome");
+        }else if (request.getRequestURI().endsWith("/novoPetiano")) {
+            jsp = "/site/administrativo/index.jsp";
             request.setAttribute("pagina", "novoPetiano");
         } else if (request.getRequestURI().endsWith("/salvarPetiano")) {
             salvarPetiano(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "salvarPetiano");
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "index");
         } else if (request.getRequestURI().endsWith("/listarPetiano")) {
 
             buscarPetianoSituacao(request);
