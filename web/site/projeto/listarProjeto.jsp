@@ -9,7 +9,7 @@
 
 <c:forEach var="projeto" begin="0" items="${projetos}">
     <div>
-        <p>Nome: ${projeto.nome}</p>
+        <p>Nome: ${projeto.nome} | <a href="alterarProjeto?id=${projeto.id}">Alterar</a></p>
         <p>Tipo: ${projeto.tipo}</p>
         <p>Resumo:${projeto.resumo}</p>
         <p>Data: ${projeto.dataInicio}</p>

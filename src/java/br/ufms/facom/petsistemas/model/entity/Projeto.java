@@ -182,6 +182,10 @@ public class Projeto implements Serializable {
         this.pessoas.addAll(pessoas);
     }
 
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
+    }
+    
     public Arquivo getArquivo() {
         return arquivo;
     }

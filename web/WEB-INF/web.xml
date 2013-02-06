@@ -62,18 +62,20 @@
         <url-pattern>/excluirDownload</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProjetoServlet</servlet-name>
-        <url-pattern>/listarProjeto</url-pattern>
-        <url-pattern>/novoProjeto</url-pattern>
-        <url-pattern>/salvarProjeto</url-pattern>
-        <url-pattern>/projeto</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/deslogar</url-pattern>
         <url-pattern>/petianoADM</url-pattern>
         <url-pattern>/login</url-pattern>
         <url-pattern>/logar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/listarProjeto</url-pattern>
+        <url-pattern>/novoProjeto</url-pattern>
+        <url-pattern>/salvarProjeto</url-pattern>
+        <url-pattern>/alterarProjeto</url-pattern>
+        <url-pattern>/salvarAlteracaoProjeto</url-pattern>
+        <url-pattern>/projeto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -33,23 +33,90 @@ public class ProjetoServlet extends HttpServlet {
         super.init();
         projetoControladorBD = new ProjetoDAOImplementacao();
     }
-    
+
     public void listarProjetos(HttpServletRequest request) {
         List<Projeto> projetos = projetoControladorBD.listarTodosProjetos();
         request.setAttribute("projetos", projetos);
     }
-    
+
     public void novoProjeto(HttpServletRequest request) {
         List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
         request.setAttribute("pessoas", pessoas);
     }
-    
+
+    public void alterarProjeto(HttpServletRequest request) {
+        String s_id = request.getParameter("id");
+        Long id = null;
+        if (s_id != null) {
+            id = Long.valueOf(s_id);
+        }
+
+        Projeto projeto = null;
+        if (id != null) {
+            projeto = projetoControladorBD.retrieve(id);
+        }
+
+        if (projeto != null) {
+            request.setAttribute("projeto", projeto);
+            request.setAttribute("ensino", projeto.getTipo() % 2 != 0);
+            request.setAttribute("pesquisa", projeto.getTipo() / 2 == 1 || projeto.getTipo() / 2 == 3);
+            request.setAttribute("extensao", projeto.getTipo() / 4 > 0);
+            List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+            pessoas.removeAll(projeto.getPessoas());
+            request.setAttribute("lista_pessoas", pessoas);
+            request.setAttribute("pessoas_selecionadas", projeto.getPessoas());
+        }
+    }
+
+    public void salvarAlteracao(HttpServletRequest request) {
+        String nome = request.getParameter("nome");
+        String[] tipos = request.getParameterValues("tipo");
+        int tipo = 0;
+        if (tipos != null) {
+            for (String t : tipos) {
+                tipo += Integer.parseInt(t);
+            }
+        }
+        
+        String resumo = request.getParameter("resumo");
+        String dataTermino = request.getParameter("data_termino");
+        String[] pessoas_selecionadas = request.getParameterValues("pessoas_selecionadas");
+        Long[] ids = new Long[pessoas_selecionadas.length];
+        for (int i = 0; i < pessoas_selecionadas.length; i++) {
+            ids[i] = Long.valueOf(pessoas_selecionadas[i]);
+        }
+        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
+
+        Long id = Long.valueOf(request.getParameter("id"));
+        Projeto projeto = projetoControladorBD.retrieve(id);
+
+        if (nome != null) {
+            projeto.setNome(nome);
+        }
+
+        if (resumo != null) {
+            projeto.setResumo(resumo);
+        }
+
+        if (dataTermino != null) {
+            projeto.setDataTermino(Utilitarios.stringParaData(dataTermino));
+        }
+
+        projeto.setTipo(tipo);
+        projeto.setPessoas(pessoas);
+
+        projetoControladorBD.atualizar(projeto);
+
+    }
+
     public void salvarProjeto(HttpServletRequest request) {
         String nome = request.getParameter("nome");
         String[] tipos = request.getParameterValues("tipo");
         int tipo = 0;
-        for (String t : tipos) {
-            tipo += Integer.parseInt(t);
+        if (tipos != null) {
+            for (String t : tipos) {
+                tipo += Integer.parseInt(t);
+            }
         }
         String resumo = request.getParameter("resumo");
         Date dataInicio = Utilitarios.stringParaData(request.getParameter("data_inicio"));
@@ -59,39 +126,42 @@ public class ProjetoServlet extends HttpServlet {
             ids[i] = Long.valueOf(pessoas_selecionadas[i]);
         }
         List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
-        
+
         Projeto.Builder builder = new Projeto.Builder(nome, tipo, dataInicio)
                 .resumo(resumo)
                 .pessoas(pessoas);
         Projeto projeto = builder.build();
-        
+
         projetoControladorBD.inserir(projeto);
-        
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String uri = request.getRequestURI();
         String pagina = null;
         String jsp = "/index.jsp";
-        
+
         if (uri.endsWith("/novoProjeto")) {
             novoProjeto(request);
             pagina = "novoProjeto";
-        }
-        else if (uri.endsWith("/listarProjeto")) {
+        } else if (uri.endsWith("/listarProjeto")) {
             listarProjetos(request);
             pagina = "listarProjeto";
-        }
-        else if (uri.endsWith("salvarProjeto")) {
+        } else if (uri.endsWith("salvarProjeto")) {
             salvarProjeto(request);
             pagina = "projeto";
-        }
-        else {
+        } else if (uri.endsWith("alterarProjeto")) {
+            alterarProjeto(request);
+            pagina = "alterarProjeto";
+        } else if (uri.endsWith("salvarAlteracaoProjeto")) {
+            salvarAlteracao(request);
+            pagina = "projeto";
+        } else {
             pagina = "projeto";
         }
-        
+
         request.setAttribute("pagina", pagina);
         request.getRequestDispatcher(jsp).forward(request, response);
     }

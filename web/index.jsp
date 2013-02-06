@@ -98,9 +98,12 @@
                                 <%@include file="site/projeto/novoProjeto.jsp" %>
                             </c:when>
                             
-                            
                             <c:when test="${pagina == 'listarProjeto'}">
                                 <%@include file="site/projeto/listarProjeto.jsp" %>
+                            </c:when>
+                            
+                            <c:when test="${pagina == 'alterarProjeto'}">
+                                <%@include file="site/projeto/alterarProjeto.jsp" %>
                             </c:when>
 
                             <%-- ********************************************************************** --%>                        

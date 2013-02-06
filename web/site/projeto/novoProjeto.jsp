@@ -47,7 +47,7 @@
             </div>
         </div>
         <br>
-        <input type="submit" value="Salvar"/>
+        <input type="submit" value="Salvar" id="salvar"/>
     </fieldset>
 </form>
 
