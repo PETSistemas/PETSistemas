@@ -4,16 +4,21 @@
  */
 package br.ufms.facom.petsistemas.model.entity;
 
+import br.ufms.facom.petsistemas.model.dao.download.DownloadDAO;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -52,6 +57,13 @@ public class Publicacao implements Serializable
     @Column(name = "dataInclusao", updatable = true, nullable = false, unique = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInclusao;
+    
+    @ManyToMany
+    private List<Pessoa> autores;
+    
+    @OneToOne
+    @JoinColumn(name = "arquivo")
+    private Arquivo arquivo;
 
     public Publicacao()
     {

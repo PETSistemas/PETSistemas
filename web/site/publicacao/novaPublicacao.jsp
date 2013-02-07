@@ -15,7 +15,6 @@
             <p>Resumo: </p>
             <textarea name="resumo" rows="10" cols="50"></textarea>
             <p>Tipo de publicação: <select name="tipo">
-                    <option value=></option>
                     <option value=1>Artigo</option>
                     <option value=2>Relatório</option>
                     <option value=3>Técnico</option>

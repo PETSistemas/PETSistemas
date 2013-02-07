@@ -67,6 +67,11 @@ public class PublicacaoServlet extends HttpServlet
         request.setAttribute("mensagem", "Publicação cadastrada com sucesso!");
     }
 
+    /**
+     * Método responsável pela busca de publicação pelo título
+     * 
+     * @param request 
+     */
     private void buscarPublicacaoTitulo(HttpServletRequest request)
     {
         String titulo = request.getParameter("titulo");
@@ -75,8 +80,26 @@ public class PublicacaoServlet extends HttpServlet
         request.setAttribute("titulo", publicacao.getTitulo());
         request.setAttribute("resumo", publicacao.getResumo());
         request.setAttribute("tipo", publicacao.getTipo());
-        request.setAttribute("dataPublicacao", publicacao.getDataPublicacao());
-        request.setAttribute("dataInclusao", publicacao.getDataInclusao());
+        request.setAttribute("dataPublicacao", Utilitarios.dataParaString(publicacao.getDataPublicacao()));
+        request.setAttribute("dataInclusao", Utilitarios.dataParaString(publicacao.getDataInclusao()));
+    }
+    
+    /**
+     * Método responsável pela busca de publicação pelo id
+     * 
+     * @param request 
+     */
+    private void buscarPublicacaoId(HttpServletRequest request)
+    {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Publicacao publicacao = controladorBD.retrieve(id);
+        
+        request.setAttribute("id", publicacao.getId());
+        request.setAttribute("titulo", publicacao.getTitulo());
+        request.setAttribute("resumo", publicacao.getResumo());
+        request.setAttribute("tipo", publicacao.getTipo());
+        request.setAttribute("dataPublicacao", Utilitarios.dataParaString(publicacao.getDataPublicacao()));
+        request.setAttribute("dataInclusao", Utilitarios.dataParaString(publicacao.getDataInclusao()));
     }
 
     /**
@@ -129,6 +152,12 @@ public class PublicacaoServlet extends HttpServlet
             listarPublicacoes(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "listarPublicacao");
+        }
+        else if (request.getRequestURI().endsWith("/alterarPublicacao"))
+        {
+            buscarPublicacaoId(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "alterarPublicacao");
         }
         else
         {
