@@ -21,8 +21,15 @@
                 $("#remover").click(function() {
                     $("#lista_pessoas").prepend($("#pessoas_selecionadas option:selected"));
                 });
+            
+                $("#salvar").click(function() {
+                       $("#pessoas_selecionadas option").each(function() {
+                        $(this).attr('selected', 'selected');
+                    });
+                });
             });
-        </script>
+
+              </script>
 
     </head>
     <body>
@@ -97,13 +104,17 @@
                             <c:when test="${pagina == 'novoProjeto'}">
                                 <%@include file="site/projeto/novoProjeto.jsp" %>
                             </c:when>
-                            
+
                             <c:when test="${pagina == 'listarProjeto'}">
                                 <%@include file="site/projeto/listarProjeto.jsp" %>
                             </c:when>
-                            
+
                             <c:when test="${pagina == 'alterarProjeto'}">
                                 <%@include file="site/projeto/alterarProjeto.jsp" %>
+                            </c:when>
+                            
+                            <c:when test="${pagina == 'apagarProjeto'}">
+                                <%@include file="site/projeto/apagarProjeto.jsp" %>
                             </c:when>
 
                             <%-- ********************************************************************** --%>                        

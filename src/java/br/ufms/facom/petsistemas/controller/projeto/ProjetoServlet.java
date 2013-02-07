@@ -44,7 +44,7 @@ public class ProjetoServlet extends HttpServlet {
         request.setAttribute("pessoas", pessoas);
     }
 
-    public void alterarProjeto(HttpServletRequest request) {
+    public void obterProjeto(HttpServletRequest request, boolean listarPessoas) {
         String s_id = request.getParameter("id");
         Long id = null;
         if (s_id != null) {
@@ -61,13 +61,17 @@ public class ProjetoServlet extends HttpServlet {
             request.setAttribute("ensino", projeto.getTipo() % 2 != 0);
             request.setAttribute("pesquisa", projeto.getTipo() / 2 == 1 || projeto.getTipo() / 2 == 3);
             request.setAttribute("extensao", projeto.getTipo() / 4 > 0);
+            
+            if (listarPessoas) {
             List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
-            pessoas.removeAll(projeto.getPessoas());
-            request.setAttribute("lista_pessoas", pessoas);
+                pessoas.removeAll(projeto.getPessoas());
+                request.setAttribute("lista_pessoas", pessoas);
+            }
+            
             request.setAttribute("pessoas_selecionadas", projeto.getPessoas());
         }
     }
-
+    
     public void salvarAlteracao(HttpServletRequest request) {
         String nome = request.getParameter("nome");
         String[] tipos = request.getParameterValues("tipo");
@@ -135,6 +139,20 @@ public class ProjetoServlet extends HttpServlet {
         projetoControladorBD.inserir(projeto);
     }
 
+    public void removerProjeto(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getParameter("id"));
+        
+        Projeto projeto = projetoControladorBD.retrieve(id);
+        
+        if (projeto != null) {
+            projetoControladorBD.deletar(projeto);
+            request.setAttribute("remocao", "realizada com sucesso!");
+        }
+        else {
+            request.setAttribute("remocao", "falhou!");
+        }
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -153,12 +171,19 @@ public class ProjetoServlet extends HttpServlet {
             salvarProjeto(request);
             pagina = "projeto";
         } else if (uri.endsWith("alterarProjeto")) {
-            alterarProjeto(request);
+            obterProjeto(request, true);
             pagina = "alterarProjeto";
         } else if (uri.endsWith("salvarAlteracaoProjeto")) {
             salvarAlteracao(request);
             pagina = "projeto";
-        } else {
+        } else if (uri.endsWith("apagarProjeto")) {
+            obterProjeto(request, false);
+            pagina = "apagarProjeto";
+        } else if (uri.endsWith("efetivarRemocaoProjeto")) {
+            removerProjeto(request);
+            pagina = "listarProjeto";
+        }
+        else {
             pagina = "projeto";
         }
 
