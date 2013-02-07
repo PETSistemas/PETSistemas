@@ -9,7 +9,7 @@
 <c:if test="${projeto != null}">
     <form action="salvarAlteracaoProjeto" method="post">
         <fieldset class="box">
-            <legend>Criar Projeto</legend>
+            <legend>Alterar Projeto</legend>
 
             <label for="nome">Nome do Projeto:</label><br>
             <input type="text" id="nome" name="nome" value="${projeto.nome}"/><br>
@@ -19,9 +19,7 @@
             <input type="checkbox" name="tipo" id="tipo" value="2" <c:if test="${pesquisa == true}">checked="checked"</c:if>>Pesquisa |
             <input type="checkbox" name="tipo" id="tipo" value="4" <c:if test="${extensao == true}">checked="checked"</c:if>>Extensão <br>
                 <label for="resumo">Resumo do Projeto:</label><br>
-                <textarea id="resumo" name="resumo" maxlength="100">
-                ${projeto.resumo}
-            </textarea><br>
+                <textarea id="resumo" name="resumo" maxlength="100">${projeto.resumo}</textarea><br>
 
             <label for="data_inicio">Data de Início:</label><br>
             <input class="data" type="text" id="data_inicio" name="data_inicio" value="${projeto.dataInicio}" readonly="readonly"/><br>
@@ -56,7 +54,7 @@
             </div>
             <br>
             <input type="hidden" name="id" value="${projeto.id}"/>
-            <input type="submit" value="Salvar" id="salvar" onsubmit="selecionar()"/>
+            <input type="submit" value="Salvar" id="salvar"/>
         </fieldset>
     </form>
 </c:if>

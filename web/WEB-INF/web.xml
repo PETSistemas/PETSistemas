@@ -70,6 +70,8 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/apagarProjeto</url-pattern>
+        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
         <url-pattern>/listarProjeto</url-pattern>
         <url-pattern>/novoProjeto</url-pattern>
         <url-pattern>/salvarProjeto</url-pattern>
