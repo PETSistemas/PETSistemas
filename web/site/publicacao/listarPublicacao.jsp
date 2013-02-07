@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listarPublicacao
-    Created on : 31/01/2013, 18:17:20
+    Document   : listaPublicacao
+    Created on : 05/02/2013, 20:56:02
     Author     : Thiago
 --%>
 
@@ -10,26 +10,56 @@
 <div>
     <fieldset>
         <legend>Publicações</legend>
-        <c:forEach var="publicacao" items="${publicacoes}" varStatus="status">
-            <p>${status.count}</p>
-            <p>Titulo: ${publicacao.titulo}</p>
-            <p>Resumo: </p>
-            <textarea name="resumo" rows="10" cols="50" disabled="true">
-                ${publicacao.resumo}
-            </textarea>
-            <p>Data Publicação: ${publicacao.dataPublicacao}</p>
-            <p>Data Inclusão: ${publicacao.dataInclusao}</p>
-            <p>Tipo: <select name="tipo" disabled="true">
-                    <option value=1 <c:if test="${publicacao.tipo=='1'}">selected</c:if>>Artigo</option>
-                    <option value=2 <c:if test="${publicacao.tipo=='2'}">selected</c:if>>Relatório</option>
-                    <option value=3 <c:if test="${publicacao.tipo=='3'}">selected</c:if>>Técnico</option>
-                    <option value=4 <c:if test="${publicacao.tipo=='4'}">selected</c:if>>Tutorial</option>
-                    <option value=5 <c:if test="${publicacao.tipo=='5'}">selected</c:if>>Manual</option>
-                    <option value=6 <c:if test="${publicacao.tipo=='6'}">selected</c:if>>Outros</option>
-                </select>
-            </p>
-            <br><br>
-        </c:forEach>
+        <fieldset>
+            <legend>Buscar</legend>
+            <form action="" method="">
+                <input type=search id="" name="" size="75" value="Pesquisar">
+                <input type="submit" id="" name="" value="Buscar">
+            </form>
+        </fieldset>
+
+        <br><br>
+
+        <table border="1px">
+            <tr>
+                <th>Titulo</th>
+                <th>Data de Publicação</th>
+                <th>Data de Inclusão</th>
+                <th>Tipo de Publicação</th>
+                <th colspan="2">Ação</th>
+            </tr>
+            <c:forEach var="publicacao" items="${publicacoes}" varStatus="status">
+                <tr>
+                    <td>${publicacao.titulo}</td>
+                    <td>${publicacao.dataPublicacao}</td>
+                    <td>${publicacao.dataInclusao}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${publicacao.tipo == 1}">
+                                Artigo
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 2}">
+                                Relatório
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 3}">
+                                Técnico
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 4}">
+                                Tutorial
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 5}">
+                                Manual
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 6}">
+                                Outros
+                            </c:when>
+                        </c:choose>
+                    </td>
+                    <td><a href="${pageContext.request.contextPath}/alterarPublicacao">Editar</a></td>
+                    <td><a href="${pageContext.request.contextPath}/publicacao">Remover</a></td>
+                </tr>
+            </c:forEach>
+        </table>
     </fieldset>
     <p><a href="${pageContext.request.contextPath}/publicacao">Voltar</a></p>
 </div>
