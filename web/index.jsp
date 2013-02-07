@@ -39,6 +39,7 @@
                     <p><a href="${pageContext.request.contextPath}/projeto">Projetos</a></p>
                     <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
                     <p><a href="${pageContext.request.contextPath}/download">Downloads</a></p>
+                    <p><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></p>
 
                 </div>
                 <div id = "conteudo">
@@ -163,6 +164,15 @@
                             </c:when>
                             <c:when test="${pagina=='excluirDownload'}">
                                 <%@ include file="site/download/excluirDownload.jsp" %>  
+                            </c:when>
+                            
+                            <%-- ********************************************************************** --%>
+                            <%-- NOSSA HISTORIA --%>
+
+                            <c:when test="${pagina=='nossaHistoria'}">
+                                <%@ include file="site/nossaHistoria/nossaHistoria.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='voltarNossaHistoria'}">
                             </c:when>
                         </c:choose>
                     </c:if>
