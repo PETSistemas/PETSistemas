@@ -5,15 +5,20 @@
 package br.ufms.facom.petsistemas.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -53,6 +58,13 @@ public class Publicacao implements Serializable
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInclusao;
 
+    @ManyToMany
+    private List<Pessoa> pessoas;
+    
+    @OneToOne
+    @JoinColumn(name = "arquivo", updatable = true, nullable = true)
+    private Arquivo arquivo;
+    
     public Publicacao()
     {
     }
@@ -64,6 +76,18 @@ public class Publicacao implements Serializable
         this.tipo = tipo;
         this.dataPublicacao = dataPublicacao;
         this.dataInclusao = dataInclusao;
+        this.pessoas = new ArrayList<Pessoa>();
+    }
+    
+    public Publicacao(String titulo, String resumo, int tipo, Date dataPublicacao, Date dataInclusao, Arquivo arquivo)
+    {
+        this.titulo = titulo;
+        this.resumo = resumo;
+        this.tipo = tipo;
+        this.dataPublicacao = dataPublicacao;
+        this.dataInclusao = dataInclusao;
+        this.arquivo = arquivo;
+        this.pessoas = new ArrayList<Pessoa>();
     }
 
     public Long getId()
@@ -124,5 +148,28 @@ public class Publicacao implements Serializable
     public void setDataInclusao(Date dataInclusao)
     {
         this.dataInclusao = dataInclusao;
+    }
+
+    public List<Pessoa> getPessoas()
+    {
+        return pessoas;
+    }
+
+    public void setPessoas(List<Pessoa> pessoas)
+    {
+        if(this.pessoas == null){
+            this.pessoas = new ArrayList<Pessoa>();
+        }
+        this.pessoas.addAll(pessoas);
+    }
+
+    public Arquivo getArquivo()
+    {
+        return arquivo;
+    }
+
+    public void setArquivo(Arquivo arquivo)
+    {
+        this.arquivo = arquivo;
     }
 }

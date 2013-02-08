@@ -13,12 +13,7 @@
         <c:forEach var="publicacao" items="${publicacoes}" varStatus="status">
             <p>${status.count}</p>
             <p>Titulo: ${publicacao.titulo}</p>
-            <p>Resumo: </p>
-            <textarea name="resumo" rows="10" cols="50" disabled="true">
-                ${publicacao.resumo}
-            </textarea>
             <p>Data Publicação: ${publicacao.dataPublicacao}</p>
-            <p>Data Inclusão: ${publicacao.dataInclusao}</p>
             <p>Tipo: <select name="tipo" disabled="true">
                     <option value=1 <c:if test="${publicacao.tipo=='1'}">selected</c:if>>Artigo</option>
                     <option value=2 <c:if test="${publicacao.tipo=='2'}">selected</c:if>>Relatório</option>

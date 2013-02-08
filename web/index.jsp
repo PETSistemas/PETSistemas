@@ -139,8 +139,12 @@
                                 <%@ include file="site/publicacao/exibirPublicacaoTitulo.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='listarPublicacao'}">
-                                <%@ include file="site/publicacao/listarPublicacao.jsp" %>  
+                                <%@ include file="site/publicacao/publicacaoADM.jsp" %>  
                             </c:when>
+                            <c:when test="${pagina=='alterarPublicacao'}">
+                                <%@ include file="site/publicacao/alterarPublicacao.jsp" %>  
+                            </c:when>
+                            
                             <%-- ********************************************************************** --%>
                             <%-- DOWNLOAD --%>
 
