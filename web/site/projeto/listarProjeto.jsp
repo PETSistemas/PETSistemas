@@ -7,9 +7,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<c:if test="${remocao != null}">
+    <span>
+        Remoção ${remocao}
+    </span>
+</c:if>
+
 <c:forEach var="projeto" begin="0" items="${projetos}">
     <div>
-        <p>Nome: ${projeto.nome} | <a href="alterarProjeto?id=${projeto.id}">Alterar</a></p>
+        <p>Nome: ${projeto.nome} | 
+            <a href="alterarProjeto?id=${projeto.id}">Alterar</a> |
+            <a href="apagarProjeto?id=${projeto.id}">Apagar</a>
+        </p>
         <p>Tipo: ${projeto.tipo}</p>
         <p>Resumo:${projeto.resumo}</p>
         <p>Data: ${projeto.dataInicio}</p>

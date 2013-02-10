@@ -8,8 +8,8 @@
 
 <c:if test="${projeto != null}">
     <form action="salvarAlteracaoProjeto" method="post">
-        <fieldset class="box">
-            <legend>Criar Projeto</legend>
+        <fieldset>
+            <legend>Alterar Projeto</legend>
 
             <label for="nome">Nome do Projeto:</label><br>
             <input type="text" id="nome" name="nome" value="${projeto.nome}"/><br>

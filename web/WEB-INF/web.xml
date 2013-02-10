@@ -24,10 +24,16 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.login.LoginServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>NossaHistoriaServlet</servlet-name>
-        <servlet-class>br.ufms.facom.petsistemas.controller.NossaHistoria.NossaHistoriaServlet</servlet-class>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>PetianoServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/petiano</url-pattern>
+        <url-pattern>/exibirPetianoCPF</url-pattern>
+        <url-pattern>/listarPetiano</url-pattern>
+        <url-pattern>/buscarPetiano</url-pattern>
+        <url-pattern>/novoPetiano</url-pattern>
+        <url-pattern>/salvarPetiano</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
@@ -44,6 +50,7 @@
         <url-pattern>/salvarPublicacao</url-pattern>
         <url-pattern>/listarPublicacao</url-pattern>
         <url-pattern>/publicacao</url-pattern>
+        <url-pattern>/alterarPublicacao</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
@@ -64,29 +71,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/apagarProjeto</url-pattern>
+        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
         <url-pattern>/listarProjeto</url-pattern>
         <url-pattern>/novoProjeto</url-pattern>
         <url-pattern>/salvarProjeto</url-pattern>
-        <url-pattern>/projeto</url-pattern>
         <url-pattern>/alterarProjeto</url-pattern>
+        <url-pattern>/projeto</url-pattern>
         <url-pattern>/salvarAlteracaoProjeto</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PetianoServlet</servlet-name>
-        <url-pattern>/editarPetiano</url-pattern>
-        <url-pattern>/exibirPetianoCPF</url-pattern>
-        <url-pattern>/listarPetiano</url-pattern>
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/petiano</url-pattern>
-        <url-pattern>/buscarPetiano</url-pattern>
-        <url-pattern>/atualizarPetiano</url-pattern>
-        <url-pattern>/novoPetiano</url-pattern>
-        <url-pattern>/salvarPetiano</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NossaHistoriaServlet</servlet-name>
-        <url-pattern>/nossaHistoria</url-pattern>
-        <url-pattern>/voltarNossaHistoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

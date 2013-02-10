@@ -7,22 +7,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Realizar Login</title>
-    </head>
-    <body>
-        <div>
-            <form method="POST" action="${pageContext.request.contextPath}/logar">
-                <fieldset>
-                    <legend>Realizar Login</legend>
-                    <p>CPF: <input type="text" name="login" size="60"></p>
-                    <p>Senha: <input type="password" name="senha" size="20"></p>
-                    
-                    <p><input type="submit" value="Logar"></p>
-                </fieldset>
-            </form>
-        </div>
-    </body>
-</html>
+<div>
+    <form method="POST" action="${pageContext.request.contextPath}/logar" class="form-horizontal">
+        <fieldset>
+            <legend>Realizar Login</legend>
+            <div class="control-group">
+                <label class="control-label">CPF</label>
+                <div class="controls">
+                    <input type="text" name="login" size="60">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Senha</label>
+                <div class="controls">
+                    <input type="password" name="senha" size="20">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary" value="Logar">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+

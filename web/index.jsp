@@ -21,7 +21,14 @@
                 $("#remover").click(function() {
                     $("#lista_pessoas").prepend($("#pessoas_selecionadas option:selected"));
                 });
+
+                $("#salvar").click(function() {
+                    $("#pessoas_selecionadas option").each(function() {
+                        $(this).attr('selected', 'selected');
+                    });
+                });
             });
+
         </script>
 
     </head>
@@ -107,6 +114,10 @@
                                 <%@include file="site/projeto/alterarProjeto.jsp" %>
                             </c:when>
 
+                            <c:when test="${pagina == 'apagarProjeto'}">
+                                <%@include file="site/projeto/apagarProjeto.jsp" %>
+                            </c:when>
+                            
                             <%-- ********************************************************************** --%>                        
                             <%-- LOGIN --%>
                             <c:when test="${pagina=='login'}">
@@ -141,9 +152,10 @@
                             <c:when test="${pagina=='listarPublicacao'}">
                                 <%@ include file="site/publicacao/publicacaoADM.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='alterarPublicacao'}">
+                            <%--<c:when test="${pagina=='alterarPublicacao'}">
                                 <%@ include file="site/publicacao/alterarPublicacao.jsp" %>  
                             </c:when>
+                            --%>
                             
                             <%-- ********************************************************************** --%>
                             <%-- DOWNLOAD --%>
@@ -185,9 +197,11 @@
                     <p>PET Sistemas</p>
                 </div>
             </div>
-            <div id = "rodape">
-                <p>PET Sistemas</p>
+            <div id="footer" class="row-fluid offset6">
+                <p class="muted">Pet Sistemas</p>
             </div>
         </div>
+
+
     </body>
 </html>
