@@ -65,7 +65,6 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/deslogar</url-pattern>
-        <url-pattern>/petianoADM</url-pattern>
         <url-pattern>/login</url-pattern>
         <url-pattern>/logar</url-pattern>
     </servlet-mapping>
@@ -79,6 +78,24 @@
         <url-pattern>/alterarProjeto</url-pattern>
         <url-pattern>/projeto</url-pattern>
         <url-pattern>/salvarAlteracaoProjeto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PetianoServlet</servlet-name>
+        <url-pattern>/editarPetiano</url-pattern>
+        <url-pattern>/exibirPetianoCPF</url-pattern>
+        <url-pattern>/listarPetiano</url-pattern>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/petiano</url-pattern>
+        <url-pattern>/buscarPetiano</url-pattern>
+        <url-pattern>/atualizarPetiano</url-pattern>
+        <url-pattern>/novoPetiano</url-pattern>
+        <url-pattern>/salvarPetiano</url-pattern>
+        <url-pattern>/petianoADM</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NossaHistoriaServlet</servlet-name>
+        <url-pattern>/nossaHistoria</url-pattern>
+        <url-pattern>/voltarNossaHistoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

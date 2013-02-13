@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 05/12/2012, 11:19:50
-    Author     : Rodrigo Kuninari
+    Author     : Rebecca Alves
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,6 +39,9 @@
                             </c:when>
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="/site/petiano/novoPetiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarPetiano'}">
+                                <%@ include file="/site/petiano/editarPetiano.jsp" %>  
                             </c:when>
 
                         </c:choose>
