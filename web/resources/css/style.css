@@ -12,21 +12,31 @@ body
 {
     background: #FFFFFF;
 }
-.container-fluid
+
+.tamCab
 {
     padding-left: 0;
     padding-right: 0;
 }
-.hero-unit
+.cabecalho
 {
     background: #336699;
+
 }
+
+.corpo
+{
+    padding-left: 0;
+    padding-right: 0; 
+}
+
+
 .hero-unit h1
 {
     font-family: Verdana;
     color: #FFFFFF;
 }
-span3
+menu
 {
   padding-right: 10px;
   padding-left: 10px;    

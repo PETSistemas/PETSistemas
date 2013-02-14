@@ -35,15 +35,14 @@
          </script>
 
     </head>
-    <body> 
-   
-
- 
-      <div class = "container-fluid">
-        <div class="hero-unit">
+    <body>
+     <div class="container-fluid tamCab">
+        <div class="hero-unit cabecalho">
             <h1>PET Sistemas</h1>
         </div>
-          <div class = "span3">
+      <div class = "container-fluid corpo" >
+
+          <div class = "span3 menu">
               <div class="well sidebar-nive">
                    <ul class="nav nav-list">
                         <li class="nav-header">Opções</li>
@@ -221,11 +220,6 @@
           </div>
           </div>
 
-       </div>
-       <div class="rodape">             
-        <div class="span10">
-           <p>rodape</p>
-        </div>
        </div>    
     </body>
 </html>
