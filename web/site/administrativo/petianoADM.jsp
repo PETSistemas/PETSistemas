@@ -1,7 +1,7 @@
 <%-- 
     Document   : petiano
     Created on : 05/12/2012, 08:55:22
-    Author     : Rodrigo Kuninari
+    Author     : Rebecca Alves
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,7 +33,7 @@
             <tr>
                 <th>${petiano.cpf}</th>
                 <th>${petiano.nome}</th>
-                <th><a href="${pageContext.request.contextPath}/novoPetiano"/><img src="site/administrativo/imagem/editar.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
+                <th><a href="${pageContext.request.contextPath}/editarPetiano?cpf=${petiano.cpf}"/><img src="site/administrativo/imagem/editar.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
                 <th><a href="${pageContext.request.contextPath}/novoPetiano"/><img src="site/administrativo/imagem/excluir.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
             </tr>
         </c:forEach>

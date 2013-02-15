@@ -47,9 +47,13 @@ public class Petiano extends Pessoa implements Serializable {
     @Column(name = "dataEntrada", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataEntrada;
+    @Column(name = "dataEntradaFormatada", updatable = true, nullable = false)
+    private String dataEntradaFormatada;
     @Column(name = "dataSaida", updatable = false, nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSaida;
+    @Column(name = "dataSaidaFormatada", updatable = true, nullable = false)
+    private String dataSaidaFormatada;
     @Column(name = "endereco", updatable = false, nullable = false, length = 250)
     private String endereco;
     @OneToMany(mappedBy = "petiano")
@@ -140,5 +144,21 @@ public class Petiano extends Pessoa implements Serializable {
 
     public void setNoticias(List<Noticia> noticias) {
         this.noticias = noticias;
+    }
+
+    public String getDataEntradaFormatada() {
+        return dataEntradaFormatada;
+    }
+
+    public void setDataEntradaFormatada(String dataEntradaFormatada) {
+        this.dataEntradaFormatada = dataEntradaFormatada;
+    }
+
+    public String getDataSaidaFormatada() {
+        return dataSaidaFormatada;
+    }
+
+    public void setDataSaidaFormatada(String dataSaidaFormatada) {
+        this.dataSaidaFormatada = dataSaidaFormatada;
     }
 }

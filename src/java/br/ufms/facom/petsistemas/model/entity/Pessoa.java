@@ -25,44 +25,36 @@ import javax.persistence.Temporal;
  *
  * @author Rodrigo Kuninari
  */
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TIPO_PESSOA")
-public abstract class Pessoa implements Serializable
-{
+public abstract class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false, unique = true)
     private Long id;
-
     @Column(name = "nome", updatable = true, nullable = false, length = 60)
     private String nome;
-
     @Column(name = "cpf", updatable = false, nullable = false, length = 14)
     private String cpf;
-    
     @Column(name = "dataNascimento", updatable = true, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
-
+    @Column(name = "dataNascimentoFormatada", updatable = false, nullable = false)
+    private String dataNascimentoFormatada;
     @Column(name = "email", updatable = true, nullable = false, length = 60)
     private String email;
-
     @Column(name = "linkLattes", updatable = true, nullable = false, length = 100)
     private String linkLattes;
-
     @OneToOne
     @JoinColumn(name = "arquivo", updatable = true, nullable = true)
     private Arquivo arquivo;
 
-    public Pessoa()
-    {
+    public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, Date dataNascimento, String email, String linkLattes, Arquivo arquivo)
-    {
+    public Pessoa(String nome, String cpf, Date dataNascimento, String email, String linkLattes, Arquivo arquivo) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -71,18 +63,15 @@ public abstract class Pessoa implements Serializable
         this.arquivo = arquivo;
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
 
@@ -94,48 +83,49 @@ public abstract class Pessoa implements Serializable
         this.cpf = cpf;
     }
 
-    public void setNome(String nome)
-    {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Date getDataNascimento()
-    {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento)
-    {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getLinkLattes()
-    {
+    public String getLinkLattes() {
         return linkLattes;
     }
 
-    public void setLinkLattes(String linkLattes)
-    {
+    public void setLinkLattes(String linkLattes) {
         this.linkLattes = linkLattes;
     }
 
-    public Arquivo getArquivo()
-    {
+    public Arquivo getArquivo() {
         return arquivo;
     }
 
-    public void setArquivo(Arquivo arquivo)
-    {
+    public void setArquivo(Arquivo arquivo) {
         this.arquivo = arquivo;
     }
+
+    public String getDataNascimentoFormatada() {
+        return dataNascimentoFormatada;
+    }
+
+    public void setDataNascimentoFormatada(String dataNascimentoFormatada) {
+        this.dataNascimentoFormatada = dataNascimentoFormatada;
+    }
+    
+    
 }
