@@ -11,6 +11,7 @@ import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Petiano;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.AbstractList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,8 +47,11 @@ public class LoginServlet extends HttpServlet {
     public boolean logar(HttpServletRequest request) {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
+        HttpSession sessao = request.getSession();
+        sessao = request.getSession();
+        sessao.setAttribute("login", login);
 
-        if (login.equals("master")) {
+        if (login.equals("master") && senha.equals("1")) {
             return true;
         }
         controladorPetianoBD = new PetianoDAOImplementacao();
@@ -66,11 +70,9 @@ public class LoginServlet extends HttpServlet {
         //redirect for the correct method in accordance with to received uri:
         if (request.getRequestURI().endsWith("/logar")) {
 
-            if ((logar(request) && System.getProperty("login") != null)) {
+            if (logar(request)) {
                 jsp = "site/administrativo/index.jsp";
-                HttpSession sessao = request.getSession();
-                sessao = request.getSession();
-                sessao.setAttribute("login", System.getProperty("login"));
+
                 request.setAttribute("pagina", "logado");
             } else {
                 jsp = "/index.jsp";
@@ -79,13 +81,6 @@ public class LoginServlet extends HttpServlet {
         } else if (request.getRequestURI().endsWith("/login")) {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "login");
-
-        } else if (request.getRequestURI().endsWith("/petianoADM")) {
-            List<Petiano> petianos = controladorPetianoBD.listarTodosPetianos();
-            request.setAttribute("petianos", petianos);
-
-            jsp = "site/administrativo/index.jsp";
-            request.setAttribute("pagina", "petianoADM");
 
         } else if (request.getRequestURI().endsWith("/deslogar")) {
             HttpSession sessao = request.getSession();
