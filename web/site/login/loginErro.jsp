@@ -13,16 +13,13 @@
         <title>Realizar Login - ERRO</title>
     </head>
     <body>
-        <div>
-            <form method="POST" action="${pageContext.request.contextPath}/logar">
-                <fieldset>
-                    <legend>Realizar Login</legend>
-                    <span>ERRO! CPF ou Senha inválidos</span>
-                    <p>CPF: <input type="text" name="login" size="60"></p>
-                    <p>Senha: <input type="password" name="senha" size="20"></p>
-                    
-                    <p><input type="submit" value="Logar"></p>
-                </fieldset>
+        <div class="container">
+            <form class="form-signin" method="POST" action="${pageContext.request.contextPath}/logar">
+                <span>ERRO! CPF ou Senha inválidos</span>
+                <h2 class="form-signin-heading">Realize seu Login</h2>
+                <input type="text" class="input-block-level" placeholder="cpf">
+                <input type="password" class="input-block-level" placeholder="senha" >
+                <button class="btn btn-large btn-primary" type="submit">Logar</button>
             </form>
         </div>
     </body>

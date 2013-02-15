@@ -40,9 +40,9 @@
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="/site/petiano/novoPetiano.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='editarPetiano'}">
+                            <%--<c:when test="${pagina=='editarPetiano'}">
                                 <%@ include file="/site/petiano/editarPetiano.jsp" %>  
-                            </c:when>
+                            </c:when>--%>
 
                         </c:choose>
                     </c:if>

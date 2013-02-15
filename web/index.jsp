@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 05/12/2012, 11:19:50
-    Author     : Rodrigo Kuninari
+    Author     : Rodrigo Kuninari Tamara Mendes
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,9 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>PET Sistemas</title>
+        <title>PET Sistemas title</title>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="icon/pet.gif" type="resources/css/image/gif" />
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="resources/js/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#inserir").click(function() {
@@ -29,28 +32,50 @@
                 });
             });
 
-        </script>
+         </script>
 
     </head>
     <body>
-        <div id = "corpo">
-            <div id = "cabecalho">
-                <p>PET Sistemas</p>
-            </div>
-            <div id = "meio">
-                <div id = "menu">
-                    <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
-                    <p><a href="${pageContext.request.contextPath}/petiano">Petianos</a></p>
-                    <p><a href="${pageContext.request.contextPath}/noticia">Notícias</a></p>
-                    <p><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></p>
-                    <p><a href="${pageContext.request.contextPath}/projeto">Projetos</a></p>
-                    <p><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></p>
-                    <p><a href="${pageContext.request.contextPath}/download">Downloads</a></p>
-                    <p><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></p>
+     <div class="container-fluid tamCab">
+        <div class="hero-unit cabecalho">
+            <h1>PET Sistemas</h1>
+        </div>
+      <div class = "container-fluid corpo" >
 
+          <div class = "span3 menu">
+              <div class="well sidebar-nive">
+                   <ul class="nav nav-list">
+                        <li class="nav-header">Opções</li>
+                        <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
+                        <li class="divider"></li>
+                        <li class="nav-header">Pessoa</li>
+                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
+                        <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
+                        <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/noticia">Noticias</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
+                    </ul>
+              </div>
+            <div class="linksuteis">  
+                <div class="well sidebar-nive">
+                    <ul class="nav nav-list">
+                    <li class="nav-header">Links Uteis:</li>
+                    <a href='http://www.ufms.br' ><img src = 'resources/css/logo-ufms.png'/>  </a></br></br>
+                    <a href='http://www.facom.ufms.br' ><img src = 'resources/css/logo-facom.png'/></a><br/
+                    </ul>    
                 </div>
-                <div id = "conteudo">
-                    <p>PET Sistemas</p>
+            </div>
+         </div>          
+         <div class="container-fluid">
+          <div class= "span10">
                     <c:if test="${pagina!=''}">
                         <c:choose>
 
@@ -185,23 +210,16 @@
                             <%-- ********************************************************************** --%>
                             <%-- NOSSA HISTORIA --%>
 
-                            <c:when test="${pagina=='nossaHistoria'}">
+                            <%--<c:when test="${pagina=='nossaHistoria'}">
                                 <%@ include file="site/nossaHistoria/nossaHistoria.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='voltarNossaHistoria'}">
-                            </c:when>
+                            </c:when>--%>
                         </c:choose>
-                    </c:if>
-                </div>
-                <div id = "links">
-                    <p>PET Sistemas</p>
-                </div>
-            </div>
-            <div id="footer" class="row-fluid offset6">
-                <p class="muted">Pet Sistemas</p>
-            </div>
-        </div>
+                  </c:if>
+          </div>
+          </div>
 
-
+       </div>    
     </body>
 </html>
