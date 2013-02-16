@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>NossaHistoriaServlet</servlet-name>
-        <servlet-class>br.ufms.facom.petsistemas.controller.petiano.PetianoServlet</servlet-class>
+        <servlet-class>br.ufms.facom.petsistemas.controller.NossaHistoria.NossaHistoriaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ContatoServlet</servlet-name>

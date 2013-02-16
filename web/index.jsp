@@ -53,6 +53,8 @@
                         <li><a href="${pageContext.request.contextPath}/listarPetiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></li>
+                        <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/noticia">Noticias</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></li>
