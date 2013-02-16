@@ -28,6 +28,10 @@
         <servlet-name>NossaHistoriaServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.petiano.PetianoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContatoServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.contato.ContatoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -100,6 +104,11 @@
         <servlet-name>NossaHistoriaServlet</servlet-name>
         <url-pattern>/nossaHistoria</url-pattern>
         <url-pattern>/voltarNossaHistoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContatoServlet</servlet-name>
+        <url-pattern>/contato</url-pattern>
+        <url-pattern>/enviarContato</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

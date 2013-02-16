@@ -62,6 +62,8 @@
                         <li><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
                     </ul>
               </div>
             <div class="linksuteis">  
@@ -210,11 +212,18 @@
                             <%-- ********************************************************************** --%>
                             <%-- NOSSA HISTORIA --%>
 
-                            <%--<c:when test="${pagina=='nossaHistoria'}">
+                            <c:when test="${pagina=='nossaHistoria'}">
                                 <%@ include file="site/nossaHistoria/nossaHistoria.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='voltarNossaHistoria'}">
-                            </c:when>--%>
+                            </c:when>
+                            
+                             <%-- ********************************************************************** --%>
+                            <%-- CONTATO --%>
+
+                            <c:when test="${pagina=='contato'}">
+                                <%@ include file="site/contato/contato.jsp" %>  
+                            </c:when>
                         </c:choose>
                   </c:if>
           </div>
