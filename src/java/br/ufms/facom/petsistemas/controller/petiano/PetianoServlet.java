@@ -184,10 +184,7 @@ public class PetianoServlet extends HttpServlet {
         //redirect for the correct method in accordance with to received uri:
         if (request.getRequestURI().endsWith("/index")) {
             jsp = "/index.jsp";
-        } else if (request.getRequestURI().endsWith("/petiano")) {
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "petiano");
-        } else if (request.getRequestURI().endsWith("/petianoADM")) {
+        }  else if (request.getRequestURI().endsWith("/petianoADM")) {
             listarPetianos(request);
             jsp = "site/administrativo/index.jsp";
             request.setAttribute("pagina", "petianoADM");
@@ -203,7 +200,11 @@ public class PetianoServlet extends HttpServlet {
         } else if (request.getRequestURI().endsWith("/novoPetiano")) {
             jsp = "/site/administrativo/index.jsp";
             request.setAttribute("pagina", "novoPetiano");
-        } else if (request.getRequestURI().endsWith("/salvarPetiano")) {
+        } else if (request.getRequestURI().endsWith("/excluirPetiano")) {
+            buscarPetianoCPF(request);
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "excluirPetiano");
+        }else if (request.getRequestURI().endsWith("/salvarPetiano")) {
             salvarPetiano(request);
             listarPetianos(request);
             jsp = "/site/administrativo/index.jsp";
