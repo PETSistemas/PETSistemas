@@ -32,6 +32,10 @@
         <servlet-name>ContatoServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.contato.ContatoServlet</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>TutorServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.tutor.TutorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/index</url-pattern>
@@ -109,6 +113,18 @@
         <servlet-name>ContatoServlet</servlet-name>
         <url-pattern>/contato</url-pattern>
         <url-pattern>/enviarContato</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>TutorServlet</servlet-name>
+        <url-pattern>/buscarTutor</url-pattern>
+        <url-pattern>/listarTutor</url-pattern>
+        <url-pattern>/editarTutor</url-pattern>
+        <url-pattern>/atualizarTutor</url-pattern>
+        <url-pattern>/tutor</url-pattern>
+        <url-pattern>/exibirTutorCPF</url-pattern>
+        <url-pattern>/tutorADM</url-pattern>
+        <url-pattern>/salvarTutor</url-pattern>
+        <url-pattern>/novoTutor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
