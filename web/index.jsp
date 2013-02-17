@@ -92,21 +92,11 @@
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
 
-                            <c:when test="${pagina=='petiano'}">
-                                <%@ include file="site/petiano/petiano.jsp" %>  
-                            </c:when>
+                            
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="site/petiano/novoPetiano.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='salvarPetiano'}">
-                                <%@ include file="site/petiano/salvarPetiano.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='buscarPetiano'}">
-                                <%@ include file="site/petiano/buscarPetiano.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='exibirPetianoCPF'}">
-                                <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
-                            </c:when>
+                            
                             <c:when test="${pagina=='listarPetiano'}">
                                 <%@ include file="site/petiano/listarPetiano.jsp" %>  
                             </c:when>
