@@ -23,7 +23,7 @@
         </textarea><br>
 
         <label for="data_inicio">Data de Início:</label><br>
-        <input type="text" id="data_inicio" name="data_inicio" /><br><br>
+        <input type="text" class="data" id="data_inicio" name="data_inicio" /><br><br>
         <div class="lista_dupla">
             <div>
                 <label for="lista_pessoas">Pessoas</label>

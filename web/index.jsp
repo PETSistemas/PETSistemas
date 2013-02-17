@@ -11,11 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PET Sistemas title</title>
-        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" href="icon/pet.gif" type="resources/css/image/gif" />
-        <link href="resources/css/style.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="resources/js/jquery-1.9.0.js"></script>
+        
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/bootstrap/css/datepicker.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="resources/bootstrap/js/bootstrap-datepicker.js"></script>
+        
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css">
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#inserir").click(function() {
@@ -30,6 +34,8 @@
                         $(this).attr('selected', 'selected');
                     });
                 });
+            
+                $(".data").datepicker({format: "dd/mm/yy"});
             });
 
          </script>
