@@ -12,7 +12,7 @@
             <legend>Cadastro de Petiano</legend>
             <div>Nome: <input type="text" name="nome" size="60"></div>
             <div>Senha: <input type="password" name="senha" size="20"></div>
-            <div>Data de Nascimento: <input type="text" name="dataNascimento" size="10"></div>
+            <div>Data de Nascimento: <input type="text" class="data" name="dataNascimento" size="10"></div>
             <div>E-mail: <input type="text" name="email" size="40"></div>
             <div>Link Curriculum Lattes: <input type="text" name="lattes" size="40"></div>
             <div>Curso: <select name="curso">
@@ -27,8 +27,8 @@
             <div>CPF: <input type="text" name="cpf" size="14"></div>
             <div>Endereço:</div>
             <textarea name="endereco" rows="10" cols="50"></textarea>
-            <div>Data de Entrada: <input type="text" name="dataEntrada" size="10"></div>
-            <div>Data de Saida <input type="text" name="dataSaida" size="10"></div>
+            <div>Data de Entrada: <input type="text" class="data" name="dataEntrada" size="10"></div>
+            <div>Data de Saida <input type="text"  class="data" name="dataSaida" size="10"></div>
             <div><input type="submit" value="Salvar">
                 <input type="reset" value="Limpar"></div>
         </fieldset>
