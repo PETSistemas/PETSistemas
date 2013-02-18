@@ -18,7 +18,7 @@
             <div id = "cabecalho">
                 <p>PET Sistemas</p>
                 <%@include file="/WEB-INF/validarLogin.jspf" %>
-                Bem Vindo(a): ${login}
+                Bem Vindo(a): ${login.nome}
                 <a href="${pageContext.request.contextPath}/deslogar">Sair</a>
 
             </div>

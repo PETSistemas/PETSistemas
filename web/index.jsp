@@ -100,7 +100,7 @@
                             <c:when test="${pagina=='listarPetiano'}">
                                 <%@ include file="site/petiano/listarPetiano.jsp" %>  
                             </c:when>
-
+                            
                             <%-- ********************************************************************** --%>
                             <%-- NOTICIA --%>
 

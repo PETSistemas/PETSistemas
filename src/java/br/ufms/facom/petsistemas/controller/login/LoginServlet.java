@@ -75,13 +75,13 @@ public class LoginServlet extends HttpServlet {
         // petiano ou tutor nao sao nulos
         
         if (petiano != null && petiano.getSenha().equals(senha)) {
-            request.getSession().setMaxInactiveInterval(600);
+            request.getSession(true).setMaxInactiveInterval(600);
             request.getSession().setAttribute("login", petiano);
             return true;
         }
         // petiano eh nulo, tutor nao
         else if (tutor.getSenha().equals(senha)) {
-            request.getSession().setMaxInactiveInterval(600);
+            request.getSession(true).setMaxInactiveInterval(600);
             request.getSession().setAttribute("login", tutor);
             return true;
         }
@@ -93,17 +93,19 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String jsp = null;
 
-
         //redirect for the correct method in accordance with to received uri:
         if (request.getRequestURI().endsWith("/logar")) {
             jsp = "/index.jsp";
             if (!tentarLogar(request)) {
                 request.setAttribute("pagina", "loginErro");
             }
+            else {
+                request.setAttribute("pagina", "login");
+            }
         } else if (request.getRequestURI().endsWith("/deslogar")) {
             request.getSession().invalidate();
             jsp = "/index.jsp";
-            request.setAttribute("pagina", "deslogar");
+            request.setAttribute("pagina", "login");
         } else {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "login");

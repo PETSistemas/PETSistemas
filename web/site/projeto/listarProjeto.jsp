@@ -7,25 +7,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<c:if test="${remocao != null}">
-    <span>
-        Remoção ${remocao}
-    </span>
-</c:if>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Qt. Participantes</th>
+                <th>Resumo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="projeto" varStatus="count" begin="0" items="${projetos}">
+                <tr>
+                    <td>${count.index+1}</td>
+                    <td>${projeto.nome}</td>
+                    <td>${projeto.pessoas.size()}</td>
+                    <td>${projeto.resumo}</td>
+                    <td><a>Listar Participantes</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    <c:forEach var="projeto" begin="0" items="${projetos}">
 
-<c:forEach var="projeto" begin="0" items="${projetos}">
-    <div>
-        <p>Nome: ${projeto.nome} | 
-            <a href="alterarProjeto?id=${projeto.id}">Alterar</a> |
-            <a href="apagarProjeto?id=${projeto.id}">Apagar</a>
-        </p>
-        <p>Tipo: ${projeto.tipo}</p>
-        <p>Resumo:${projeto.resumo}</p>
-        <p>Data: ${projeto.dataInicio}</p>
-        <ul>
-            <c:forEach begin="0" var="pessoa" items="${projeto.pessoas}">
-                <li>${pessoa.nome}, ${pessoa.class.canonicalName}</li>
-                </c:forEach>
-        </ul>
-    </div>
-</c:forEach>
+    </c:forEach>
+</div>
+

@@ -71,17 +71,6 @@
         <url-pattern>/logar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProjetoServlet</servlet-name>
-        <url-pattern>/apagarProjeto</url-pattern>
-        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
-        <url-pattern>/listarProjeto</url-pattern>
-        <url-pattern>/novoProjeto</url-pattern>
-        <url-pattern>/salvarProjeto</url-pattern>
-        <url-pattern>/alterarProjeto</url-pattern>
-        <url-pattern>/projeto</url-pattern>
-        <url-pattern>/salvarAlteracaoProjeto</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>NossaHistoriaServlet</servlet-name>
         <url-pattern>/nossaHistoria</url-pattern>
         <url-pattern>/voltarNossaHistoria</url-pattern>
@@ -116,6 +105,17 @@
         <url-pattern>/novoPetiano</url-pattern>
         <url-pattern>/excluirPetiano</url-pattern>
         <url-pattern>/salvarPetiano</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/apagarProjeto</url-pattern>
+        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
+        <url-pattern>/listarProjeto</url-pattern>
+        <url-pattern>/novoProjeto</url-pattern>
+        <url-pattern>/salvarProjeto</url-pattern>
+        <url-pattern>/alterarProjeto</url-pattern>
+        <url-pattern>/salvarAlteracaoProjeto</url-pattern>
+        <url-pattern>/projeto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
