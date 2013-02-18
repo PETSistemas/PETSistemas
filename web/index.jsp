@@ -105,21 +105,10 @@
                             
 							<%-- TUTOR --%>
 
-                            <c:when test="${pagina=='tutor'}">
-                                <%@ include file="site/tutor/tutor.jsp" %>  
-                            </c:when>
                             <c:when test="${pagina=='novoTutor'}">
                                 <%@ include file="site/tutor/novoTutor.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='salvarTutor'}">
-                                <%@ include file="site/tutor/salvarTutor.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='buscarTutor'}">
-                                <%@ include file="site/tutor/buscarTutor.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='exibirTutorCPF'}">
-                                <%@ include file="site/tutor/exibirTutorCPF.jsp" %>  
-                            </c:when>
+                            
                             <c:when test="${pagina=='listarTutor'}">
                                 <%@ include file="site/tutor/listarTutor.jsp" %>  
                             </c:when>

@@ -26,7 +26,9 @@
                 <div id = "menu">
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petianoADM">Administrar Petianos</a></p>
+                    <p><a href="${pageContext.request.contextPath}/tutorADM">Administrar Tutores</a></p>
 
+                    
                 </div>
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
@@ -46,7 +48,25 @@
                             <c:when test="${pagina=='excluirPetiano'}">
                                 <%@ include file="/site/petiano/excluirPetiano.jsp" %>  
                             </c:when>
+                            <%-- ********************************************************************** --%>
+                            <%-- TUTOR --%>
+                            <c:when test="${pagina=='tutorADM'}">
+                                <%@ include file="/site/tutor/tutorADM.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoTutor'}">
+                                <%@ include file="/site/tutor/novoTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarTutor'}">
+                                <%@ include file="/site/tutor/editarTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirTutor'}">
+                                <%@ include file="/site/tutor/excluirTutor.jsp" %>  
+                            </c:when>
 
+                            
+                            
+                            
+                            
                         </c:choose>
                     </c:if>
                 </div>

@@ -6,22 +6,41 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div>
-    <form method="POST" action="${pageContext.request.contextPath}/salvarTutor">
-        <fieldset>
-            <legend>Cadastro de Tutor</legend>
-            <p>Nome: <input type="text" name="nome" size="60"></p>
-            <p>Data de Nascimento: <input type="text" name="dataNascimento" size="10"></p>
-            <p>E-mail: <input type="text" name="email" size="40"></p>
-            <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40"></p>              
-            <p>RG: <input type="text" name="rg" size="30"></p>
-            <p>CPF: <input type="text" name="cpf" size="14"></p>
-            <p>Data de Entrada: <input type="text" name="dataEntrada" size="10"></p>
-            <p>Data de Saida <input type="text" name="dataSaida" size="10"></p>
-            <p>Senha <input type="text" name="senha" size="10"></p>
-            <p><input type="submit" value="Salvar">
-                <input type="reset" value="Limpar"></p>
-        </fieldset>
-    </form>
-</div>
-<p><a href="${pageContext.request.contextPath}/tutor">Voltar</a></p>
+<form method="POST" action="${pageContext.request.contextPath}/salvarTutor">
+    <fieldset class="box">
+        <legend>Cadastro de Tutor</legend>
+
+        <label for="nome">Nome do Tutor:</label><br>
+        <input type="text" name="nome" id="nome"><br>
+
+        <label for="data_inicio">Data de Nascimento:</label><br>
+        <input type="text" class="data" id="dataNascimento" name="dataNascimento" /><br><br>
+              
+         <label for="nome">RG:</label><br>
+        <input type="text" id="rg" name="rg"/><br>
+
+        <label for="nome">CPF:</label><br>
+        <input type="text" id="cpf" name="cpf"/><br>
+
+        <label for="nome">Senha de Acesso:</label><br>
+        <input type="text" id="senha" name="senha"/><br>
+        
+        <label for="nome">E-mail:</label><br>
+        <input type="text" id="email" name="email"/><br>
+
+        <label for="nome">Link do Curriculum Lattes:</label><br>
+        <input type="text" id="lattes" name="lattes"/><br>
+
+        <label for="data">Data de Entrada no PET:</label><br>
+        <input type="text" class="data" id="dataEntrada" name="dataEntrada" /><br><br>
+
+        <label for="data">Data de Saída do PET:</label><br>
+        <input type="text" class="data" id="dataSaida" name="dataSaida" /><br><br>
+
+        <input type="submit" value="Salvar" id="salvar"/>
+    </fieldset>
+</form>
+<div><a href="${pageContext.request.contextPath}/tutorADM">Voltar</a></div>
+
+
+

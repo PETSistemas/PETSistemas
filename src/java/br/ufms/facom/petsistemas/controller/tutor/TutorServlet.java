@@ -37,7 +37,7 @@ public class TutorServlet extends HttpServlet {
     }
 
     /**
-     * Método responsável pela pesquisa de todos os petianos cadastrados
+     * Método responsável pela pesquisa de todos os tutors cadastrados
      *
      * @param request
      */
@@ -65,11 +65,49 @@ public class TutorServlet extends HttpServlet {
         String dataSai = request.getParameter("dataSaida");
         Date dataSaida = Utilitarios.stringParaData(dataSai);
 
-        Tutor tutor = new Tutor(rg, cpf, dataEntrada, dataSaida, senha, nome, dataNascimento, email, lattes, null);
+        Tutor tutor = new Tutor(senha, rg, cpf, dataEntrada, dataSaida, nome, dataNascimento, email, lattes, null);
+        tutor.setDataEntradaFormatada(dataEnt);
+        tutor.setDataNascimentoFormatada(dataNasc);
+        tutor.setDataSaidaFormatada(dataSai);
         controladorBD.inserir(tutor);
         request.setAttribute("mensagem", "Tutor " + nome + " cadastrado com sucesso!");
     }
 
+     private void atualizarTutor(HttpServletRequest request) {
+
+        String nome = request.getParameter("nome");
+        String dataNasc = request.getParameter("dataNascimento");
+        Date dataNascimento = Utilitarios.stringParaData(dataNasc);
+        String email = request.getParameter("email");
+        String lattes = request.getParameter("lattes");
+        String rg = request.getParameter("rg");
+        String dataEnt = request.getParameter("dataEntrada");
+        Date dataEntrada = Utilitarios.stringParaData(dataEnt);
+        String dataSai = request.getParameter("dataSaida");
+        Date dataSaida = Utilitarios.stringParaData(dataSai);
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        Tutor tutor = controladorBD.retrieve(id);
+
+        tutor.setNome(nome);
+        tutor.setDataEntrada(dataEntrada);
+        tutor.setDataNascimento(dataNascimento);
+        tutor.setDataSaida(dataSaida);
+        tutor.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
+        tutor.setDataSaidaFormatada(Utilitarios.dataParaString(dataSaida));
+        tutor.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
+
+        tutor.setRg(rg);
+        tutor.setEmail(email);
+        tutor.setLinkLattes(lattes);
+
+        (new TutorDAOImplementacao()).atualizar(tutor);
+        controladorBD.atualizar(tutor);
+
+        request.setAttribute("mensagem", "Tutor " + nome + " cadastrado com sucesso!");
+    }
+    
+        
     /**
      * Método responsável pela busca de Tutor pelo CPF
      *
@@ -80,22 +118,8 @@ public class TutorServlet extends HttpServlet {
         String cpf = request.getParameter("cpf");
         Tutor tutor = controladorBD.buscarTutorPeloCPF(cpf);
 
-        request.setAttribute("nome", tutor.getNome());
-        request.setAttribute("dataNascimento", Utilitarios.dataParaString(tutor.getDataNascimento()));
-        request.setAttribute("email", tutor.getEmail());
-        request.setAttribute("lattes", tutor.getLinkLattes());
-        request.setAttribute("senha", tutor.getSenha());
-        request.setAttribute("rg", tutor.getRg());
-        request.setAttribute("cpf", tutor.getCpf());
-        request.setAttribute("dataEntrada", Utilitarios.dataParaString(tutor.getDataEntrada()));
-           request.setAttribute("dataSaida", Utilitarios.dataParaString(tutor.getDataSaida()));
-    }
-    
-    private void buscarTutorNome(HttpServletRequest request) {
-
-        String cpf = request.getParameter("cpf");
-        Tutor tutor = controladorBD.buscarTutorPeloCPF(cpf);
-
+         request.setAttribute("tutorBusca", tutor);
+        
         request.setAttribute("nome", tutor.getNome());
         request.setAttribute("dataNascimento", Utilitarios.dataParaString(tutor.getDataNascimento()));
         request.setAttribute("email", tutor.getEmail());
@@ -106,9 +130,9 @@ public class TutorServlet extends HttpServlet {
         request.setAttribute("dataEntrada", Utilitarios.dataParaString(tutor.getDataEntrada()));
     }
 
-    /**
-     * Método responsável por buscar Tutores ativos e Desativos Separa os
-     * ativos dos desativos em variáveis diferentes
+      /**
+     * Método responsável por buscar Tutores ativos e Desativos Separa os ativos
+     * dos desativos em variáveis diferentes
      *
      * @param request
      */
@@ -138,35 +162,43 @@ public class TutorServlet extends HttpServlet {
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-                if (request.getRequestURI().endsWith("/tutor"))
-        {
+        if (request.getRequestURI().endsWith("/tutorADM")) {
             listarTutores(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "tutor");
-        }
-        else if (request.getRequestURI().endsWith("/novoTutor"))
-        {
+            jsp = "site/administrativo/index.jsp";
+            request.setAttribute("pagina", "tutorADM");
+        } else if (request.getRequestURI().endsWith("/editarTutor")) {
+           buscarTutorCPF(request);
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "editarTutor");
+        } else if (request.getRequestURI().endsWith("/tutorADM")) {
             listarTutores(request);
-            jsp = "/index.jsp";
+            jsp = "site/administrativo/index.jsp";
+            request.setAttribute("pagina", "tutorADM");
+        } else if (request.getRequestURI().endsWith("/atualizarTutor")) {
+            atualizarTutor(request);
+            listarTutores(request);
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "tutorADM");
+        } else if (request.getRequestURI().endsWith("/novoTutor")) {
+            jsp = "/site/administrativo/index.jsp";
             request.setAttribute("pagina", "novoTutor");
-        }
-        else if (request.getRequestURI().endsWith("/salvarTutor"))
-        {
+        } else if (request.getRequestURI().endsWith("/excluirTutor")) {
+            buscarTutorCPF(request);
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "excluirTutor");
+        } else if (request.getRequestURI().endsWith("/salvarTutor")) {
             salvarTutor(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "salvarTutor");
-        }
-        else if (request.getRequestURI().endsWith("/listarTutor")) {
+            listarTutores(request);
+            jsp = "/site/administrativo/index.jsp";
+            request.setAttribute("pagina", "tutorADM");
+        } else if (request.getRequestURI().endsWith("/listarTutor")) {
             buscarTutorSituacao(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "listarTutor");
-        }          
-        else if (request.getRequestURI().endsWith("/buscarTutor"))
-        {
+        } else if (request.getRequestURI().endsWith("/buscarTutor")) {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "buscarTutor");
-        }
-       else if (request.getRequestURI().endsWith("/exibirTutorCPF")) {
+        } else if (request.getRequestURI().endsWith("/exibirTutorCPF")) {
             buscarTutorCPF(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "exibirTutorCPF");
@@ -174,13 +206,9 @@ public class TutorServlet extends HttpServlet {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "tutor");
         }
-
-        if (jsp == null)
-        {
+        if (jsp == null) {
             response.sendRedirect(request.getContextPath() + "/index");
-        }
-        else if (!"empty".equals(jsp))
-        {
+        } else if (!"empty".equals(jsp)) {
             request.getRequestDispatcher(jsp).forward(request, response);
         }
     }
