@@ -55,7 +55,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Pessoa</li>
-                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
+                        <li><a href="${pageContext.request.contextPath}/listarTutor">Tutor</a></li>
                         <li><a href="${pageContext.request.contextPath}/listarPetiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
@@ -100,8 +100,32 @@
                             <c:when test="${pagina=='listarPetiano'}">
                                 <%@ include file="site/petiano/listarPetiano.jsp" %>  
                             </c:when>
+							
+							<%-- ********************************************************************** --%>
+                            
+							<%-- TUTOR --%>
+
+                            <c:when test="${pagina=='tutor'}">
+                                <%@ include file="site/tutor/tutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoTutor'}">
+                                <%@ include file="site/tutor/novoTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='salvarTutor'}">
+                                <%@ include file="site/tutor/salvarTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='buscarTutor'}">
+                                <%@ include file="site/tutor/buscarTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='exibirTutorCPF'}">
+                                <%@ include file="site/tutor/exibirTutorCPF.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='listarTutor'}">
+                                <%@ include file="site/tutor/listarTutor.jsp" %>  
+                            </c:when>
                             
                             <%-- ********************************************************************** --%>
+
                             <%-- NOTICIA --%>
 
                             <c:when test="${pagina=='noticia'}">
