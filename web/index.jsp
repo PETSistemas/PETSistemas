@@ -148,7 +148,7 @@
                             <c:when test="${pagina=='login'}">
                                 <%@ include file="site/login/login.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='logar'}">
+                            <c:when test="${pagina=='loginErro'}">
                                 <%@ include file="site/login/loginErro.jsp" %>  
                             </c:when>
 

@@ -10,34 +10,20 @@
 <div>
     <c:choose>
         <c:when test="${empty login}">
-            <form method="POST" action="${pageContext.request.contextPath}/logar" class="form-horizontal">
-                <fieldset>
-                    <legend>Realizar Login</legend>
-                    <div class="control-group">
-                        <label class="control-label">CPF</label>
-                        <div class="controls">
-                            <input type="text" name="login" size="60">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Senha</label>
-                        <div class="controls">
-                            <input type="password" name="senha" size="20">
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
-                            <input type="submit" class="btn btn-primary" value="Logar">
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+            <div class="container">
+                <form class="form-signin" method="POST" action="${pageContext.request.contextPath}/logar">
+                    <h2 class="form-signin-heading">Realize seu Login</h2>
+                    <input type="text" class="input-block-level" id="login" name="login" placeholder="cpf">
+                    <input type="password" class="input-block-level" id="senha" name="senha" placeholder="senha" >
+                    <button class="btn btn-large btn-primary" type="submit">Logar</button>
+                </form>
+            </div>
         </c:when>
         <c:otherwise>
             <p>
                 Olá ${login.nome}.
             </p>
-            <a href="deslogar" class="btn-danger">Sair</a>
+            <a href="deslogar" class="btn btn-danger">Sair</a>
         </c:otherwise>
     </c:choose>    
 </div>
