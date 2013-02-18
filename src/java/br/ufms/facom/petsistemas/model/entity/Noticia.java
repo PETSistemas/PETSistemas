@@ -58,6 +58,10 @@ public class Noticia implements Serializable
     @ManyToOne
     private Petiano petiano;
 
+    @JoinColumn(name = "tutor", updatable = true, nullable = true)
+    @ManyToOne
+    private Tutor tutor;
+    
     public Noticia()
     {
     }
