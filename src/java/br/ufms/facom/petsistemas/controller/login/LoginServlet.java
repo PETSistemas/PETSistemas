@@ -8,7 +8,10 @@ import br.ufms.facom.petsistemas.model.dao.login.LoginDAO;
 import br.ufms.facom.petsistemas.model.dao.login.LoginDAOImplementacao;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
+import br.ufms.facom.petsistemas.model.dao.tutor.TutorDAO;
+import br.ufms.facom.petsistemas.model.dao.tutor.TutorDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Petiano;
+import br.ufms.facom.petsistemas.model.entity.Tutor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.AbstractList;
@@ -29,6 +32,9 @@ public class LoginServlet extends HttpServlet {
 
     LoginDAO controladorBD;
     PetianoDAO controladorPetianoBD;
+    TutorDAO controladorTutorBD;
+    
+    Petiano master;
 
     /**
      * Processes requests for both HTTP
@@ -42,23 +48,44 @@ public class LoginServlet extends HttpServlet {
      */
     public void init() throws ServletException {
         controladorBD = new LoginDAOImplementacao();
+        controladorPetianoBD = new PetianoDAOImplementacao();
+        controladorTutorBD = new TutorDAOImplementacao();
+        master = new Petiano();
+        master.setCpf("master");
+        master.setNome("master");
+        master.setCurso(0);
+        master.setSenha("1");
     }
 
-    public boolean logar(HttpServletRequest request) {
+    public boolean tentarLogar(HttpServletRequest request) {
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        HttpSession sessao = request.getSession();
-        sessao = request.getSession();
-        sessao.setAttribute("login", login);
 
-        if (login.equals("master") && senha.equals("1")) {
+        Petiano petiano = controladorPetianoBD.buscarPetianoPeloCPF(login);
+        Tutor tutor = controladorTutorBD.buscarTutorPeloCPF(login);
+        
+        if (petiano == null && tutor == null) {
+            if (login.equals(master.getCpf())) {
+                petiano = master;
+            } else {
+                return false;
+            }
+        }
+        
+        // petiano ou tutor nao sao nulos
+        
+        if (petiano != null && petiano.getSenha().equals(senha)) {
+            request.getSession().setMaxInactiveInterval(600);
+            request.getSession().setAttribute("login", petiano);
             return true;
         }
-        controladorPetianoBD = new PetianoDAOImplementacao();
-        Petiano petiano = controladorPetianoBD.buscarPetianoPeloCPF(login);
-
-        return controladorBD.logarUsuario(login, senha, petiano, null);
-
+        // petiano eh nulo, tutor nao
+        else if (tutor.getSenha().equals(senha)) {
+            request.getSession().setMaxInactiveInterval(600);
+            request.getSession().setAttribute("login", tutor);
+            return true;
+        }
+        return false;
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -69,22 +96,12 @@ public class LoginServlet extends HttpServlet {
 
         //redirect for the correct method in accordance with to received uri:
         if (request.getRequestURI().endsWith("/logar")) {
-
-            if (logar(request)) {
-                jsp = "site/administrativo/index.jsp";
-
-                request.setAttribute("pagina", "logado");
-            } else {
-                jsp = "/index.jsp";
-                request.setAttribute("pagina", "logar");
-            }
-        } else if (request.getRequestURI().endsWith("/login")) {
             jsp = "/index.jsp";
-            request.setAttribute("pagina", "login");
-
+            if (!tentarLogar(request)) {
+                request.setAttribute("pagina", "loginErro");
+            }
         } else if (request.getRequestURI().endsWith("/deslogar")) {
-            HttpSession sessao = request.getSession();
-            sessao.invalidate();
+            request.getSession().invalidate();
             jsp = "/index.jsp";
             request.setAttribute("pagina", "deslogar");
         } else {
