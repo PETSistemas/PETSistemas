@@ -6,32 +6,56 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div>
-    <form method="POST" action="${pageContext.request.contextPath}/salvarPetiano">
-        <fieldset>
-            <legend>Cadastro de Petiano</legend>
-            <div>Nome: <input type="text" name="nome" size="60"></div>
-            <div>Senha: <input type="password" name="senha" size="20"></div>
-            <div>Data de Nascimento: <input type="text" class="data" name="dataNascimento" size="10"></div>
-            <div>E-mail: <input type="text" name="email" size="40"></div>
-            <div>Link Curriculum Lattes: <input type="text" name="lattes" size="40"></div>
-            <div>Curso: <select name="curso">
-                    <option value=""></option>
-                    <option value=1>Análise de Sistemas</option>
-                    <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
-                    <option value=3>Tecnologia em Redes de Computadores</option>
-                </select></div>
-            <div>Nome do Pai: <input type="text" name="pai" size="60"></div>
-            <div>Nome da Mãe: <input type="text" name="mae" size="60"></div>
-            <div>RG: <input type="text" name="rg" size="30"></div>
-            <div>CPF: <input type="text" name="cpf" size="14"></div>
-            <div>Endereço:</div>
-            <textarea name="endereco" rows="10" cols="50"></textarea>
-            <div>Data de Entrada: <input type="text" class="data" name="dataEntrada" size="10"></div>
-            <div>Data de Saida <input type="text"  class="data" name="dataSaida" size="10"></div>
-            <div><input type="submit" value="Salvar">
-                <input type="reset" value="Limpar"></div>
-        </fieldset>
-    </form>
-</div>
+<form method="POST" action="${pageContext.request.contextPath}/salvarPetiano">
+    <fieldset class="box">
+        <legend>Cadastro de Petiano</legend>
+
+        <label for="nome">Nome do Petiano:</label><br>
+        <input type="text" id="nome" name="nome"/><br>
+
+        <label for="data_inicio">Data de Nascimento:</label><br>
+        <input type="text" class="data" id="dataNascimento" name="dataNascimento" /><br><br>
+        
+        <label for="nome">Nome do Pai do Petiano:</label><br>
+        <input type="text" id="pai" name="pai"/><br>
+
+        <label for="nome">Nome da Mãe do Petiano:</label><br>
+        <input type="text" id="mae" name="mae"/><br>
+        
+         <label for="nome">RG:</label><br>
+        <input type="text" id="rg" name="rg"/><br>
+
+        <label for="nome">CPF:</label><br>
+        <input type="text" id="cpf" name="cpf"/><br>
+
+        <label for="nome">Senha de Acesso:</label><br>
+        <input type="text" id="senha" name="senha"/><br>
+        
+        <label for="nome">E-mail:</label><br>
+        <input type="text" id="email" name="email"/><br>
+
+        <label for="nome">Link do Curriculum Lattes:</label><br>
+        <input type="text" id="lattes" name="lattes"/><br>
+
+        <label for="tipo">Curso:</label><br>
+        <select name="curso">
+            <option value=""></option>
+            <option value=1>Análise de Sistemas</option>
+            <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
+            <option value=3>Tecnologia em Redes de Computadores</option>
+        </select><br><br>
+
+        <label for="resumo">Endereço:</label><br>
+        <textarea id="endereco" name="endereco" maxlength="100">Endereço do Petiano
+        </textarea><br>
+
+        <label for="data">Data de Entrada no PET:</label><br>
+        <input type="text" class="data" id="dataEntrada" name="dataEntrada" /><br><br>
+
+        <label for="data">Data de Saída do PET:</label><br>
+        <input type="text" class="data" id="dataSaida" name="dataSaida" /><br><br>
+
+        <input type="submit" value="Salvar" id="salvar"/>
+    </fieldset>
+</form>
 <div><a href="${pageContext.request.contextPath}/petianoADM">Voltar</a></div>

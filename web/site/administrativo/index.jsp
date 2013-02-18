@@ -35,7 +35,7 @@
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
                             <c:when test="${pagina=='petianoADM'}">
-                                <%@ include file="petianoADM.jsp" %>  
+                                <%@ include file="/site/petiano/petianoADM.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="/site/petiano/novoPetiano.jsp" %>  
