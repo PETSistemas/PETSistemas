@@ -27,7 +27,7 @@ public class NoticiaDAOImplementacao extends DAOImplementacao<Noticia, Long> imp
     public Noticia buscarNoticiaPeloTitulo(String titulo)
     {
         String namedQuery = "Noticia.buscarNoticiaPeloTitulo";
-        ParametrosConsulta parametros = new ParametrosConsulta("titulo", titulo);
+        ParametrosConsulta parametros = new ParametrosConsulta("titulo", '%' + titulo + '%');
         Noticia noticia = (Noticia) executarNamedQuerySimples(namedQuery, parametros);
         return noticia;
     }

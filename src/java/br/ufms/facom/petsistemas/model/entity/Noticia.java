@@ -27,7 +27,7 @@ import javax.persistence.Temporal;
 @Table(name = "NOTICIA")
 @NamedQueries(
 {
-    @NamedQuery(name = "Noticia.buscarNoticiaPeloTitulo", query = "SELECT n FROM Noticia AS n WHERE n.titulo = :titulo ORDER BY n.titulo")
+    @NamedQuery(name = "Noticia.buscarNoticiaPeloTitulo", query = "SELECT n FROM Noticia AS n WHERE n.titulo LIKE :titulo ORDER BY n.titulo")
 })
 public class Noticia implements Serializable
 {
