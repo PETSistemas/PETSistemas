@@ -36,6 +36,10 @@
         <servlet-name>TutorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.tutor.TutorServlet</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.colaborador.ColaboradorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
@@ -117,6 +121,19 @@
         <url-pattern>/tutorADM</url-pattern>
         <url-pattern>/salvarTutor</url-pattern>
         <url-pattern>/novoTutor</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <url-pattern>/editarColaborador</url-pattern>
+        <url-pattern>/exibirColaboradorCPF</url-pattern>
+        <url-pattern>/listarColaborador</url-pattern>
+        <url-pattern>/colaborador</url-pattern>
+        <url-pattern>/buscarColaborador</url-pattern>
+        <url-pattern>/atualizarColaborador</url-pattern>
+        <url-pattern>/novoColaborador</url-pattern>
+        <url-pattern>/salvarColaborador</url-pattern>
+        <url-pattern>/colaboradorADM</url-pattern>
+        <url-pattern>/excluirColaborador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

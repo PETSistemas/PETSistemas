@@ -13,29 +13,29 @@
     </form>
     <br/>
 
-  <form method="POST" action="${pageContext.request.contextPath}/buscarNome">
+    <form method="POST" action="${pageContext.request.contextPath}/buscarNome">
         <fieldset>
             <legend>Pesquise pelo Tutor:</legend>
             <p>Nome:  <input type="text" name="nome" size="60"><input type="submit" value="Pesquisar"></p>
         </fieldset>
 
-  
-    <h3>Tutor:</h3>
-    <table border="1">
-        <tr>
-            <th>CPF</th>
-            <th>Nome</th>
-            <th>Editar</th>
-            <th>Apagar</th>
-        </tr>
-        
-        <c:forEach var="tutor" items="${tutores}" varStatus="status" >
+
+        <h3>Tutor:</h3>
+        <table border="1">
             <tr>
-                <th>${tutor.cpf}</th>
-                <th>${tutor.nome}</th>
-                <th><a href="${pageContext.request.contextPath}/editarTutor?cpf=${tutor.cpf}"/><img src="site/administrativo/imagem/editar.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
-                <th><a href="${pageContext.request.contextPath}/excluirTutor?cpf=${petiano.cpf}"/><img src="site/administrativo/imagem/excluir.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Apagar</th>
             </tr>
-        </c:forEach>
-    </table>
+
+            <c:forEach var="tutor" items="${tutores}" varStatus="status" >
+                <tr>
+                    <th>${tutor.cpf}</th>
+                    <th>${tutor.nome}</th>
+                    <th><a href="${pageContext.request.contextPath}/editarTutor?cpf=${tutor.cpf}"/><img src="site/administrativo/imagem/editar.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
+                    <th><a href="${pageContext.request.contextPath}/excluirTutor?cpf=${tutor.cpf}"/><img src="site/administrativo/imagem/excluir.png" width="20px" height="20px" title="Editar" alt="Link para editar registro" /></th>
+                </tr>
+            </c:forEach>
+        </table>
 </div>

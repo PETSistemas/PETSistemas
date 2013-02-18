@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
  * @author Bruno Monteiro
  */
 @Entity
-@DiscriminatorValue("P")
+@DiscriminatorValue("T")
 @Table(name = "TUTOR")
 @NamedQueries({
     @NamedQuery(name = "Tutor.buscarTutorPeloNome", query = "SELECT p FROM Tutor AS p WHERE p.nome like :nome ORDER BY p.nome"),
@@ -32,7 +32,6 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "Tutor.buscarTutorDesativo", query = "SELECT p FROM Tutor AS p WHERE p.dataSaida is not null")
 })
 public class Tutor extends Pessoa implements Serializable {
-
 
     @Column(name = "rg", updatable = false, nullable = false, length = 30)
     private String rg;
@@ -62,7 +61,6 @@ public class Tutor extends Pessoa implements Serializable {
         this.dataSaida = dataSaida;
     }
 
-   
     public String getRg() {
         return rg;
     }

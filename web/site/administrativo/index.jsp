@@ -27,8 +27,8 @@
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petianoADM">Administrar Petianos</a></p>
                     <p><a href="${pageContext.request.contextPath}/tutorADM">Administrar Tutores</a></p>
+                    <p><a href="${pageContext.request.contextPath}/colaboradorADM">Administrar Colaboradores</a></p>
 
-                    
                 </div>
                 <div id = "conteudo">
                     <p>PET Sistemas</p>
@@ -63,10 +63,21 @@
                                 <%@ include file="/site/tutor/excluirTutor.jsp" %>  
                             </c:when>
 
-                            
-                            
-                            
-                            
+                            <%-- ********************************************************************** --%>
+                            <%-- COLABORADOR --%>
+                            <c:when test="${pagina=='colaboradorADM'}">
+                                <%@ include file="/site/colaborador/colaboradorADM.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoColaborador'}">
+                                <%@ include file="/site/colaborador/novoColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarColaborador'}">
+                                <%@ include file="/site/colaborador/editarColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirColaborador'}">
+                                <%@ include file="/site/colaborador/excluirColaborador.jsp" %>  
+                            </c:when>
+
                         </c:choose>
                     </c:if>
                 </div>

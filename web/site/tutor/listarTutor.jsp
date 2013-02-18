@@ -12,7 +12,7 @@
         <c:if test="${empty tutoresAtivos}">
             <span>Não há tutores nessa categoria</span>
         </c:if>
-       <c:forEach var="tutor" items="${tutoresAtivos}" varStatus="status" >
+        <c:forEach var="tutor" items="${tutoresAtivos}" varStatus="status" >
             <p>${status.count}: ${tutor.nome}</p>
             <p>Entrou no PET: ${tutor.dataEntrada}</p>
         </c:forEach>
@@ -24,7 +24,7 @@
         <c:if test="${empty tutoresDesativos}">
             <span>Não há tutores nessa categoria</span>
         </c:if>
-               <c:forEach var="tutor" items="${tutoresDesativos}" varStatus="status" >
+        <c:forEach var="tutor" items="${tutoresDesativos}" varStatus="status" >
             <p>${status.count}: ${tutor.nome}</p>
             <p>Entrou no PET: ${tutor.dataEntrada}</p>
             <p>Saiu do PET: ${tutor.dataSaida}</p>
