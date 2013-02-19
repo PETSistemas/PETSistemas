@@ -29,15 +29,13 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "Colaborador.buscarColaboradorPeloNome", query = "SELECT p FROM Colaborador AS p WHERE p.nome like :nome ORDER BY p.nome"),
     @NamedQuery(name = "Colaborador.buscarColaboradorPeloCPF", query = "SELECT p FROM Colaborador AS p WHERE p.cpf = :cpf ORDER BY p.nome"),
     @NamedQuery(name = "Colaborador.buscarColaboradorAtivo", query = "SELECT p FROM Colaborador AS p WHERE p.situacao = 1"),
-    @NamedQuery(name = "Colaborador.buscarColaboradorDesativo", query = "SELECT p FROM Colaborador AS p WHERE WHERE p.situacao = 0")
+    @NamedQuery(name = "Colaborador.buscarColaboradorDesativo", query = "SELECT p FROM Colaborador AS p WHERE p.situacao = 0")
 })
 public class Colaborador extends Pessoa implements Serializable {
 
     @Column(name = "situacao", updatable = true, nullable = false)
     private int situacao;
-    @OneToMany(mappedBy = "colaborador")
-    private List<Noticia> noticias;
-
+    
     public Colaborador() {
     }
 
