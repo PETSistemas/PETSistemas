@@ -61,6 +61,7 @@
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/salvarDownload</url-pattern>
+        <url-pattern>/devolveDownload</url-pattern>
         <url-pattern>/listarDownload</url-pattern>
         <url-pattern>/novoDownload</url-pattern>
         <url-pattern>/alterarDownload</url-pattern>
