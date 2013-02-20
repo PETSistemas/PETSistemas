@@ -36,7 +36,7 @@
         <servlet-name>TutorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.tutor.TutorServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>ColaboradorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.colaborador.ColaboradorServlet</servlet-class>
     </servlet>
@@ -85,20 +85,6 @@
         <url-pattern>/enviarContato</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PetianoServlet</servlet-name>
-        <url-pattern>/editarPetiano</url-pattern>
-        <url-pattern>/exibirPetianoCPF</url-pattern>
-        <url-pattern>/listarPetiano</url-pattern>
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/petiano</url-pattern>
-        <url-pattern>/buscarPetiano</url-pattern>
-        <url-pattern>/atualizarPetiano</url-pattern>
-        <url-pattern>/novoPetiano</url-pattern>
-        <url-pattern>/salvarPetiano</url-pattern>
-        <url-pattern>/petianoADM</url-pattern>
-        <url-pattern>/excluirPetiano</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ProjetoServlet</servlet-name>
         <url-pattern>/apagarProjeto</url-pattern>
         <url-pattern>/efetivarRemocaoProjeto</url-pattern>
@@ -122,7 +108,7 @@
         <url-pattern>/salvarTutor</url-pattern>
         <url-pattern>/novoTutor</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ColaboradorServlet</servlet-name>
         <url-pattern>/editarColaborador</url-pattern>
         <url-pattern>/exibirColaboradorCPF</url-pattern>
@@ -134,6 +120,21 @@
         <url-pattern>/salvarColaborador</url-pattern>
         <url-pattern>/colaboradorADM</url-pattern>
         <url-pattern>/excluirColaborador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PetianoServlet</servlet-name>
+        <url-pattern>/editarPetiano</url-pattern>
+        <url-pattern>/exibirPetianoCPF</url-pattern>
+        <url-pattern>/listarPetiano</url-pattern>
+        <url-pattern>/buscarPetiano</url-pattern>
+        <url-pattern>/petiano</url-pattern>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/petianoADM</url-pattern>
+        <url-pattern>/atualizarPetiano</url-pattern>
+        <url-pattern>/novoPetiano</url-pattern>
+        <url-pattern>/excluirPetiano</url-pattern>
+        <url-pattern>/removerPetiano</url-pattern>
+        <url-pattern>/salvarPetiano</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

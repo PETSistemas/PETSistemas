@@ -29,7 +29,7 @@
         <input type="text" id="cpf" name="cpf"/><br>
 
         <label for="nome">Senha de Acesso:</label><br>
-        <input type="text" id="senha" name="senha"/><br>
+        <input type="password" id="senha" name="senha"/><br>
         
         <label for="nome">E-mail:</label><br>
         <input type="text" id="email" name="email"/><br>
@@ -58,4 +58,4 @@
         <input type="submit" value="Salvar" id="salvar"/>
     </fieldset>
 </form>
-<div><a href="${pageContext.request.contextPath}/petianoADM">Voltar</a></div>
+<div><a href="${pageContext.request.contextPath}/petiano">Voltar</a></div>

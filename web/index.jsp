@@ -56,7 +56,7 @@
                         <li class="divider"></li>
                         <li class="nav-header">Pessoa</li>
                         <li><a href="${pageContext.request.contextPath}/listarTutor">Tutor</a></li>
-                        <li><a href="${pageContext.request.contextPath}/listarPetiano">Petiano</a></li>
+                        <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></li>
@@ -96,14 +96,21 @@
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="site/petiano/novoPetiano.jsp" %>  
                             </c:when>
-                            
+                            <c:when test="${pagina=='excluirPetiano'}">
+                                <%@ include file="site/petiano/excluirPetiano.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarPetiano'}">
+                                <%@ include file="site/petiano/editarPetiano.jsp" %>  
+                            </c:when>
                             <c:when test="${pagina=='listarPetiano'}">
                                 <%@ include file="site/petiano/listarPetiano.jsp" %>  
                             </c:when>
+                            <c:when test="${pagina=='petiano'}">
+                                <%@ include file="site/petiano/petiano.jsp" %>  
+                            </c:when>
 							
-							<%-- ********************************************************************** --%>
-                            
-							<%-- TUTOR --%>
+       			<%-- ********************************************************************** --%>
+       			<%-- TUTOR --%>
 
                             <c:when test="${pagina=='novoTutor'}">
                                 <%@ include file="site/tutor/novoTutor.jsp" %>  

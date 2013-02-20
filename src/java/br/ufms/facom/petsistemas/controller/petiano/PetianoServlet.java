@@ -69,12 +69,18 @@ public class PetianoServlet extends HttpServlet {
         String dataEnt = request.getParameter("dataEntrada");
         Date dataEntrada = Utilitarios.stringParaData(dataEnt);
         String dataSai = request.getParameter("dataSaida");
-        Date dataSaida = Utilitarios.stringParaData(dataSai);
+        Date dataSaida = null;
+
+        if (dataSai != null) {
+            dataSaida = Utilitarios.stringParaData(dataSai);
+        }
 
         Petiano petiano = new Petiano(curso, senha, nomePai, nomeMae, rg, cpf, dataEntrada, dataSaida, endereco, nome, dataNascimento, email, lattes, null);
         petiano.setDataEntradaFormatada(dataEnt);
         petiano.setDataNascimentoFormatada(dataNasc);
-        petiano.setDataSaidaFormatada(dataSai);
+        if (dataSai != null) {
+            petiano.setDataSaidaFormatada(dataSai);
+        }
         controladorBD.inserir(petiano);
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
     }
@@ -95,7 +101,11 @@ public class PetianoServlet extends HttpServlet {
         String dataEnt = request.getParameter("dataEntrada");
         Date dataEntrada = Utilitarios.stringParaData(dataEnt);
         String dataSai = request.getParameter("dataSaida");
-        Date dataSaida = Utilitarios.stringParaData(dataSai);
+        Date dataSaida = null;
+
+        if (dataSai != null) {
+            dataSaida = Utilitarios.stringParaData(dataSai);
+        }
         Long id = Long.parseLong(request.getParameter("id"));
 
         Petiano petiano = controladorBD.retrieve(id);
@@ -105,7 +115,9 @@ public class PetianoServlet extends HttpServlet {
         petiano.setDataNascimento(dataNascimento);
         petiano.setDataSaida(dataSaida);
         petiano.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
-        petiano.setDataSaidaFormatada(Utilitarios.dataParaString(dataSaida));
+        if (dataSaida != null) {
+            petiano.setDataSaidaFormatada(Utilitarios.dataParaString(dataSaida));
+        }
         petiano.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
 
         petiano.setCurso(curso);
@@ -166,6 +178,33 @@ public class PetianoServlet extends HttpServlet {
 
     }
 
+    public void removerPetiano(HttpServletRequest request) {
+
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Petiano petiano = controladorBD.retrieve(id);
+
+        if (petiano != null) {
+            controladorBD.deletar(petiano);
+        }
+    }
+
+    public boolean sessaoEstaAtiva(HttpServletRequest request) {
+        return request.getSession().getAttribute("login") != null;
+    }
+
+    public void iniciarSinal(HttpServletRequest request) {
+        request.getSession().setAttribute("sinal", 1);
+    }
+
+    public void apagarSinal(HttpServletRequest request) {
+        request.getSession().removeAttribute("sinal");
+    }
+
+    public boolean sinalOK(HttpServletRequest request) {
+        return request.getSession().getAttribute("sinal") != null;
+    }
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -179,57 +218,71 @@ public class PetianoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String jsp = null;
+        String pagina = "petiano";
 
         //redirect for the correct method in accordance with to received uri:
+
         if (request.getRequestURI().endsWith("/index")) {
-            jsp = "/index.jsp";
-        }  else if (request.getRequestURI().endsWith("/petianoADM")) {
+            pagina = "index";
+
+        } else if (request.getRequestURI()
+                .endsWith("/petiano")) {
             listarPetianos(request);
-            jsp = "site/administrativo/index.jsp";
-            request.setAttribute("pagina", "petianoADM");
-        } else if (request.getRequestURI().endsWith("/editarPetiano")) {
-            buscarPetianoCPF(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "editarPetiano");
-        } else if (request.getRequestURI().endsWith("/atualizarPetiano")) {
-            atualizarPetiano(request);
-            listarPetianos(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "petianoADM");
+
+
+        } else if (request.getRequestURI()
+                .endsWith("/editarPetiano")) {
+            if (sessaoEstaAtiva(request)) {
+                buscarPetianoCPF(request);
+                pagina = "editarPetiano";
+            }
+
+        } else if (request.getRequestURI()
+                .endsWith("/atualizarPetiano")) {
+            if (sessaoEstaAtiva(request)) {
+                atualizarPetiano(request);
+                listarPetianos(request);
+            }
         } else if (request.getRequestURI().endsWith("/novoPetiano")) {
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "novoPetiano");
-        } else if (request.getRequestURI().endsWith("/excluirPetiano")) {
+            iniciarSinal(request);
+            pagina = "novoPetiano";
+
+        } else if (request.getRequestURI()
+                .endsWith("/excluirPetiano")) {
             buscarPetianoCPF(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "excluirPetiano");
-        }else if (request.getRequestURI().endsWith("/salvarPetiano")) {
-            salvarPetiano(request);
+            pagina = "excluirPetiano";
+
+        } else if (request.getRequestURI()
+                .endsWith("/salvarPetiano")) {
+            if (sessaoEstaAtiva(request)) {
+                if (sinalOK(request)) {
+                    salvarPetiano(request);
+                    apagarSinal(request);
+                }
+                listarPetianos(request);
+            }
+
+        } else if (request.getRequestURI()
+                .endsWith("/removerPetiano")) {
+            if (sessaoEstaAtiva(request)) {
+                removerPetiano(request);
+            }
             listarPetianos(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "petianoADM");
-        } else if (request.getRequestURI().endsWith("/listarPetiano")) {
+
+
+        } else if (request.getRequestURI()
+                .endsWith("/listarPetiano")) {
             buscarPetianoSituacao(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "listarPetiano");
-        } else if (request.getRequestURI().endsWith("/buscarPetiano")) {
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "buscarPetiano");
-        } else if (request.getRequestURI().endsWith("/exibirPetianoCPF")) {
-            buscarPetianoCPF(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "exibirPetianoCPF");
-        } else {
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "petiano");
+            pagina = "listarPetiano";
+
         }
 
-        if (jsp == null) {
-            response.sendRedirect(request.getContextPath() + "/index");
-        } else if (!"empty".equals(jsp)) {
-            request.getRequestDispatcher(jsp).forward(request, response);
-        }
+        request.setAttribute(
+                "pagina", pagina);
+        request.getRequestDispatcher(
+                "/index.jsp").forward(request, response);
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
