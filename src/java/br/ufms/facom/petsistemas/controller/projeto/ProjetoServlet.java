@@ -61,13 +61,13 @@ public class ProjetoServlet extends HttpServlet {
             request.setAttribute("ensino", projeto.getTipo() % 2 != 0);
             request.setAttribute("pesquisa", projeto.getTipo() / 2 == 1 || projeto.getTipo() / 2 == 3);
             request.setAttribute("extensao", projeto.getTipo() / 4 > 0);
-            
+
             if (listarPessoas) {
-            List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
-            pessoas.removeAll(projeto.getPessoas());
-            request.setAttribute("lista_pessoas", pessoas);
+                List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+                pessoas.removeAll(projeto.getPessoas());
+                request.setAttribute("lista_pessoas", pessoas);
             }
-            
+
             request.setAttribute("pessoas_selecionadas", projeto.getPessoas());
         }
     }
@@ -81,7 +81,7 @@ public class ProjetoServlet extends HttpServlet {
                 tipo += Integer.parseInt(t);
             }
         }
-        
+
         String resumo = request.getParameter("resumo");
         String dataTermino = request.getParameter("data_termino");
         String[] pessoas_selecionadas = request.getParameterValues("pessoas_selecionadas");
@@ -141,49 +141,86 @@ public class ProjetoServlet extends HttpServlet {
 
     public void removerProjeto(HttpServletRequest request) {
         Long id = Long.valueOf(request.getParameter("id"));
-        
+
         Projeto projeto = projetoControladorBD.retrieve(id);
-        
+
         if (projeto != null) {
             projetoControladorBD.deletar(projeto);
             request.setAttribute("remocao", "realizada com sucesso!");
-        }
-        else {
+        } else {
             request.setAttribute("remocao", "falhou!");
         }
     }
-    
+
+    public boolean sessaoEstaAtiva(HttpServletRequest request) {
+        return request.getSession().getAttribute("login") != null;
+    }
+
+    public void iniciarSinal(HttpServletRequest request) {
+        request.getSession().setAttribute("sinal", 1);
+    }
+
+    public void apagarSinal(HttpServletRequest request) {
+        request.getSession().removeAttribute("sinal");
+    }
+
+    public boolean sinalOK(HttpServletRequest request) {
+        return request.getSession().getAttribute("sinal") != null;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         String uri = request.getRequestURI();
-        String pagina = null;
+        String pagina = "projeto";
         String jsp = "/index.jsp";
 
-        if (uri.endsWith("/novoProjeto")) {
-            novoProjeto(request);
-            pagina = "novoProjeto";
-        } else if (uri.endsWith("/listarProjeto")) {
+        if (uri.endsWith("novoProjeto")) {
+            if (sessaoEstaAtiva(request)) {
+                novoProjeto(request);
+                iniciarSinal(request);
+                pagina = "novoProjeto";
+            }
+
+        } else if (uri.endsWith("salvarProjeto")) {
+            if (sessaoEstaAtiva(request)) {
+                if (sinalOK(request)) {
+                    salvarProjeto(request);
+                    apagarSinal(request);
+                }
+                listarProjetos(request);
+            }
+
+        } else if (uri.endsWith("listarProjeto")) {
             listarProjetos(request);
             pagina = "listarProjeto";
-        } else if (uri.endsWith("salvarProjeto")) {
-            salvarProjeto(request);
-            pagina = "projeto";
+
         } else if (uri.endsWith("alterarProjeto")) {
-            obterProjeto(request, true);
-            pagina = "alterarProjeto";
+            if (sessaoEstaAtiva(request)) {
+                obterProjeto(request, true);
+                pagina = "alterarProjeto";
+            }
+
         } else if (uri.endsWith("salvarAlteracaoProjeto")) {
-            salvarAlteracao(request);
-            pagina = "projeto";
+            if (sessaoEstaAtiva(request)) {
+                salvarAlteracao(request);
+                listarProjetos(request);
+            }
         } else if (uri.endsWith("apagarProjeto")) {
-            obterProjeto(request, false);
-            pagina = "apagarProjeto";
+            if (sessaoEstaAtiva(request)) {
+                obterProjeto(request, false);
+                pagina = "apagarProjeto";
+            }
         } else if (uri.endsWith("efetivarRemocaoProjeto")) {
-            removerProjeto(request);
-            pagina = "listarProjeto";
-        }
-        else {
+            if (sessaoEstaAtiva(request)) {
+                removerProjeto(request);
+                listarProjetos(request);
+            }
+        } else {
+            if (request.getSession().getAttribute("login") != null) {
+                listarProjetos(request);
+            }
             pagina = "projeto";
         }
 

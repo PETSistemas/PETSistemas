@@ -11,11 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PET Sistemas title</title>
-        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link rel="icon" href="icon/pet.gif" type="resources/css/image/gif" />
-        <link href="resources/css/style.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="resources/js/jquery-1.9.0.js"></script>
+        
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/bootstrap/css/datepicker.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="resources/bootstrap/js/bootstrap-datepicker.js"></script>
+        
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css">
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#inserir").click(function() {
@@ -30,6 +34,8 @@
                         $(this).attr('selected', 'selected');
                     });
                 });
+            
+                $(".data").datepicker({format: "dd/mm/yy"});
             });
 
          </script>
@@ -49,7 +55,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Pessoa</li>
-                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
+                        <li><a href="${pageContext.request.contextPath}/listarTutor">Tutor</a></li>
                         <li><a href="${pageContext.request.contextPath}/listarPetiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
@@ -86,26 +92,29 @@
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
 
-                            <c:when test="${pagina=='petiano'}">
-                                <%@ include file="site/petiano/petiano.jsp" %>  
-                            </c:when>
+                            
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="site/petiano/novoPetiano.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='salvarPetiano'}">
-                                <%@ include file="site/petiano/salvarPetiano.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='buscarPetiano'}">
-                                <%@ include file="site/petiano/buscarPetiano.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='exibirPetianoCPF'}">
-                                <%@ include file="site/petiano/exibirPetianoCPF.jsp" %>  
-                            </c:when>
+                            
                             <c:when test="${pagina=='listarPetiano'}">
                                 <%@ include file="site/petiano/listarPetiano.jsp" %>  
                             </c:when>
+							
+							<%-- ********************************************************************** --%>
+                            
+							<%-- TUTOR --%>
 
+                            <c:when test="${pagina=='novoTutor'}">
+                                <%@ include file="site/tutor/novoTutor.jsp" %>  
+                            </c:when>
+                            
+                            <c:when test="${pagina=='listarTutor'}">
+                                <%@ include file="site/tutor/listarTutor.jsp" %>  
+                            </c:when>
+                            
                             <%-- ********************************************************************** --%>
+
                             <%-- NOTICIA --%>
 
                             <c:when test="${pagina=='noticia'}">
@@ -152,10 +161,7 @@
                             <c:when test="${pagina=='login'}">
                                 <%@ include file="site/login/login.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina=='logado'}">
-                                <%@ include file="site/administrativo/index.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina=='logar'}">
+                            <c:when test="${pagina=='loginErro'}">
                                 <%@ include file="site/login/loginErro.jsp" %>  
                             </c:when>
 

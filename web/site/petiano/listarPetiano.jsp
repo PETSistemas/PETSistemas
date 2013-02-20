@@ -23,8 +23,6 @@
             <div>Entrou no PET: ${petiano.dataEntrada}</div>
         </c:forEach>
 
-
-
     </fieldset>
     <br/><br/>
     <fieldset>

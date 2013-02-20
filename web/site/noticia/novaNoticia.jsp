@@ -13,8 +13,8 @@
             <p>Título: <input type="text" name="titulo" size="60"></p>
             <p>Conteúdo: </p>
             <textarea name="conteudo" rows="10" cols="50"></textarea>
-            <p>Data Inicial: <input type="text" name="dataInicial" size="10"></p>
-            <p>Data Final: <input type="text" name="dataFinal" size="10"></p>
+            <p>Data Inicial: <input type="text" class="data" name="dataInicial" size="10"></p>
+            <p>Data Final: <input type="text" class="data" name="dataFinal" size="10"></p>
             <p>Tipo: <select name="tipo">
                     <option value=></option>
                     <option value=1>Interna</option>

@@ -32,16 +32,14 @@
         <servlet-name>ContatoServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.contato.ContatoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>PetianoServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/petiano</url-pattern>
-        <url-pattern>/exibirPetianoCPF</url-pattern>
-        <url-pattern>/listarPetiano</url-pattern>
-        <url-pattern>/buscarPetiano</url-pattern>
-        <url-pattern>/novoPetiano</url-pattern>
-        <url-pattern>/salvarPetiano</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>TutorServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.tutor.TutorServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.colaborador.ColaboradorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
@@ -77,15 +75,14 @@
         <url-pattern>/logar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProjetoServlet</servlet-name>
-        <url-pattern>/apagarProjeto</url-pattern>
-        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
-        <url-pattern>/listarProjeto</url-pattern>
-        <url-pattern>/novoProjeto</url-pattern>
-        <url-pattern>/salvarProjeto</url-pattern>
-        <url-pattern>/alterarProjeto</url-pattern>
-        <url-pattern>/projeto</url-pattern>
-        <url-pattern>/salvarAlteracaoProjeto</url-pattern>
+        <servlet-name>NossaHistoriaServlet</servlet-name>
+        <url-pattern>/nossaHistoria</url-pattern>
+        <url-pattern>/voltarNossaHistoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContatoServlet</servlet-name>
+        <url-pattern>/contato</url-pattern>
+        <url-pattern>/enviarContato</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
@@ -99,16 +96,44 @@
         <url-pattern>/novoPetiano</url-pattern>
         <url-pattern>/salvarPetiano</url-pattern>
         <url-pattern>/petianoADM</url-pattern>
+        <url-pattern>/excluirPetiano</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NossaHistoriaServlet</servlet-name>
-        <url-pattern>/nossaHistoria</url-pattern>
-        <url-pattern>/voltarNossaHistoria</url-pattern>
+        <servlet-name>ProjetoServlet</servlet-name>
+        <url-pattern>/apagarProjeto</url-pattern>
+        <url-pattern>/efetivarRemocaoProjeto</url-pattern>
+        <url-pattern>/listarProjeto</url-pattern>
+        <url-pattern>/novoProjeto</url-pattern>
+        <url-pattern>/salvarProjeto</url-pattern>
+        <url-pattern>/alterarProjeto</url-pattern>
+        <url-pattern>/projeto</url-pattern>
+        <url-pattern>/salvarAlteracaoProjeto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ContatoServlet</servlet-name>
-        <url-pattern>/contato</url-pattern>
-        <url-pattern>/enviarContato</url-pattern>
+        <servlet-name>TutorServlet</servlet-name>
+        <url-pattern>/buscarTutor</url-pattern>
+        <url-pattern>/listarTutor</url-pattern>
+        <url-pattern>/editarTutor</url-pattern>
+        <url-pattern>/atualizarTutor</url-pattern>
+        <url-pattern>/tutor</url-pattern>
+        <url-pattern>/excluirTutor</url-pattern>
+        <url-pattern>/exibirTutorCPF</url-pattern>
+        <url-pattern>/tutorADM</url-pattern>
+        <url-pattern>/salvarTutor</url-pattern>
+        <url-pattern>/novoTutor</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <url-pattern>/editarColaborador</url-pattern>
+        <url-pattern>/exibirColaboradorCPF</url-pattern>
+        <url-pattern>/listarColaborador</url-pattern>
+        <url-pattern>/colaborador</url-pattern>
+        <url-pattern>/buscarColaborador</url-pattern>
+        <url-pattern>/atualizarColaborador</url-pattern>
+        <url-pattern>/novoColaborador</url-pattern>
+        <url-pattern>/salvarColaborador</url-pattern>
+        <url-pattern>/colaboradorADM</url-pattern>
+        <url-pattern>/excluirColaborador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

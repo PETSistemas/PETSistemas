@@ -18,7 +18,7 @@
             <div id = "cabecalho">
                 <p>PET Sistemas</p>
                 <%@include file="/WEB-INF/validarLogin.jspf" %>
-                Bem Vindo(a): ${login}
+                Bem Vindo(a): ${login.nome}
                 <a href="${pageContext.request.contextPath}/deslogar">Sair</a>
 
             </div>
@@ -26,6 +26,8 @@
                 <div id = "menu">
                     <p><a href="${pageContext.request.contextPath}/index">Página Inicial</a></p>
                     <p><a href="${pageContext.request.contextPath}/petianoADM">Administrar Petianos</a></p>
+                    <p><a href="${pageContext.request.contextPath}/tutorADM">Administrar Tutores</a></p>
+                    <p><a href="${pageContext.request.contextPath}/colaboradorADM">Administrar Colaboradores</a></p>
 
                 </div>
                 <div id = "conteudo">
@@ -35,14 +37,46 @@
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
                             <c:when test="${pagina=='petianoADM'}">
-                                <%@ include file="petianoADM.jsp" %>  
+                                <%@ include file="/site/petiano/petianoADM.jsp" %>  
                             </c:when>
                             <c:when test="${pagina=='novoPetiano'}">
                                 <%@ include file="/site/petiano/novoPetiano.jsp" %>  
                             </c:when>
-                            <%--<c:when test="${pagina=='editarPetiano'}">
+                            <c:when test="${pagina=='editarPetiano'}">
                                 <%@ include file="/site/petiano/editarPetiano.jsp" %>  
-                            </c:when>--%>
+                            </c:when>
+                            <c:when test="${pagina=='excluirPetiano'}">
+                                <%@ include file="/site/petiano/excluirPetiano.jsp" %>  
+                            </c:when>
+                            <%-- ********************************************************************** --%>
+                            <%-- TUTOR --%>
+                            <c:when test="${pagina=='tutorADM'}">
+                                <%@ include file="/site/tutor/tutorADM.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoTutor'}">
+                                <%@ include file="/site/tutor/novoTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarTutor'}">
+                                <%@ include file="/site/tutor/editarTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirTutor'}">
+                                <%@ include file="/site/tutor/excluirTutor.jsp" %>  
+                            </c:when>
+
+                            <%-- ********************************************************************** --%>
+                            <%-- COLABORADOR --%>
+                            <c:when test="${pagina=='colaboradorADM'}">
+                                <%@ include file="/site/colaborador/colaboradorADM.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='novoColaborador'}">
+                                <%@ include file="/site/colaborador/novoColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarColaborador'}">
+                                <%@ include file="/site/colaborador/editarColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirColaborador'}">
+                                <%@ include file="/site/colaborador/excluirColaborador.jsp" %>  
+                            </c:when>
 
                         </c:choose>
                     </c:if>
