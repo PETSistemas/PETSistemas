@@ -7,10 +7,14 @@ package br.ufms.facom.petsistemas.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -19,6 +23,12 @@ import javax.persistence.Temporal;
  *
  * @author Rodrigo Kuninari
  */
+@DiscriminatorValue("A")
+@NamedQueries({
+    @NamedQuery(name = "Arquivo.buscarDownloadPorCategoria", query = "SELECT a FROM Arquivo AS a WHERE a.categoria = :categoria ORDER BY a.categoria"),
+    @NamedQuery(name = "Arquivo.buscarDownloadPeloTitulo", query = "SELECT a FROM Arquivo AS a WHERE a.titulo like :titulo ORDER BY a.titulo"),
+})
+
 @Entity
 @Table(name = "ARQUIVO")
 public class Arquivo implements Serializable
@@ -29,15 +39,16 @@ public class Arquivo implements Serializable
     @Column(name = "id", updatable = false, nullable = false, unique = true)
     private Long id;
 
-   // @Column(name = "caminho", updatable = true, nullable = false)
-   // private String caminho;
+    @Lob
+    @Column(name = "anexo", updatable = true, nullable = false, columnDefinition="mediumblob" )
+    private byte[] anexo;
 
     @Column(name = "dataCriacao", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCriacao;
 
     @Column(name = "tamanho", updatable = true, nullable = false)
-    private int tamanho;
+    private long tamanho;
 
     @Column(name = "titulo", updatable = true, nullable = false)
     private String titulo;
@@ -48,17 +59,22 @@ public class Arquivo implements Serializable
     @Column(name = "tipo", updatable = true, nullable = false)
     private int tipo;
 
-  
+   @Column(name = "nome", updatable = true, nullable = false)
+    private String nome;
+
+   
     
      public Arquivo()
      {
      }
-   public Arquivo(String titulo, int categoria, Date data, int tamanho, int tipo) {
+   public Arquivo(String titulo, int categoria, Date data, long tamanho, int tipo, byte[] anexo, String nome) {
        this.titulo = titulo;
        this.categoria = categoria;
        this.dataCriacao = data;
        this.tamanho = tamanho;
        this.tipo = tipo;
+       this.anexo = anexo;
+       this.nome = nome;
        
    }
 
@@ -72,16 +88,22 @@ public class Arquivo implements Serializable
         this.id = id;
     }
 
-  //  public String getCaminho()
-   // {
-   //     return caminho;
-   // }
+public byte[] getAnexo() {
+        return anexo;
+    }
 
-  //  public void setCaminho(String caminho)
-   // {
-   //     this.caminho = caminho;
-  //  }
+    public void setAnexo(byte[] anexo) {
+        this.anexo = anexo;
+    }
+    
+     public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public Date getDataCriacao()
     {
         return dataCriacao;
@@ -92,7 +114,7 @@ public class Arquivo implements Serializable
         this.dataCriacao = dataCriacao;
     }
 
-    public int getTamanho()
+    public long getTamanho()
     {
         return tamanho;
     }

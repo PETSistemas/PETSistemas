@@ -5,13 +5,28 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+        <div>
+        <h4>Apostilas</h4>
+        <c:forEach var="download" items="${apostila}" >
+            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+            </c:forEach>
+        <h4>Material de Cursos</h4>
+        <c:forEach var="download" items="${material}" >
+            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+            </c:forEach>
+        <h4>Documentos</h4>
+        <c:forEach var="download" items="${documento}" >
+            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+            </c:forEach>
+        <h4>Seminários</h4>
+        <c:forEach var="download" items="${seminario}" >
+            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+            </c:forEach>
+        <h4>Diversos</h4>
+        <c:forEach var="download" items="${diverso}" >
+            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+            </c:forEach>
+        </div>
