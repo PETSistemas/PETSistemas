@@ -22,4 +22,4 @@
         </fieldset>
     </form>
 </div>
-<p><a href="${pageContext.request.contextPath}/tutorADM">Voltar</a></p>
+<p><a href="${pageContext.request.contextPath}/tutor">Voltar</a></p>

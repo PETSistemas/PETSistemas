@@ -8,7 +8,7 @@
 
 <div> 
     <fieldset>
-        <legend>Integrantes do PET </legend>
+        <legend>Tutores do PET </legend>
         <c:if test="${empty tutoresAtivos}">
             <span>Não há tutores nessa categoria</span><br>
         </c:if>
@@ -21,7 +21,7 @@
     </fieldset>
     <br/><br/>
     <fieldset>
-        <legend>Antigos Integrantes</legend>
+        <legend>Antigos Tutores</legend>
         <c:if test="${empty tutoresDesativos}">
             <span>Não há tutores nessa categoria</span>
         </c:if>
@@ -32,5 +32,5 @@
             <div>Saiu no PET: ${tutor.dataSaidaFormatada}</div><br>
         </c:forEach>
     </fieldset>
-    <br><div><a href="${pageContext.request.contextPath}/tutor">Voltar</a></div>
+    <br><div><a href="${pageContext.request.contextPath}/index">Voltar</a></div>
 </div>
