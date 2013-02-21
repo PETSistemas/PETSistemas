@@ -8,27 +8,29 @@
 
 <div> 
     <fieldset>
-        <legend>Tutores do PET </legend>
+        <legend>Integrantes do PET </legend>
         <c:if test="${empty tutoresAtivos}">
-            <span>Não há tutores nessa categoria</span>
+            <span>Não há tutores nessa categoria</span><br>
         </c:if>
         <c:forEach var="tutor" items="${tutoresAtivos}" varStatus="status" >
-            <p>${status.count}: ${tutor.nome}</p>
-            <p>Entrou no PET: ${tutor.dataEntrada}</p>
+            <div>Nome: ${tutor.nome}</div>
+           
+                <div>Entrou no PET: ${tutor.dataEntrada}</div><br>
         </c:forEach>
 
     </fieldset>
     <br/><br/>
     <fieldset>
-        <legend>Antigos Tutores</legend>
+        <legend>Antigos Integrantes</legend>
         <c:if test="${empty tutoresDesativos}">
             <span>Não há tutores nessa categoria</span>
         </c:if>
         <c:forEach var="tutor" items="${tutoresDesativos}" varStatus="status" >
-            <p>${status.count}: ${tutor.nome}</p>
-            <p>Entrou no PET: ${tutor.dataEntrada}</p>
-            <p>Saiu do PET: ${tutor.dataSaida}</p>
+            <div>Nome: ${tutor.nome}</div>
+           
+            <div>Entrou no PET: ${tutor.dataEntradaFormatada}</div>
+            <div>Saiu no PET: ${tutor.dataSaidaFormatada}</div><br>
         </c:forEach>
     </fieldset>
-    <div><a href="${pageContext.request.contextPath}/tutor">Voltar</a></div>
+    <br><div><a href="${pageContext.request.contextPath}/tutor">Voltar</a></div>
 </div>
