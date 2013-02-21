@@ -19,7 +19,6 @@
             <p>Data de Entrada: <input type="text" name="dataEntrada" size="10" value="${tutorBusca.dataEntradaFormatada}"></p>
             <p>Data de Saida <input type="text" name="dataSaida" size="10" value="${tutorBusca.dataSaidaFormatada}"></p>
             <p><input type="submit" value="Atualizar">
-                <input type="reset" value="Limpar"></p>
         </fieldset>
     </form>
 </div>
