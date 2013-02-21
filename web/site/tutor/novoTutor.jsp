@@ -23,7 +23,7 @@
         <input type="text" id="cpf" name="cpf"/><br>
 
         <label for="nome">Senha de Acesso:</label><br>
-        <input type="text" id="senha" name="senha"/><br>
+         <input type="password" id="senha" name="senha"/><br>
 
         <label for="nome">E-mail:</label><br>
         <input type="text" id="email" name="email"/><br>
