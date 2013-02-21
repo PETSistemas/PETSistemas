@@ -11,6 +11,7 @@ import br.ufms.facom.petsistemas.model.dao.projeto.ProjetoDAO;
 import br.ufms.facom.petsistemas.model.dao.projeto.ProjetoDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Pessoa;
 import br.ufms.facom.petsistemas.model.entity.Projeto;
+import br.ufms.facom.petsistemas.controller.Utilitarios;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -152,22 +153,6 @@ public class ProjetoServlet extends HttpServlet {
         }
     }
 
-    public boolean sessaoEstaAtiva(HttpServletRequest request) {
-        return request.getSession().getAttribute("login") != null;
-    }
-
-    public void iniciarSinal(HttpServletRequest request) {
-        request.getSession().setAttribute("sinal", 1);
-    }
-
-    public void apagarSinal(HttpServletRequest request) {
-        request.getSession().removeAttribute("sinal");
-    }
-
-    public boolean sinalOK(HttpServletRequest request) {
-        return request.getSession().getAttribute("sinal") != null;
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -177,17 +162,17 @@ public class ProjetoServlet extends HttpServlet {
         String jsp = "/index.jsp";
 
         if (uri.endsWith("novoProjeto")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 novoProjeto(request);
-                iniciarSinal(request);
+                Utilitarios.iniciarSinal(request);
                 pagina = "novoProjeto";
             }
 
         } else if (uri.endsWith("salvarProjeto")) {
-            if (sessaoEstaAtiva(request)) {
-                if (sinalOK(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+                if (Utilitarios.sinalOK(request)) {
                     salvarProjeto(request);
-                    apagarSinal(request);
+                    Utilitarios.apagarSinal(request);
                 }
                 listarProjetos(request);
             }
@@ -197,28 +182,28 @@ public class ProjetoServlet extends HttpServlet {
             pagina = "listarProjeto";
 
         } else if (uri.endsWith("alterarProjeto")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 obterProjeto(request, true);
                 pagina = "alterarProjeto";
             }
 
         } else if (uri.endsWith("salvarAlteracaoProjeto")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 salvarAlteracao(request);
                 listarProjetos(request);
             }
         } else if (uri.endsWith("apagarProjeto")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 obterProjeto(request, false);
                 pagina = "apagarProjeto";
             }
         } else if (uri.endsWith("efetivarRemocaoProjeto")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 removerProjeto(request);
                 listarProjetos(request);
             }
         } else {
-            if (request.getSession().getAttribute("login") != null) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 listarProjetos(request);
             }
             pagina = "projeto";

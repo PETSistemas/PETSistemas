@@ -6,6 +6,7 @@ package br.ufms.facom.petsistemas.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Classe genérica contendo métodos de apoio que podem ser utilizados por todas
@@ -48,4 +49,20 @@ public class Utilitarios
         return new SimpleDateFormat("dd/MM/yyyy").format(data);
     }
 
+    public static boolean sessaoEstaAtiva(final HttpServletRequest request, String session_var) {
+        return request.getSession().getAttribute(session_var) != null;
+    }
+
+    public static void iniciarSinal(final HttpServletRequest request) {
+        request.getSession().setAttribute("sinal", 1);
+    }
+
+    public static void apagarSinal(final HttpServletRequest request) {
+        request.getSession().removeAttribute("sinal");
+    }
+
+    public static boolean sinalOK(final HttpServletRequest request) {
+        return request.getSession().getAttribute("sinal") != null;
+    }
+    
 }
