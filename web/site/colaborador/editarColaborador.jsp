@@ -18,12 +18,12 @@
             <p>Situação: <select name="situacao">
                     <c:choose>
                         <c:when test="${colaboradorBusca.situacao==1}">
-                            <option value=1 selected >Sim</option>
-                            <option value=3>Não</option>
+                            <option value=1 selected >Ativo</option>
+                            <option value=2>Desativo</option>
                         </c:when>
                         <c:when test="${colaboradorBusca.situacao==2}">
-                            <option value=1  >Não</option>
-                            <option value=2 selected>Sim</option>
+                            <option value=1  >Desativo</option>
+                            <option value=2 selected>Ativo</option>
                         </c:when>
                     </c:choose>
                 </select></p>

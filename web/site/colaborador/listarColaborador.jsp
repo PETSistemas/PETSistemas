@@ -27,5 +27,5 @@
 
         </c:forEach>
     </fieldset>
-    <br><div><a href="${pageContext.request.contextPath}/colaborador">Voltar</a></div>
+    <br><div><a href="${pageContext.request.contextPath}/index">Voltar</a></div>
 </div>

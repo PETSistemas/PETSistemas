@@ -27,15 +27,15 @@
 
         <label for="nome">Link do Curriculum Lattes:</label><br>
         <input type="text" id="lattes" name="lattes"/><br>
-
-        <input type="submit" value="Salvar" id="salvar"/>
         
                 <label for="tipo">Situação:</label><br>
-        <select name="curso">
+        <select name="situacao">
             <option value=""></option>
             <option value=1>Ativo</option>
             <option value=2>Desativo</option>
         </select><br><br>
+
+                <input type="submit" value="Salvar" id="salvar"/>
     </fieldset>
 </form>
 <div><a href="${pageContext.request.contextPath}/colaborador">Voltar</a></div>
