@@ -161,52 +161,48 @@ public class ProjetoServlet extends HttpServlet {
         String pagina = "projeto";
         String jsp = "/index.jsp";
 
-        if (uri.endsWith("novoProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+        if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            /* Acesso Administrativo */
+            
+            if (uri.endsWith("novoProjeto")) {
                 novoProjeto(request);
                 Utilitarios.iniciarSinal(request);
                 pagina = "novoProjeto";
-            }
-
-        } else if (uri.endsWith("salvarProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else if (uri.endsWith("salvarProjeto")) {
                 if (Utilitarios.sinalOK(request)) {
                     salvarProjeto(request);
                     Utilitarios.apagarSinal(request);
                 }
                 listarProjetos(request);
-            }
-
-        } else if (uri.endsWith("listarProjeto")) {
-            listarProjetos(request);
-            pagina = "listarProjeto";
-
-        } else if (uri.endsWith("alterarProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else if (uri.endsWith("alterarProjeto")) {
                 obterProjeto(request, true);
                 pagina = "alterarProjeto";
-            }
-
-        } else if (uri.endsWith("salvarAlteracaoProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else if (uri.endsWith("salvarAlteracaoProjeto")) {
                 salvarAlteracao(request);
                 listarProjetos(request);
-            }
-        } else if (uri.endsWith("apagarProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else if (uri.endsWith("apagarProjeto")) {
                 obterProjeto(request, false);
                 pagina = "apagarProjeto";
-            }
-        } else if (uri.endsWith("efetivarRemocaoProjeto")) {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else if (uri.endsWith("efetivarRemocaoProjeto")) {
                 removerProjeto(request);
                 listarProjetos(request);
-            }
-        } else {
-            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+            
+            } else {
                 listarProjetos(request);
             }
-            pagina = "projeto";
+        
+        } else {
+            /* Acesso Comum */
+            
+            if (uri.endsWith("listarProjeto")) {
+                listarProjetos(request);
+                pagina = "listarProjeto";
+            }
         }
 
         request.setAttribute("pagina", pagina);
