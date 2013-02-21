@@ -12,6 +12,6 @@ $(document).ready(function() {
         });
     });
 
-    $(".data").datepicker({format: "dd/mm/yy"});
+    $(".data").datepicker({format: "dd/mm/yyyy"});
 });
 
