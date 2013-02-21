@@ -36,7 +36,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Pessoa</li>
-                        <li><a href="${pageContext.request.contextPath}/listarTutor">Tutor</a></li>
+                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
                         <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
@@ -96,10 +96,38 @@
                             <c:when test="${pagina=='novoTutor'}">
                                 <%@ include file="site/tutor/novoTutor.jsp" %>  
                             </c:when>
-                            
+                            <c:when test="${pagina=='excluirTutor'}">
+                                <%@ include file="site/tutor/excluirTutor.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarTutor'}">
+                                <%@ include file="site/tutor/editarTutor.jsp" %>  
+                            </c:when>
                             <c:when test="${pagina=='listarTutor'}">
                                 <%@ include file="site/tutor/listarTutor.jsp" %>  
                             </c:when>
+                            <c:when test="${pagina=='tutor'}">
+                                <%@ include file="site/tutor/tutor.jsp" %>  
+                            </c:when>
+                        
+                	<%-- ********************************************************************** --%>
+       			<%-- COLABORADOR --%>
+
+                            <c:when test="${pagina=='novoColaborador'}">
+                                <%@ include file="site/colaborador/novoColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='excluirColaborador'}">
+                                <%@ include file="site/colaborador/excluirColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='editarColaborador'}">
+                                <%@ include file="site/colaborador/editarColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='listarColaborador'}">
+                                <%@ include file="site/colaborador/listarColaborador.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina=='colaborador'}">
+                                <%@ include file="site/colaborador/colaborador.jsp" %>  
+                            </c:when>
+					
                             
                             <%-- ********************************************************************** --%>
 
