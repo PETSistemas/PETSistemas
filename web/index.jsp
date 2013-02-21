@@ -20,26 +20,7 @@
         <script type="text/javascript" src="resources/bootstrap/js/bootstrap-datepicker.js"></script>
         
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#inserir").click(function() {
-                    $("#pessoas_selecionadas").prepend($("#lista_pessoas option:selected"));
-                });
-                $("#remover").click(function() {
-                    $("#lista_pessoas").prepend($("#pessoas_selecionadas option:selected"));
-                });
-
-                $("#salvar").click(function() {
-                    $("#pessoas_selecionadas option").each(function() {
-                        $(this).attr('selected', 'selected');
-                    });
-                });
-            
-                $(".data").datepicker({format: "dd/mm/yy"});
-            });
-
-         </script>
-
+        <script type="text/javascript" src="resources/js/todos.js"></script>
     </head>
     <body>
      <div class="container-fluid tamCab">
