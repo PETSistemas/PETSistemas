@@ -98,30 +98,30 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TutorServlet</servlet-name>
-        <url-pattern>/buscarTutor</url-pattern>
-        <url-pattern>/listarTutor</url-pattern>
         <url-pattern>/editarTutor</url-pattern>
-        <url-pattern>/atualizarTutor</url-pattern>
-        <url-pattern>/tutor</url-pattern>
-        <url-pattern>/excluirTutor</url-pattern>
         <url-pattern>/exibirTutorCPF</url-pattern>
+        <url-pattern>/listarTutor</url-pattern>
+        <url-pattern>/buscarTutor</url-pattern>
+        <url-pattern>/tutor</url-pattern>
         <url-pattern>/tutorADM</url-pattern>
-        <url-pattern>/salvarTutor</url-pattern>
+        <url-pattern>/atualizarTutor</url-pattern>
         <url-pattern>/novoTutor</url-pattern>
-    </servlet-mapping>
+        <url-pattern>/excluirTutor</url-pattern>
+        <url-pattern>/removerTutor</url-pattern>
+        <url-pattern>/salvarTutor</url-pattern>    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ColaboradorServlet</servlet-name>
         <url-pattern>/editarColaborador</url-pattern>
         <url-pattern>/exibirColaboradorCPF</url-pattern>
         <url-pattern>/listarColaborador</url-pattern>
-        <url-pattern>/colaborador</url-pattern>
         <url-pattern>/buscarColaborador</url-pattern>
+        <url-pattern>/colaborador</url-pattern>
+        <url-pattern>/colaboradorADM</url-pattern>
         <url-pattern>/atualizarColaborador</url-pattern>
         <url-pattern>/novoColaborador</url-pattern>
-        <url-pattern>/salvarColaborador</url-pattern>
-        <url-pattern>/colaboradorADM</url-pattern>
         <url-pattern>/excluirColaborador</url-pattern>
-    </servlet-mapping>
+        <url-pattern>/removerColaborador</url-pattern>
+        <url-pattern>/salvarColaborador</url-pattern>    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
         <url-pattern>/editarPetiano</url-pattern>
