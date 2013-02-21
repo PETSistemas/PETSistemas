@@ -40,7 +40,7 @@
         <input type="submit" value="Salvar" id="salvar"/>
     </fieldset>
 </form>
-<div><a href="${pageContext.request.contextPath}/tutorADM">Voltar</a></div>
+<div><a href="${pageContext.request.contextPath}/tutor">Voltar</a></div>
 
 
 
