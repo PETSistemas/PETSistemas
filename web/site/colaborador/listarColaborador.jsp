@@ -10,12 +10,11 @@
     <fieldset>
         <legend>Colaboradores do PET </legend>
         <c:if test="${empty colaboradoresAtivos}">
-            <span>Não há colaboradores nessa categoria</span>
+            <span>Não há colaboradores nessa categoria</span><br>
         </c:if>
         <c:forEach var="colaborador" items="${colaboradoresAtivos}" varStatus="status" >
-            <p>${status.count}: ${colaborador.nome}</p>
+            <div>Nome: ${colaborador.nome}</div>
         </c:forEach>
-
     </fieldset>
     <br/><br/>
     <fieldset>
@@ -24,8 +23,9 @@
             <span>Não há colaboradores nessa categoria</span>
         </c:if>
         <c:forEach var="colaborador" items="${colaboradoresDesativos}" varStatus="status" >
-            <p>${status.count}: ${colaborador.nome}</p>
+            <div>Nome: ${colaborador.nome}</div>
+
         </c:forEach>
     </fieldset>
-    <div><a href="${pageContext.request.contextPath}/colaborador">Voltar</a></div>
+    <br><div><a href="${pageContext.request.contextPath}/colaborador">Voltar</a></div>
 </div>
