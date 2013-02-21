@@ -29,9 +29,16 @@
         <input type="text" id="lattes" name="lattes"/><br>
 
         <input type="submit" value="Salvar" id="salvar"/>
+        
+                <label for="tipo">Situação:</label><br>
+        <select name="curso">
+            <option value=""></option>
+            <option value=1>Ativo</option>
+            <option value=2>Desativo</option>
+        </select><br><br>
     </fieldset>
 </form>
-<div><a href="${pageContext.request.contextPath}/colaboradorADM">Voltar</a></div>
+<div><a href="${pageContext.request.contextPath}/colaborador">Voltar</a></div>
 
 
 
