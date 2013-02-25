@@ -4,29 +4,39 @@
     Author     : Thiago
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div>
     <form method="POST" action="${pageContext.request.contextPath}/salvarPublicacao">
         <fieldset>
-            <legend>Cadastro de PublicaÃ§Ã£o</legend>
-            <p>TÃ­tulo: <input type="text" name="titulo" size="60"></p>
-            <p>Resumo: </p>
-            <textarea name="resumo" rows="10" cols="50"></textarea>
-            <p>Tipo de publicaÃ§Ã£o: <select name="tipo">
-                    <option value=1>Artigo</option>
-                    <option value=2>RelatÃ³rio</option>
-                    <option value=3>TÃ©cnico</option>
-                    <option value=4>Tutorial</option>
-                    <option value=5>Manual</option>
-                    <option value=6>Outros</option>
-                </select>
-            </p>
-            <p>Data de PublicaÃ§Ã£o <input type="text" name="dataPublicacao" size="10"></p>
-            <p>Data de InclusÃ£o: <input type="text" name="dataInclusao" size="10"></p>
-            <p>Anexo: <input type="file" name="anexo" size="25"></p>
-            <p>Autor: 
+            <legend>Cadastro de Publicação</legend>
+
+            <label for="titulo">Título da Publição: </label>
+            <input type="text" id ="titulo" name="titulo" size="60"><br>
+
+            <label for="resumo">Resumo: </label>
+            <textarea id ="resumo" name="resumo" maxlength="100"></textarea><br>
+
+            <label for="tipo"> Tipo de publicação: </label>
+            <select id="tipo" name="tipo">
+                <option value="1">Artigo</option>
+                <option value="2">Relatório</option>
+                <option value="3">Técnico</option>
+                <option value="4">Tutorial</option>
+                <option value="5">Manual</option>
+                <option value="6">Outros</option>
+            </select><br>
+
+            <label for="dataPublicacao">Data de Publicação:</label>
+            <input class="data" type="text" id="dataPublicacao" name="dataPublicacao"/><br>
+
+            <label for="dataInclusao">Data de Inclusão:</label>
+            <input class="data" type="text" id="dataInclusao" name="dataInclusao"/><br>
+
+            <label for="anexo">Anexo: </label>
+            <input type="file" id="anexo" name="anexo" size="25"><br>
+
+            <label>Autor: </label>
             <div class="lista_dupla">
                 <div>
                     <label for="lista_pessoas">Pessoas</label>
@@ -48,10 +58,10 @@
 
                     </select>
                 </div>
-            </div>
-            </p>
-            <p><input type="submit" value="Salvar">
-                <input type="reset" value="Limpar"></p>
+            </div><br>
+
+            <input type="submit" value="Salvar">
+            <input type="reset" value="Limpar">
         </fieldset>
     </form>
     <p><a href="${pageContext.request.contextPath}/publicacao">Voltar</a></p>

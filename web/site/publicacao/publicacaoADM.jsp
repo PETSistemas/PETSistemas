@@ -64,9 +64,9 @@
                         </c:when>
                     </c:choose>
                 </td>
-                <td><a href="${pageContext.request.contextPath}/publicacao">Visualizar</a></td>
-                <td><a href="${pageContext.request.contextPath}/publicacao">Editar</a></td>
-                <td><a href="${pageContext.request.contextPath}/publicacao">Remover</a></td>
+                <td><a href="publicacao">Visualizar</a></td>
+                <td><a href="alterarPublicacao?id=${publicacao.id}">Editar</a></td>
+                <td><a href="removerPublicacao?id=${publicacao.id}">Remover</a></td>
             </tr>
         </c:forEach>
         </table>
