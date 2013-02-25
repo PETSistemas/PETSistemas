@@ -144,15 +144,18 @@ public class ProjetoServlet extends HttpServlet {
     }
 
     public void removerProjeto(HttpServletRequest request) {
-        Long id = Long.valueOf(request.getParameter("id"));
+        String s_id = request.getParameter("id");
+        if (s_id != null) {
+            Long id = Long.valueOf(s_id);
 
-        Projeto projeto = projetoControladorBD.retrieve(id);
+            Projeto projeto = projetoControladorBD.retrieve(id);
 
-        if (projeto != null) {
-            projetoControladorBD.deletar(projeto);
-            request.setAttribute("remocao", "realizada com sucesso!");
-        } else {
-            request.setAttribute("remocao", "falhou!");
+            if (projeto != null) {
+                projetoControladorBD.deletar(projeto);
+                request.setAttribute("remocao", "realizada com sucesso!");
+            } else {
+                request.setAttribute("remocao", "falhou!");
+            }
         }
     }
 
