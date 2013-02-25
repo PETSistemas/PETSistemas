@@ -12,6 +12,7 @@ import br.ufms.facom.petsistemas.model.dao.projeto.ProjetoDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Pessoa;
 import br.ufms.facom.petsistemas.model.entity.Projeto;
 import br.ufms.facom.petsistemas.controller.Utilitarios;
+import br.ufms.facom.petsistemas.model.dao.pessoa.PessoaDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,11 +29,13 @@ import javax.servlet.http.HttpServletResponse;
 public class ProjetoServlet extends HttpServlet {
 
     ProjetoDAO projetoControladorBD;
+    PessoaDAO pessoaControladorBD;
 
     @Override
     public void init() throws ServletException {
         super.init();
         projetoControladorBD = new ProjetoDAOImplementacao();
+        pessoaControladorBD = new PessoaDAOImplementacao();
     }
 
     public void listarProjetos(HttpServletRequest request) {
@@ -41,7 +44,7 @@ public class ProjetoServlet extends HttpServlet {
     }
 
     public void novoProjeto(HttpServletRequest request) {
-        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+        List<Pessoa> pessoas = pessoaControladorBD.listarPessoas();
         request.setAttribute("pessoas", pessoas);
     }
 
@@ -64,7 +67,7 @@ public class ProjetoServlet extends HttpServlet {
             request.setAttribute("extensao", projeto.getTipo() / 4 > 0);
 
             if (listarPessoas) {
-                List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+                List<Pessoa> pessoas = pessoaControladorBD.listarPessoas();
                 pessoas.removeAll(projeto.getPessoas());
                 request.setAttribute("lista_pessoas", pessoas);
             }
@@ -90,7 +93,7 @@ public class ProjetoServlet extends HttpServlet {
         for (int i = 0; i < pessoas_selecionadas.length; i++) {
             ids[i] = Long.valueOf(pessoas_selecionadas[i]);
         }
-        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
+        List<Pessoa> pessoas = pessoaControladorBD.buscaPessoas(ids);
 
         Long id = Long.valueOf(request.getParameter("id"));
         Projeto projeto = projetoControladorBD.retrieve(id);
@@ -130,7 +133,7 @@ public class ProjetoServlet extends HttpServlet {
         for (int i = 0; i < pessoas_selecionadas.length; i++) {
             ids[i] = Long.valueOf(pessoas_selecionadas[i]);
         }
-        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
+        List<Pessoa> pessoas = pessoaControladorBD.buscaPessoas(ids);
 
         Projeto.Builder builder = new Projeto.Builder(nome, tipo, dataInicio)
                 .resumo(resumo)
@@ -153,6 +156,18 @@ public class ProjetoServlet extends HttpServlet {
         }
     }
 
+    public void obterParticipantes(HttpServletRequest request) {
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Projeto projeto = projetoControladorBD.retrieve(id);
+
+        if (projeto != null) {
+            if (projeto.getPessoas() != null && projeto.getPessoas().size() > 0) {
+                request.setAttribute("pessoas", projeto.getPessoas());
+            }
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -163,45 +178,48 @@ public class ProjetoServlet extends HttpServlet {
 
         if (Utilitarios.sessaoEstaAtiva(request, "login")) {
             /* Acesso Administrativo */
-            
+
             if (uri.endsWith("novoProjeto")) {
                 novoProjeto(request);
                 Utilitarios.iniciarSinal(request);
                 pagina = "novoProjeto";
-            
+
             } else if (uri.endsWith("salvarProjeto")) {
                 if (Utilitarios.sinalOK(request)) {
                     salvarProjeto(request);
                     Utilitarios.apagarSinal(request);
                 }
                 listarProjetos(request);
-            
+
             } else if (uri.endsWith("alterarProjeto")) {
                 obterProjeto(request, true);
                 pagina = "alterarProjeto";
-            
+
             } else if (uri.endsWith("salvarAlteracaoProjeto")) {
                 salvarAlteracao(request);
                 listarProjetos(request);
-            
+
             } else if (uri.endsWith("apagarProjeto")) {
                 obterProjeto(request, false);
                 pagina = "apagarProjeto";
-            
+
             } else if (uri.endsWith("efetivarRemocaoProjeto")) {
                 removerProjeto(request);
                 listarProjetos(request);
-            
+
             } else {
                 listarProjetos(request);
             }
-        
+
         } else {
             /* Acesso Comum */
-            
+
             if (uri.endsWith("listarProjeto")) {
                 listarProjetos(request);
                 pagina = "listarProjeto";
+            } else if (uri.endsWith("listarParticipantes")) {
+                obterParticipantes(request);
+                pagina = "listarParticipantes";
             }
         }
 
