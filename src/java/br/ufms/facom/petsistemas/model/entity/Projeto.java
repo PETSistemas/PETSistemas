@@ -4,6 +4,7 @@
  */
 package br.ufms.facom.petsistemas.model.entity;
 
+import br.ufms.facom.petsistemas.controller.Utilitarios;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -154,6 +155,12 @@ public class Projeto implements Serializable {
     public Date getDataInicio() {
         return dataInicio;
     }
+    
+    public String getDataInicioString() {
+        if (dataInicio != null)
+            return Utilitarios.dataParaString(dataInicio);
+        return "";
+    }
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
@@ -163,6 +170,12 @@ public class Projeto implements Serializable {
         return dataTermino;
     }
 
+    public String getDataTerminoString() {
+        if (dataTermino != null)
+            return Utilitarios.dataParaString(dataTermino);
+        return "";
+    }
+    
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
