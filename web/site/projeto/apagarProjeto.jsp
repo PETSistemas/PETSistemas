@@ -74,6 +74,7 @@
                 </div>
             </div>
         </fieldset>
+        <input type="hidden" value="${projeto.id}" name="id" id="id"/>
     </form>
 
 </c:if>
