@@ -25,13 +25,10 @@
                     <td>${projeto.nome}</td>
                     <td>${projeto.pessoas.size()}</td>
                     <td>${projeto.resumo}</td>
-                    <td><a>Listar Participantes</a></td>
+                    <td><a href="listarParticipantes?id=${projeto.id}">Listar Participantes</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <c:forEach var="projeto" begin="0" items="${projetos}">
-
-    </c:forEach>
 </div>
 
