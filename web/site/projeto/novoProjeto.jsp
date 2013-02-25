@@ -11,49 +11,86 @@
     </c:when>
     <c:otherwise>
 
-        <form action="salvarProjeto" method="post">
-            <fieldset class="box">
+        <form class="form-horizontal" action="salvarProjeto" method="post">
+            <fieldset>
                 <legend>Criar Projeto</legend>
+                
+                
+                <span class="info">Campos Marcados com (*) são obrigatórios</span>
+                
+                <div class="control-group">
+                    <label for="nome" class="control-label">*Nome do Projeto:</label>
+                    <div class="controls">
+                        <input class="input-xlarge required" type="text" id="nome" name="nome"/>
+                    </div>
+                </div>
 
-                <label for="nome">Nome do Projeto:</label><br>
-                <input type="text" id="nome" name="nome"/><br>
 
-                <label for="tipo">Tipo de Projeto:</label><br>
-                <input type="checkbox" name="tipo" id="tipo" value="1">Ensino |
-                <input type="checkbox" name="tipo" id="tipo" value="2">Pesquisa |
-                <input type="checkbox" name="tipo" id="tipo" value="4">Extensão <br>
+                <div class="control-group">
+                    <label for="tipo" class="control-label">Tipo do Projeto:</label>
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox" name="tipo" id="tipo" value="1">Ensino
+                        </label>
 
-                <label for="resumo">Resumo do Projeto:</label><br>
-                <textarea id="resumo" name="resumo" maxlength="100">Resumo do Projeto
-                </textarea><br>
+                        <label class="checkbox">
+                            <input type="checkbox" name="tipo" id="tipo" value="2">Pesquisa
+                        </label>
 
-                <label for="data_inicio">Data de Início:</label><br>
-                <input type="text" class="data" id="data_inicio" name="data_inicio" /><br><br>
-                <div class="lista_dupla">
-                    <div>
-                        <label for="lista_pessoas">Pessoas</label>
-                        <select class="lista_dupla_box" id="lista_pessoas" multiple="multiple">
+                        <label class="checkbox">
+                            <input type="checkbox" name="tipo" id="tipo" value="4">Extensão
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="resumo">*Resumo do Projeto:</label>
+                    <div class="controls">
+                        <textarea class="input-xlarge required" id="resumo" name="resumo" rows="3" placeholder="Resumo do Projeto"></textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="data_inicio">*Data de Início:</label>
+                    <div class="controls">
+                        <input type="text" class="date required input-xlarge" id="data_inicio" name="data_inicio" />
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="lista_pessoas">Pessoas:</label>
+                    <div class="controls">
+                        <select class="input-xlarge" id="lista_pessoas" multiple="multiple">
                             <c:forEach var="pessoa" begin="0" items="${requestScope.pessoas}">
                                 <option value="${pessoa.id}">${pessoa.nome}</option>
                             </c:forEach>
-                        </select>
+                        </select>    
                     </div>
+                </div>
 
-                    <div class="lista_dupla_buttons">
-                        <button type="button" id="inserir">&rightarrow;</button>
-                        <button type="button" id="remover">&leftarrow;</button>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn span1" type="button" id="inserir">&downarrow;</button>
+                        <button class="btn span1" type="button" id="remover">&uparrow;</button> 
                     </div>
-
-                    <div>
-                        <label for="pessoas_selecionadas">Pessoas Selecionadas</label>
-                        <select class="lista_dupla_box" id="pessoas_selecionadas" name="pessoas_selecionadas" multiple="multiple">
-
+                </div>
+              
+                <div class="control-group">
+                    <label class="control-label" for="pessoas_selecionadas">*Pessoas Selecionadas:</label>
+                    <div class="controls">
+                        <select class="input-xlarge required" id="pessoas_selecionadas" name="pessoas_selecionadas" multiple="multiple">
                         </select>
                     </div>
                 </div>
-                <br>
-                <input type="submit" value="Salvar" id="salvar"/>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
+                    </div>
+                </div>
             </fieldset>
         </form>
+        
     </c:otherwise>
 </c:choose>
