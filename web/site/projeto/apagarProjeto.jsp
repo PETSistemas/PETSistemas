@@ -39,7 +39,7 @@
             <div class="control-group">
                 <label class="control-label" for="resumo">Resumo do Projeto:</label>
                 <div class="controls">
-                    <textarea class="input-xlarge required" disabled="disabled" id="resumo" name="resumo" rows="3" placeholder="Resumo do Projeto"></textarea>
+                    <textarea class="input-xlarge required" disabled="disabled" id="resumo" name="resumo" rows="3" placeholder="Resumo do Projeto">${projeto.resumo}</textarea>
                 </div>
             </div>
 

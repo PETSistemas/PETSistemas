@@ -22,20 +22,19 @@
                 </div>
             </div>
 
-
             <div class="control-group">
                 <label for="tipo" class="control-label">Tipo do Projeto:</label>
                 <div class="controls">
                     <label class="checkbox">
-                        <input type="checkbox" name="tipo" id="tipo" value="1" <c:if test="${ensino == true}">checked="checked"</c:if>>Ensino
+                        <input type="checkbox" name="tipo" id="tipo" value="1" <c:if test="${ensino == true}">checked="checked"</c:if>/>Ensino
                         </label>
 
                         <label class="checkbox">
-                            <input type="checkbox" name="tipo" id="tipo" value="2" <c:if test="${pesquisa == true}">checked="checked"</c:if>>Pesquisa
+                            <input type="checkbox" name="tipo" id="tipo" value="2" <c:if test="${pesquisa == true}">checked="checked"</c:if>/>Pesquisa
                         </label>
 
                         <label class="checkbox">
-                            <input type="checkbox" name="tipo" id="tipo" value="4" <c:if test="${extensao == true}">checked="checked"</c:if>>Extensão
+                            <input type="checkbox" name="tipo" id="tipo" value="4" <c:if test="${extensao == true}">checked="checked"</c:if>/>Extensão
                         </label>
                     </div>
                 </div>
@@ -43,7 +42,7 @@
                 <div class="control-group">
                     <label class="control-label" for="resumo">*Resumo do Projeto:</label>
                     <div class="controls">
-                        <textarea class="input-xlarge required" id="resumo" name="resumo" rows="3" placeholder="Resumo do Projeto"></textarea>
+                        <textarea class="input-xlarge required" id="resumo" name="resumo" rows="3" placeholder="Resumo do Projeto">${projeto.resumo}</textarea>
                     </div>
                 </div>
 
@@ -95,6 +94,8 @@
                     <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
                 </div>
             </div>
+
+            <input type="hidden" id="id" name="id" value="${projeto.id}"/>
         </fieldset>
     </form>
 
