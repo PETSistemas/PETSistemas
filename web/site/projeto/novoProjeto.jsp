@@ -14,10 +14,10 @@
         <form class="form-horizontal" action="salvarProjeto" method="post">
             <fieldset>
                 <legend>Criar Projeto</legend>
-                
-                
+
+
                 <span class="info">Campos Marcados com (*) são obrigatórios</span>
-                
+
                 <div class="control-group">
                     <label for="nome" class="control-label">*Nome do Projeto:</label>
                     <div class="controls">
@@ -75,7 +75,7 @@
                         <button class="btn span1" type="button" id="remover">&uparrow;</button> 
                     </div>
                 </div>
-              
+
                 <div class="control-group">
                     <label class="control-label" for="pessoas_selecionadas">*Pessoas Selecionadas:</label>
                     <div class="controls">
@@ -91,6 +91,6 @@
                 </div>
             </fieldset>
         </form>
-        
+
     </c:otherwise>
 </c:choose>
