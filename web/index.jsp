@@ -180,9 +180,12 @@
                                 <c:when test="${pagina eq 'listarPublicacao'}">
                                     <%@ include file="site/publicacao/publicacaoADM.jsp" %>  
                                 </c:when>
-                                <c:when test="${pagina=='alterarPublicacao'}">
+                                <c:when test="${pagina eq 'alterarPublicacao'}">
                                     <%@ include file="site/publicacao/alterarPublicacao.jsp" %>  
                                 </c:when>
+                                <%--<c:when test="${pagina eq 'excluirPublicacao'}">
+                                    <%@ include file="site/publicacao/excluirPublicacao.jsp" %>  
+                                </c:when>--%>
 
                                 <%-- ********************************************************************** --%>
                                 <%-- DOWNLOAD --%>
