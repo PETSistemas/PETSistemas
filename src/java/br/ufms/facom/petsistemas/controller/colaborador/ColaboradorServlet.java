@@ -127,7 +127,7 @@ public class ColaboradorServlet extends HttpServlet {
         List<Colaborador> colaboradores = controladorBD.buscarColaboradorPelaSituacao(1);
         request.setAttribute("colaboradoresAtivos", colaboradores);
 
-        colaboradores = controladorBD.buscarColaboradorPelaSituacao(0);
+        colaboradores = controladorBD.buscarColaboradorPelaSituacao(2);
         request.setAttribute("colaboradoresDesativos", colaboradores);
 
     }
