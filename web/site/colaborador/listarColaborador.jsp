@@ -33,7 +33,7 @@
 
         <c:forEach var="colaborador" items="${colaboradoresDesativos}" varStatus="status" >
             <div>Nome: ${colaborador.nome}</div>
-            <div>Curso: <select name="situacao" disabled="true">
+            <div>Situação: <select name="situacao" disabled="true">
                     <option value=1 <c:if test="${colaborador.situacao=='1'}">selected</c:if>>Ativo</option>
                     <option value=2 <c:if test="${colaborador.situacao=='2'}">selected</c:if>>Desativo</option>
                     </select></div>
