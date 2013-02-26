@@ -131,6 +131,32 @@ public class ColaboradorServlet extends HttpServlet {
         request.setAttribute("colaboradoresDesativos", colaboradores);
 
     }
+public void removerColaborador(HttpServletRequest request) {
+
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Colaborador colaborador = controladorBD.retrieve(id);
+
+        if (colaborador != null) {
+            controladorBD.deletar(colaborador);
+        }
+    }
+
+    public boolean sessaoEstaAtiva(HttpServletRequest request) {
+        return request.getSession().getAttribute("login") != null;
+    }
+
+    public void iniciarSinal(HttpServletRequest request) {
+        request.getSession().setAttribute("sinal", 1);
+    }
+
+    public void apagarSinal(HttpServletRequest request) {
+        request.getSession().removeAttribute("sinal");
+    }
+
+    public boolean sinalOK(HttpServletRequest request) {
+        return request.getSession().getAttribute("sinal") != null;
+    }
 
     /**
      * Processes requests for both HTTP
@@ -145,57 +171,67 @@ public class ColaboradorServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String jsp = null;
+        String pagina = "colaborador";
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/index")) {
-            jsp = "/index.jsp";
-        } else if (request.getRequestURI().endsWith("/colaboradorADM")) {
+
+      if (request.getRequestURI()
+                .endsWith("/colaborador")) {
             listarColaboradores(request);
-            jsp = "site/administrativo/index.jsp";
-            request.setAttribute("pagina", "colaboradorADM");
-        } else if (request.getRequestURI().endsWith("/editarColaborador")) {
-            buscarColaboradorCPF(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "editarColaborador");
-        } else if (request.getRequestURI().endsWith("/atualizarColaborador")) {
-            atualizarColaborador(request);
-            listarColaboradores(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "colaboradorADM");
+
+
+        } else if (request.getRequestURI()
+                .endsWith("/editarColaborador")) {
+            if (sessaoEstaAtiva(request)) {
+                buscarColaboradorCPF(request);
+                pagina = "editarColaborador";
+            }
+
+        } else if (request.getRequestURI()
+                .endsWith("/atualizarColaborador")) {
+            if (sessaoEstaAtiva(request)) {
+                atualizarColaborador(request);
+                listarColaboradores(request);
+            }
         } else if (request.getRequestURI().endsWith("/novoColaborador")) {
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "novoColaborador");
-        } else if (request.getRequestURI().endsWith("/excluirColaborador")) {
+            iniciarSinal(request);
+            pagina = "novoColaborador";
+
+        } else if (request.getRequestURI()
+                .endsWith("/excluirColaborador")) {
             buscarColaboradorCPF(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "excluirColaborador");
-        } else if (request.getRequestURI().endsWith("/salvarColaborador")) {
-            salvarColaborador(request);
+            pagina = "excluirColaborador";
+
+        } else if (request.getRequestURI()
+                .endsWith("/salvarColaborador")) {
+            if (sessaoEstaAtiva(request)) {
+                if (sinalOK(request)) {
+                    salvarColaborador(request);
+                    apagarSinal(request);
+                }
+                listarColaboradores(request);
+            }
+
+        } else if (request.getRequestURI()
+                .endsWith("/removerColaborador")) {
+            if (sessaoEstaAtiva(request)) {
+                removerColaborador(request);
+            }
             listarColaboradores(request);
-            jsp = "/site/administrativo/index.jsp";
-            request.setAttribute("pagina", "colaboradorADM");
-        } else if (request.getRequestURI().endsWith("/listarColaborador")) {
+
+
+        } else if (request.getRequestURI()
+                .endsWith("/listarColaborador")) {
             buscarColaboradorSituacao(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "listarColaborador");
-        } else if (request.getRequestURI().endsWith("/buscarColaborador")) {
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "buscarColaborador");
-        } else if (request.getRequestURI().endsWith("/exibirColaboradorCPF")) {
-            buscarColaboradorCPF(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "exibirColaboradorCPF");
-        } else {
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "colaborador");
+            pagina = "listarColaborador";
+
         }
 
-        if (jsp == null) {
-            response.sendRedirect(request.getContextPath() + "/index");
-        } else if (!"empty".equals(jsp)) {
-            request.getRequestDispatcher(jsp).forward(request, response);
-        }
+        request.setAttribute(
+                "pagina", pagina);
+        request.getRequestDispatcher(
+                "/index.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

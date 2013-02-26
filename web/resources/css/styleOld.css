@@ -1,0 +1,130 @@
+/*
+    Document   : style sheet
+    Created on : 09/02/2013, 11:19:50
+    Author     : Tamara Mendes e Daivid Silverio
+*/
+/*  //Tamara -> Algumas divs são as que tem no "framework" bootstrap(na pasta resources/bootstrap/css) 
+* apenas reescrevi elas aqui para mudar as cores ou o tamanho, outras divs eu criei para poder ficar 
+* no local desejado (ou pq não estava dando certo...). 
+*/
+
+body
+{
+    background: #FFFFFF;
+}
+
+.tamCab
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+.cabecalho
+{
+    background: #336699;
+
+}
+
+.corpo
+{
+    padding-left: 0;
+    padding-right: 0; 
+}
+
+
+.hero-unit h1
+{
+    font-family: Verdana;
+    color: #FFFFFF;
+}
+menu
+{
+  padding-right: 10px;
+  padding-left: 10px;    
+}
+linksuteis
+{
+    padding-left: 0;
+    float: left;
+}
+
+
+.rodape
+{
+    margin-left: 230px;
+    margin-right: 100px;
+}
+
+/* //Tamara -> esta parte quem fez foi o Daivid não tenho a menor idéia do que se trata :) */
+.lista_dupla {
+    width: 500px;
+    margin-top: -35px;
+    margin-left: 30px;
+}
+
+.lista_dupla, .lista_dupla_box {
+    min-height: 100px;
+}
+
+.lista_dupla_box {
+    width: 200px;
+}
+
+fieldset.box {
+    width: 510px;
+    clear: both;
+}
+
+fieldset.box > input[type=text], textarea {
+    width: 510px;
+}
+
+fieldset.box > input, textarea {
+    margin-bottom: 15px;
+}
+
+.lista_dupla div {
+    display: inline-block;
+}
+
+.lista_dupla div * {
+    display: block;
+}
+
+.lista_dupla .lista_dupla_buttons {
+    position: relative;
+    top: 70px;
+}
+
+
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    

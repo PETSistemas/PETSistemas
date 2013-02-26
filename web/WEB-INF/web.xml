@@ -40,6 +40,10 @@
         <servlet-name>ColaboradorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.colaborador.ColaboradorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FacaParteServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.facaParte.FacaParteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
@@ -64,6 +68,7 @@
         <url-pattern>/devolveDownload</url-pattern>
         <url-pattern>/listarDownload</url-pattern>
         <url-pattern>/novoDownload</url-pattern>
+        <url-pattern>/atualizarDownload</url-pattern>
         <url-pattern>/alterarDownload</url-pattern>
         <url-pattern>/download</url-pattern>
         <url-pattern>/buscarDownload</url-pattern>
@@ -71,7 +76,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/deslogar</url-pattern>
+        <url-pattern>/deslogado</url-pattern>
         <url-pattern>/login</url-pattern>
         <url-pattern>/logar</url-pattern>
     </servlet-mapping>
@@ -94,33 +99,36 @@
         <url-pattern>/salvarProjeto</url-pattern>
         <url-pattern>/alterarProjeto</url-pattern>
         <url-pattern>/projeto</url-pattern>
+        <url-pattern>/listarParticipantes</url-pattern>
         <url-pattern>/salvarAlteracaoProjeto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TutorServlet</servlet-name>
-        <url-pattern>/buscarTutor</url-pattern>
-        <url-pattern>/listarTutor</url-pattern>
         <url-pattern>/editarTutor</url-pattern>
-        <url-pattern>/atualizarTutor</url-pattern>
-        <url-pattern>/tutor</url-pattern>
-        <url-pattern>/excluirTutor</url-pattern>
         <url-pattern>/exibirTutorCPF</url-pattern>
+        <url-pattern>/listarTutor</url-pattern>
+        <url-pattern>/buscarTutor</url-pattern>
+        <url-pattern>/tutor</url-pattern>
         <url-pattern>/tutorADM</url-pattern>
-        <url-pattern>/salvarTutor</url-pattern>
+        <url-pattern>/atualizarTutor</url-pattern>
         <url-pattern>/novoTutor</url-pattern>
+        <url-pattern>/excluirTutor</url-pattern>
+        <url-pattern>/removerTutor</url-pattern>
+        <url-pattern>/salvarTutor</url-pattern>    
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ColaboradorServlet</servlet-name>
         <url-pattern>/editarColaborador</url-pattern>
         <url-pattern>/exibirColaboradorCPF</url-pattern>
         <url-pattern>/listarColaborador</url-pattern>
-        <url-pattern>/colaborador</url-pattern>
         <url-pattern>/buscarColaborador</url-pattern>
+        <url-pattern>/colaborador</url-pattern>
+        <url-pattern>/colaboradorADM</url-pattern>
         <url-pattern>/atualizarColaborador</url-pattern>
         <url-pattern>/novoColaborador</url-pattern>
-        <url-pattern>/salvarColaborador</url-pattern>
-        <url-pattern>/colaboradorADM</url-pattern>
         <url-pattern>/excluirColaborador</url-pattern>
+        <url-pattern>/removerColaborador</url-pattern>
+        <url-pattern>/salvarColaborador</url-pattern>    
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
@@ -137,6 +145,10 @@
         <url-pattern>/removerPetiano</url-pattern>
         <url-pattern>/salvarPetiano</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FacaParteServlet</servlet-name>
+        <url-pattern>/facaParte</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -146,3 +158,4 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
+

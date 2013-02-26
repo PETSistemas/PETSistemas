@@ -1,19 +1,19 @@
 <%-- 
-    Document   : petiano
-    Created on : 05/12/2012, 08:55:22
-    Author     : Rebecca Alves
+    Document   : colaborador
+    Created on : 18/02/2013, 08:55:22
+    Author     : Bruno Monteiro
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:choose>
     <c:when test="${empty login}">
-        <c:redirect url="listarPetiano" />
+        <c:redirect url="listarColaborador" />
     </c:when>
 
     <c:otherwise>
         <div>
-            <a href="novoPetiano" class="btn btn-large">Novo Petiano</a>
+            <a href="novoColaborador" class="btn btn-large">Novo Colaborador</a>
         </div>
 
         <div>
@@ -28,20 +28,20 @@
                 </thead>
 
                 <tbody>
-                    <c:forEach var="petiano" varStatus="count" begin="0" items="${petianos}">
+                    <c:forEach var="colaborador" varStatus="count" begin="0" items="${colaboradores}">
                         <tr>
                             <td>${count.index+1}</td>
-                            <td>${petiano.cpf}</td>
-                            <td>${petiano.nome}</td>
-                            <td><a href="editarPetiano?cpf=${petiano.cpf}">Alterar</a></td>
-                            <td><a href="excluirPetiano?cpf=${petiano.cpf}">Apagar</a></td>
+                            <td>${colaborador.cpf}</td>
+                            <td>${colaborador.nome}</td>
+                            <td><a href="editarColaborador?cpf=${colaborador.cpf}">Alterar</a></td>
+                            <td><a href="excluirColaborador?cpf=${colaborador.cpf}">Apagar</a></td>
                         </tr>
                     </c:forEach>
 
                 </tbody>
             </table>
 
-            <c:forEach var="petianos" begin="0" items="${petianos}">
+            <c:forEach var="colaboradores" begin="0" items="${colaboradores}">
 
             </c:forEach>
         </div>

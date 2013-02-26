@@ -6,22 +6,87 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div>
-    <form method="POST" action="${pageContext.request.contextPath}/atualizarTutor">
-        <fieldset>
-            <legend>Alteração do Tutor</legend>
-            <input type="text" name="id" size="60" value="${tutorBusca.id}" hidden="hidden">
-            <p>Nome: <input type="text" name="nome" size="60" value="${tutorBusca.nome}"></p>
-            <p>Data de Nascimento: <input type="text" name="dataNascimento" size="10" value="${tutorBusca.dataNascimentoFormatada}"></p>
-            <p>E-mail: <input type="text" name="email" size="40" value="${tutorBusca.email}"></p>
-            <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40" value="${tutorBusca.linkLattes}"></p>
-            <p>RG: <input type="text" name="rg" size="30" value="${petianoBusca.rg}"></p>
-            <p>Data de Entrada: <input type="text" name="dataEntrada" size="10" value="${petianoBusca.dataEntradaFormatada}"></p>
-            <p>Data de Saida <input type="text" name="dataSaida" size="10" value="${petianoBusca.dataSaidaFormatada}"></p>
-            <p>Senha: <input type="text" name="senha" size="10" value="${tutorSenha.email}"></p>
-            <p><input type="submit" value="Atualizar">
-                <input type="reset" value="Limpar"></p>
-        </fieldset>
-    </form>
-</div>
-<p><a href="${pageContext.request.contextPath}/tutorADM">Voltar</a></p>
+<c:if test="${tutorBusca != null}">
+    <c:choose>
+        <c:when test="${empty login}">
+            <c:redirect url="listarTutor" />
+        </c:when>
+
+        <c:otherwise>
+            <form method="POST" action="atualizarTutor" class="form-horizontal">
+                <fieldset class="box">
+                    <legend>Cadastro de Tutor</legend>
+                    <span class="info">Campos Marcados com (*) são obrigatórios</span><br><br>
+
+                    <input type="hidden" name="id" size="60" value="${tutorBusca.id}">
+
+                    <c:if test="${mensagemErroTutor != null}">
+                        <span class="mensagemErro">${mensagemErroTutor}<br><br></span>
+                        </c:if>
+
+                    <div class="control-group">
+                        <label for="nome" class="control-label">*Nome do Tutor :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="nome" name="nome" size="60" value="${tutorBusca.nome}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="dataNascimento">*Data de Nascimento :</label>
+                        <div class="controls">
+                            <input type="text" class="date required input-xlarge" id="dataNascimento" name="dataNascimento"size="10" value="${tutorBusca.dataNascimentoFormatada}" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="rg" class="control-label">*RG :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="rg" name="rg" size="30" value="${tutorBusca.rg}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="email" class="control-label">*Email :</label>
+                        <div class="controls">
+                            <input class="input-xlarge email required" type="text" id="email" name="email" size="40" value="${tutorBusca.email}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="lattes" class="control-label">*Link do Lattes :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="lattes" name="lattes" size="40" value="${tutorBusca.linkLattes}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="dataEntrada" class="control-label">*Data de Entrada :</label>
+                        <div class="controls">
+                            <input class="date required input-xlarge" type="text" id="dataEntrada" name="dataEntrada"  size="10" value="${tutorBusca.dataEntradaFormatada}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="dataSaida" class="control-label">Data de Saída :</label>
+                        <div class="controls">
+                            <input  class="date" type="text" id="dataSaida" name="dataSaida" size="10" value="${tutorBusca.dataSaidaFormatada}"><//>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </c:otherwise>
+    </c:choose> 
+</c:if>
+<p><a href="tutor">Voltar</a></p>
+
+
+
+
+

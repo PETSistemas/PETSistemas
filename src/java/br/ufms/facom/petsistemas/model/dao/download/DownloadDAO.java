@@ -18,6 +18,6 @@ public interface DownloadDAO extends DAO<Arquivo, Long> {
 
 public List<Arquivo> listarTodosDownloads();
 
-public List<Arquivo> buscarDownloadPeloTitulo(String titulo);
+public Arquivo buscarDownloadPeloTitulo(String titulo);
 public List<Arquivo> buscarDownloadPorCategoria(int categoria);
 }

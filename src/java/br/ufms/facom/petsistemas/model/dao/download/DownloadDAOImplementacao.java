@@ -31,12 +31,12 @@ public class DownloadDAOImplementacao extends DAOImplementacao<Arquivo, Long> im
     }
       
       @Override
-    public List<Arquivo> buscarDownloadPeloTitulo(String titulo)
+    public Arquivo buscarDownloadPeloTitulo(String titulo)
     {
         String namedQuery = "Arquivo.buscarDownloadPeloTitulo";
         ParametrosConsulta parametros = new ParametrosConsulta("titulo", titulo);
         List<Arquivo> downloads = executarNamedQuery(namedQuery, parametros);
-        return downloads;
+        return downloads.get(0);
     }
       
       @Override

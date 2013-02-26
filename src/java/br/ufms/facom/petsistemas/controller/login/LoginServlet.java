@@ -13,15 +13,11 @@ import br.ufms.facom.petsistemas.model.dao.tutor.TutorDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Petiano;
 import br.ufms.facom.petsistemas.model.entity.Tutor;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.AbstractList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -94,18 +90,18 @@ public class LoginServlet extends HttpServlet {
         String jsp = null;
 
         //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/logar")) {
+        if (request.getRequestURI().endsWith("logar")) {
             jsp = "/index.jsp";
             if (!tentarLogar(request)) {
                 request.setAttribute("pagina", "loginErro");
             }
             else {
-                request.setAttribute("pagina", "login");
+                request.setAttribute("pagina", "index");
             }
-        } else if (request.getRequestURI().endsWith("/deslogar")) {
+        } else if (request.getRequestURI().endsWith("deslogado")) {
             request.getSession().invalidate();
             jsp = "/index.jsp";
-            request.setAttribute("pagina", "login");
+            request.setAttribute("pagina", "index");
         } else {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "login");
