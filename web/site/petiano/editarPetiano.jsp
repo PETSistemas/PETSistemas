@@ -109,14 +109,14 @@
                     <div class="control-group">
                         <label for="dataEntrada" class="control-label">*Data de Entrada :</label>
                         <div class="controls">
-                            <input class="input-xlarge required" type="text" id="dataEntrada" name="dataEntrada"  size="10" value="${petianoBusca.dataEntradaFormatada}"/>
+                            <input class="date required input-xlarge" type="text" id="dataEntrada" name="dataEntrada"  size="10" value="${petianoBusca.dataEntradaFormatada}"/>
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="dataSaida" class="control-label">*Data de Saída :</label>
+                        <label for="dataSaida" class="control-label">Data de Saída :</label>
                         <div class="controls">
-                            <input  type="text" id="dataSaida" name="dataSaida" size="10" value="${petianoBusca.dataSaidaFormatada}"><//>
+                            <input  class="date" type="text" id="dataSaida" name="dataSaida" size="10" value="${petianoBusca.dataSaidaFormatada}"><//>
                         </div>
                     </div>
 

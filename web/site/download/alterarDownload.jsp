@@ -12,7 +12,7 @@
             <legend>Alteração de Download</legend>
             <input type="hidden" name="id" size="60" value="${downloadBusca.id}">
             <p>Titulo: <input type="text" name="titulo" size="60" value="${downloadBusca.titulo}"></p>
-            <p>Categoria </p><select name="curso">
+            <p>Categoria </p><select name="categoria">
                 <c:choose>
                     <c:when test="${downloadBusca.categoria==1}">
                         <option value=1 selected>Apostila</option>

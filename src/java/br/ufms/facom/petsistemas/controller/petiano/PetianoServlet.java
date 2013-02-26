@@ -124,8 +124,10 @@ public class PetianoServlet extends HttpServlet {
         petiano.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
         petiano.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
 
-        if (dataSai.equals("")) {
+        if (!dataSai.equals("")) {
             petiano.setDataSaidaFormatada(dataSai);
+        } else {
+            petiano.setDataSaidaFormatada(null);
         }
         controladorBD.inserir(petiano);
     }
