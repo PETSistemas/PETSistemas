@@ -127,7 +127,6 @@
                     </div>
 
                 </fieldset>
-                <div><a href="petiano">Voltar</a></div>
             </form>
         </c:otherwise>
     </c:choose> 

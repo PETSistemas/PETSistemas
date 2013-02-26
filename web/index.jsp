@@ -58,8 +58,6 @@
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
                         <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/login">Realize seu Login</a></li>
-                        <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
