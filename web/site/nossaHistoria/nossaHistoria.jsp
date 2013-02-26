@@ -20,6 +20,6 @@
     </ul>
     <p>Atualmente, o grupo conta com 11 acadêmicos bolsistas, envolvidos em atividades de extensão, pesquisa, 
         além da criação de uma página Web para o PET e  apoiar o DesTaCom.</p>
-    <p><a href="${pageContext.request.contextPath}/voltarNossaHistoria">Voltar</a></p>
+    <p><a href="index">Voltar</a></p>
 
 </div>
