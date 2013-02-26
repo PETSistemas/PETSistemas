@@ -5,16 +5,17 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:choose>
     <c:when test="${empty login}">
         <c:redirect url="listarColaborador" />
     </c:when>
+
     <c:otherwise>
         <div>
             <a href="novoColaborador" class="btn btn-large">Novo Colaborador</a>
         </div>
+
         <div>
             <table class="table table-striped">
                 <thead>
@@ -25,6 +26,7 @@
                         <th colspan="2">Ações</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <c:forEach var="colaborador" varStatus="count" begin="0" items="${colaboradores}">
                         <tr>
@@ -35,11 +37,14 @@
                             <td><a href="excluirColaborador?cpf=${colaborador.cpf}">Apagar</a></td>
                         </tr>
                     </c:forEach>
+
                 </tbody>
             </table>
+
             <c:forEach var="colaboradores" begin="0" items="${colaboradores}">
 
             </c:forEach>
         </div>
+
     </c:otherwise>
 </c:choose>
