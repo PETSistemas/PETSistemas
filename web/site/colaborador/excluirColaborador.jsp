@@ -45,3 +45,6 @@
                 </fieldset>
             </form>
         </c:otherwise>
+    </c:choose>
+    <p><a href="colaborador">Voltar</a></p>
+</c:if>
