@@ -68,6 +68,7 @@
         <url-pattern>/devolveDownload</url-pattern>
         <url-pattern>/listarDownload</url-pattern>
         <url-pattern>/novoDownload</url-pattern>
+        <url-pattern>/atualizarDownload</url-pattern>
         <url-pattern>/alterarDownload</url-pattern>
         <url-pattern>/download</url-pattern>
         <url-pattern>/buscarDownload</url-pattern>
