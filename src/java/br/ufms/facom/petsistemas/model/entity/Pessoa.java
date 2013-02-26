@@ -127,5 +127,13 @@ public abstract class Pessoa implements Serializable {
         this.dataNascimentoFormatada = dataNascimentoFormatada;
     }
     
-    
+    public String getTipoPessoa() {
+        if (this instanceof Petiano)
+            return "Petiano";
+        if (this instanceof Tutor)
+            return "Tutor";
+        if (this instanceof Colaborador)
+            return "Colaborador";
+        return "Pessoa";
+    }
 }

@@ -53,6 +53,17 @@ public class PublicacaoServlet extends HttpServlet
     }
 
     /**
+     * Método responsárvel por iniciar uma nova publicação, linstando as pessoas
+     *
+     * @param request
+     */
+    private void novaPublicacao(HttpServletRequest request)
+    {
+        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+        request.setAttribute("pessoas", pessoas);
+    }
+
+    /**
      * Método responsável pela criação de uma nova publicação
      *
      * @param request
@@ -64,18 +75,24 @@ public class PublicacaoServlet extends HttpServlet
         int tipo = Integer.parseInt(request.getParameter("tipo"));
         Date dataPublicacao = Utilitarios.stringParaData(request.getParameter("dataPublicacao"));
         Date dataInclusao = Utilitarios.stringParaData(request.getParameter("dataInclusao"));
-        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).listarPessoas();
+        String[] pessoas_selecionadas = request.getParameterValues("pessoas_selecionadas");
+        Long[] ids = new Long[pessoas_selecionadas.length];
+        for (int i = 0; i < pessoas_selecionadas.length; i++)
+        {
+            ids[i] = Long.valueOf(pessoas_selecionadas[i]);
+        }
+        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
 
         Publicacao publicacao = new Publicacao(titulo, resumo, tipo, dataPublicacao, dataInclusao);
         publicacao.setPessoas(pessoas);
         controladorBD.inserir(publicacao);
         request.setAttribute("mensagem", "Publicação cadastrada com sucesso!");
     }
-    
+
     /**
      * Método responsável pela busca de uma publicação pelo titulo
-     * 
-     * @param request 
+     *
+     * @param request
      */
     private void buscarPublicacaoTitulo(HttpServletRequest request)
     {
@@ -88,23 +105,46 @@ public class PublicacaoServlet extends HttpServlet
         request.setAttribute("dataPublicacao", Utilitarios.dataParaString(publicacao.getDataPublicacao()));
         request.setAttribute("dataInclusao", Utilitarios.dataParaString(publicacao.getDataInclusao()));
     }
-    
+
     /**
      * Método responsável pela busca de uma publicação pelo id
-     * 
-     * @param request 
+     *
+     * @param request
      */
     private void buscarPublicacaoId(HttpServletRequest request)
     {
         Long id = Long.parseLong(request.getParameter("id"));
         Publicacao publicacao = controladorBD.retrieve(id);
-        
+
+        request.setAttribute("publicacao", publicacao);
         request.setAttribute("id", publicacao.getId());
         request.setAttribute("titulo", publicacao.getTitulo());
         request.setAttribute("resumo", publicacao.getResumo());
         request.setAttribute("tipo", publicacao.getTipo());
         request.setAttribute("dataPublicacao", Utilitarios.dataParaString(publicacao.getDataPublicacao()));
         request.setAttribute("dataInclusao", Utilitarios.dataParaString(publicacao.getDataInclusao()));
+
+    }
+
+    /**
+     * Método responsável por salvar as alterações que a publicação teve
+     * 
+     * @param request 
+     */
+    private void salvarAlteracaoPublicacao(HttpServletRequest request)
+    {
+        Long id = Long.parseLong(request.getParameter("id"));
+        String titulo = request.getParameter("titulo");
+        String resumo = request.getParameter("resumo");
+        int tipo = Integer.parseInt(request.getParameter("tipo"));
+        Date dataPublicacao = Utilitarios.stringParaData(request.getParameter("dataPublicacao"));
+        Date dataInclusao = Utilitarios.stringParaData(request.getParameter("dataInclusao"));
+        String[] pessoas_selecionadas = request.getParameterValues("pessoas_selecionadas");
+        Long[] ids = new Long[pessoas_selecionadas.length];
+        for (int i = 0; i < pessoas_selecionadas.length; i++) {
+            ids[i] = Long.valueOf(pessoas_selecionadas[i]);
+        }
+        List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
     }
 
     /**
@@ -131,6 +171,7 @@ public class PublicacaoServlet extends HttpServlet
         }
         else if (request.getRequestURI().endsWith("/novaPublicacao"))
         {
+            novaPublicacao(request);
             request.setAttribute("pagina", "novaPublicacao");
         }
         else if (request.getRequestURI().endsWith("/salvarPublicacao"))

@@ -155,12 +155,19 @@ public class Publicacao implements Serializable
         return pessoas;
     }
 
-    public void setPessoas(List<Pessoa> pessoas)
-    {
-        if(this.pessoas == null){
+    public void addPessoa(Pessoa pessoa) {
+        this.pessoas.add(pessoa);
+    }
+    
+    public void addPessoas(List<Pessoa> pessoas) {
+        if (this.pessoas == null) {
             this.pessoas = new ArrayList<Pessoa>();
         }
         this.pessoas.addAll(pessoas);
+    }
+
+    public void setPessoas(List<Pessoa> pessoas) {
+        this.pessoas = pessoas;
     }
 
     public Arquivo getArquivo()
