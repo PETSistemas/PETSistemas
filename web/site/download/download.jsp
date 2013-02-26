@@ -4,12 +4,6 @@
     Author     : Lillydi
 --%>
 
-<%-- 
-    Document   : petiano
-    Created on : 05/12/2012, 08:55:22
-    Author     : Rebecca Alves
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

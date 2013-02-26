@@ -56,7 +56,7 @@ public class DownloadServlet extends HttpServlet {
 
     }
 
-        private void listarDownloadPorCategoria(HttpServletRequest request) {
+    private void listarDownloadPorCategoria(HttpServletRequest request) {
         List<Arquivo> downloads = controladorBD.buscarDownloadPorCategoria(1);
         request.setAttribute("apostila", downloads);
         downloads = controladorBD.buscarDownloadPorCategoria(2);
@@ -69,6 +69,7 @@ public class DownloadServlet extends HttpServlet {
         request.setAttribute("diverso", downloads);
 
     }
+
     private void salvarDownload(HttpServletRequest request) {
         String titulo = "";
         int categoria = 0;
@@ -79,7 +80,7 @@ public class DownloadServlet extends HttpServlet {
         FileItem fileItem = null;
         byte[] anexo = null;
         String nome = null;
-     //  String path = this.getServletContext().getRealPath("WEB-INF\\files");
+        //  String path = this.getServletContext().getRealPath("WEB-INF\\files");
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {
             FileItemFactory factory = new DiskFileItemFactory();
@@ -109,13 +110,13 @@ public class DownloadServlet extends HttpServlet {
                             tipo = Integer.parseInt(item.getString());
                         }
                     }
-                  /*  if (fileItem != null) {
-                        File arquivo = new File(path + "\\" + fileItem.getName());
-                        try {
-                            item.write(arquivo);
-                        } catch (Exception e) {
-                        }
-                    }*/
+                    /*  if (fileItem != null) {
+                     File arquivo = new File(path + "\\" + fileItem.getName());
+                     try {
+                     item.write(arquivo);
+                     } catch (Exception e) {
+                     }
+                     }*/
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,16 +127,16 @@ public class DownloadServlet extends HttpServlet {
         controladorBD.inserir(file);
         request.setAttribute("mensagem", "Download " + titulo + " cadastrado com sucesso!");
     }
-    
-   private void atualizarDownload(HttpServletRequest request){
-       FileItem fileItem;
-       byte[] anexo = null;
-       String nome = null;
-       long tamanho = -1;
-       Date dataEntrada = null;
-       int categoria = -1;
-       String titulo = null;
-       long id = -1;
+
+    private void atualizarDownload(HttpServletRequest request) {
+        FileItem fileItem;
+        byte[] anexo = null;
+        String nome = null;
+        long tamanho = -1;
+        Date dataEntrada = null;
+        int categoria = -1;
+        String titulo = null;
+        long id = -1;
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {
             FileItemFactory factory = new DiskFileItemFactory();
@@ -157,52 +158,50 @@ public class DownloadServlet extends HttpServlet {
                             titulo = item.getString();
                         } else if (item.getFieldName().equals("categoria")) {
                             categoria = Integer.parseInt(item.getString());
-                        } 
-                        else if (item.getFieldName().equals("id")) {
+                        } else if (item.getFieldName().equals("id")) {
                             id = Integer.parseInt(item.getString());
                         }
+                    }
                 }
-   }
-        }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-   }
+
+        }
         Arquivo download = controladorBD.retrieve(id);
         download.setAnexo(anexo);
         download.setCategoria(categoria);
-       download.setDataCriacao(dataEntrada);
-       download.setNome(nome);
-       download.setTamanho(tamanho);
-       download.setTitulo(titulo);
-       (new DownloadDAOImplementacao()).atualizar(download);
+        download.setDataCriacao(dataEntrada);
+        download.setNome(nome);
+        download.setTamanho(tamanho);
+        download.setTitulo(titulo);
+        (new DownloadDAOImplementacao()).atualizar(download);
         controladorBD.atualizar(download);
-       
-   }
 
-    private HttpServletResponse devolverDownload(HttpServletRequest request, HttpServletResponse response) throws IOException 
-    { 
+    }
+
+    private HttpServletResponse devolverDownload(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Arquivo download = controladorBD.buscarDownloadPeloTitulo(request.getParameter("titulo"));
         ByteArrayInputStream in = null;
         OutputStream out = null;
         byte[] buf = new byte[1024 * 1024 * 100]; //tamanho maximo de 100mb
         int lidos;
-           Arquivo temp = download;
-                in = new ByteArrayInputStream(temp.getAnexo());
-                out = response.getOutputStream();
-                response.setHeader("Content-Disposition","attachment;filename=\"" + temp.getNome() + "\"");
-                response.setContentType("application/download");  
-                while ((lidos = in.read(buf)) != -1) {
-                    out.write(buf, 0, lidos);//Transfere imagem  
-                    out.flush();
-                }
-            
-            in.close();  
-            out.close();
+        Arquivo temp = download;
+        in = new ByteArrayInputStream(temp.getAnexo());
+        out = response.getOutputStream();
+        response.setHeader("Content-Disposition", "attachment;filename=\"" + temp.getNome() + "\"");
+        response.setContentType("application/download");
+        while ((lidos = in.read(buf)) != -1) {
+            out.write(buf, 0, lidos);//Transfere imagem  
+            out.flush();
+        }
+
+        in.close();
+        out.close();
         return response;
     }
-    
-    void buscarDownloadTitulo(HttpServletRequest request){
+
+    void buscarDownloadTitulo(HttpServletRequest request) {
         String titulo = request.getParameter("titulo");
         Arquivo download = controladorBD.buscarDownloadPeloTitulo(titulo);
         request.setAttribute("downloadBusca", download);
@@ -212,10 +211,10 @@ public class DownloadServlet extends HttpServlet {
         request.setAttribute("tamanho", download.getTamanho());
         request.setAttribute("categoria", download.getCategoria());
         request.setAttribute("anexo", download.getAnexo());
-          request.setAttribute("id", download.getId());
+        request.setAttribute("id", download.getId());
     }
 
-        public boolean sessaoEstaAtiva(HttpServletRequest request) {
+    public boolean sessaoEstaAtiva(HttpServletRequest request) {
         return request.getSession().getAttribute("login") != null;
     }
 
@@ -230,7 +229,7 @@ public class DownloadServlet extends HttpServlet {
     public boolean sinalOK(HttpServletRequest request) {
         return request.getSession().getAttribute("sinal") != null;
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -238,36 +237,35 @@ public class DownloadServlet extends HttpServlet {
         String jsp = null;
         if (request.getRequestURI().endsWith("/index")) {
             jsp = "/index.jsp";
-            
+
         } else if (request.getRequestURI().endsWith("/download")) {
             listarDownload(request); //Implementar esse metodo
             jsp = "/index.jsp";
             request.setAttribute("pagina", "download");
         } else if (request.getRequestURI().endsWith("/devolveDownload")) {
-            if(sessaoEstaAtiva(request)){
             response = devolverDownload(request, response); //Implementar esse metodo
             response.setContentType("application/download");
             jsp = "/index.jsp";
-            }
-            //request.setAttribute("pagina", "download");
+
+            request.setAttribute("pagina", "listarDownload");
         } else if (request.getRequestURI().endsWith("/novoDownload")) {
-             iniciarSinal(request);
+            iniciarSinal(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "novoDownload");
-            
+
         } else if (request.getRequestURI().endsWith("/alterarDownload")) {
-            if(sessaoEstaAtiva(request)){
+            if (sessaoEstaAtiva(request)) {
                 buscarDownloadTitulo(request);
-            
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "alterarDownload");
+
+                jsp = "/index.jsp";
+                request.setAttribute("pagina", "alterarDownload");
             }
-             } else if (request.getRequestURI().endsWith("/atualizarDownload")) {
-            if(sessaoEstaAtiva(request)){
+        } else if (request.getRequestURI().endsWith("/atualizarDownload")) {
+            if (sessaoEstaAtiva(request)) {
                 atualizarDownload(request);
                 listarDownload(request);
-            jsp = "/index.jsp";
-            request.setAttribute("pagina", "download");
+                jsp = "/index.jsp";
+                request.setAttribute("pagina", "download");
             }
         } else if (request.getRequestURI().endsWith("/salvarDownload")) {
             salvarDownload(request);
@@ -285,7 +283,7 @@ public class DownloadServlet extends HttpServlet {
             // excluirDownload(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "excluirDownload");
-        } else { 
+        } else {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "download");
         }
