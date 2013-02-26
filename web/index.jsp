@@ -47,7 +47,7 @@
                         <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Pessoa</li>
-                        <li><a href="${pageContext.request.contextPath}/listarTutor">Tutor</a></li>
+                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
                         <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
                         <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
                         <li class="divider"></li>
