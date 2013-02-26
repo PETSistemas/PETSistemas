@@ -119,7 +119,7 @@ public byte[] getAnexo() {
         return tamanho;
     }
 
-    public void setTamanho(int tamanho)
+    public void setTamanho(long tamanho)
     {
         this.tamanho = tamanho;
     }
