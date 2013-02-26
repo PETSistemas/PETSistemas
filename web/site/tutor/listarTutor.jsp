@@ -16,7 +16,7 @@
 
         <c:forEach var="tutor" items="${tutoresAtivos}" varStatus="status" >
             <div>Nome: ${tutor.nome}</div>
-            <div>Entrou no PET: ${tutor.dataEntrada}</div><br>
+            <div>Entrou no PET: ${tutor.dataEntradaFormatada}</div><br>
         </c:forEach>
 
     </fieldset><br/><br/>

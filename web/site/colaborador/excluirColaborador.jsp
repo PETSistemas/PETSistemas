@@ -38,10 +38,13 @@
                                     <option value=1  >Ativo</option>
                                     <option value=2 selected disabled="disabled" >Desativo</option>
                                 </c:when>
-                             </c:choose>
+                            </c:choose>
                         </select></p>
 
-                    
+
                 </fieldset>
             </form>
         </c:otherwise>
+    </c:choose>
+    <p><a href="colaborador">Voltar</a></p>
+</c:if>
