@@ -20,7 +20,6 @@
                     <option value=1 <c:if test="${colaborador.situacao=='1'}">selected</c:if>>Ativo</option>
                     <option value=2 <c:if test="${colaborador.situacao=='2'}">selected</c:if>>Desativo</option>
                     </select></div>
-                <div>Entrou no PET: ${colaborador.dataEntrada}</div><br>
         </c:forEach>
 
     </fieldset><br/><br/>
@@ -38,8 +37,6 @@
                     <option value=1 <c:if test="${colaborador.situacao=='1'}">selected</c:if>>Ativo</option>
                     <option value=2 <c:if test="${colaborador.situacao=='2'}">selected</c:if>>Desativo</option>
                     </select></div>
-                <div>Entrou no PET: ${colaborador.dataEntradaFormatada}</div>
-            <div>Saiu no PET: ${colaborador.dataSaidaFormatada}</div><br>
         </c:forEach>
 
     </fieldset>
