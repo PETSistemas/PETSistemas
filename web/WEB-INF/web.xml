@@ -40,6 +40,10 @@
         <servlet-name>ColaboradorServlet</servlet-name>
         <servlet-class>br.ufms.facom.petsistemas.controller.colaborador.ColaboradorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FacaParteServlet</servlet-name>
+        <servlet-class>br.ufms.facom.petsistemas.controller.facaParte.FacaParteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NoticiaServlet</servlet-name>
         <url-pattern>/noticia</url-pattern>
@@ -71,7 +75,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/deslogar</url-pattern>
+        <url-pattern>/deslogado</url-pattern>
         <url-pattern>/login</url-pattern>
         <url-pattern>/logar</url-pattern>
     </servlet-mapping>
@@ -136,6 +140,10 @@
         <url-pattern>/excluirPetiano</url-pattern>
         <url-pattern>/removerPetiano</url-pattern>
         <url-pattern>/salvarPetiano</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FacaParteServlet</servlet-name>
+        <url-pattern>/facaParte</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

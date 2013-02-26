@@ -30,10 +30,10 @@
                 <div class="span1 login">
                     <c:choose>
                         <c:when test="${empty login}">
-                            <a class="btn loginbotao" href="${pageContext.request.contextPath}/login">Login <i class="icon-lock"></i> </a>
+                            <a class="btn loginbotao" href="login">Login <i class="icon-lock"></i> </a>
                         </c:when>
                         <c:otherwise>
-                            <p class="sair">Olá ${login.nome}!   <a href="deslogar" class="btn btn-danger">Sair</a></p>
+                            <p class="sair">Olá ${login.nome}!   <a href="deslogado" class="btn btn-danger">Sair</a></p>
                         </c:otherwise>
                     </c:choose>                
                 </div>
@@ -59,6 +59,8 @@
                         <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${pageContext.request.contextPath}/facaParte">Faça Parte do PET</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
                     </ul>
@@ -227,6 +229,13 @@
                             </c:when>
 
                             <c:when test="${pagina eq 'voltarNossaHistoria'}">
+                            </c:when>
+                            
+                             <%-- ********************************************************************** --%>
+                            <%-- FACA PARTE --%>
+
+                            <c:when test="${pagina eq 'facaParte'}">
+                                <%@ include file="site/facaParte/facaParte.jsp" %>  
                             </c:when>
 
                             <%-- ********************************************************************** --%>
