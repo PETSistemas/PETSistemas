@@ -99,6 +99,7 @@
         <url-pattern>/salvarProjeto</url-pattern>
         <url-pattern>/alterarProjeto</url-pattern>
         <url-pattern>/projeto</url-pattern>
+        <url-pattern>/listarParticipantes</url-pattern>
         <url-pattern>/salvarAlteracaoProjeto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
