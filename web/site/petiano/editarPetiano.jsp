@@ -6,44 +6,130 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div>
-    <form method="POST" action="atualizarPetiano">
-        <fieldset>
-            <legend>Alteração do Petiano</legend>
-            <input type="hidden" name="id" size="60" value="${petianoBusca.id}">
-            <p>Nome: <input type="text" name="nome" size="60" value="${petianoBusca.nome}"></p>
-            <p>Data de Nascimento: <input type="text" name="dataNascimento" size="10" value="${petianoBusca.dataNascimentoFormatada}"></p>
-            <p>E-mail: <input type="text" name="email" size="40" value="${petianoBusca.email}"></p>
-            <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40" value="${petianoBusca.linkLattes}"></p>
-            <p>Curso: <select name="curso">
-                    <c:choose>
-                        <c:when test="${petianoBusca.curso==1}">
-                            <option value=1 selected >Análise de Sistemas</option>
-                            <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
-                            <option value=3>Tecnologia em Redes de Computadores</option>
-                        </c:when>
-                        <c:when test="${petianoBusca.curso==2}">
-                            <option value=1  >Análise de Sistemas</option>
-                            <option value=2 selected>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
-                            <option value=3>Tecnologia em Redes de Computadores</option>
+<c:if test="${petianoBusca != null}">
+    <c:choose>
+        <c:when test="${empty login}">
+            <c:redirect url="listarPetiano" />
+        </c:when>
 
-                        </c:when>
-                        <c:when test="${petianoBusca.curso==3}">
-                            <option value=1  >Análise de Sistemas</option>
-                            <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
-                            <option value=3 selected>Tecnologia em Redes de Computadores</option>
-                        </c:when>
-                    </c:choose>
-                </select></p>
-            <p>Nome do Pai: <input type="text" name="pai" size="60" value="${petianoBusca.nomePai}"></p>
-            <p>Nome da Mãe: <input type="text" name="mae" size="60" value="${petianoBusca.nomeMae}"></p>
-            <p>RG: <input type="text" name="rg" size="30" value="${petianoBusca.rg}"></p>
-            <p>Endereço:</p>
-            <textarea name="endereco" rows="10" cols="50" >${petianoBusca.endereco}</textarea>
-            <p>Data de Entrada: <input type="text" name="dataEntrada" size="10" value="${petianoBusca.dataEntradaFormatada}"></p>
-            <p>Data de Saida <input type="text" name="dataSaida" size="10" value="${petianoBusca.dataSaidaFormatada}"></p>
-            <p><input type="submit" value="Atualizar"></p>
-        </fieldset>
-    </form>
-</div>
+        <c:otherwise>
+            <form method="POST" action="atualizarPetiano" class="form-horizontal">
+                <fieldset class="box">
+                    <legend>Cadastro de Petiano</legend>
+                    <span class="info">Campos Marcados com (*) são obrigatórios</span><br><br>
+
+                    <input type="hidden" name="id" size="60" value="${petianoBusca.id}">
+
+                    <c:if test="${mensagemErroPetiano != null}">
+                        <span class="mensagemErro">${mensagemErroPetiano}<br><br></span>
+                        </c:if>
+
+                    <div class="control-group">
+                        <label for="nome" class="control-label">*Nome do Petiano :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="nome" name="nome" size="60" value="${petianoBusca.nome}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="dataNascimento">*Data de Nascimento :</label>
+                        <div class="controls">
+                            <input type="text" class="date required input-xlarge" id="dataNascimento" name="dataNascimento"size="10" value="${petianoBusca.dataNascimentoFormatada}" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="pai" class="control-label">*Nome do Pai :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="pai" name="pai" size="60" value="${petianoBusca.nomePai}"></ />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="mae" class="control-label">*Nome da Mãe :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="mae" name="mae" size="60" value="${petianoBusca.nomeMae}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="rg" class="control-label">*RG :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="rg" name="rg" size="30" value="${petianoBusca.rg}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="email" class="control-label">*Email :</label>
+                        <div class="controls">
+                            <input class="input-xlarge email required" type="text" id="email" name="email" size="40" value="${petianoBusca.email}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="lattes" class="control-label">*Link do Lattes :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="lattes" name="lattes" size="40" value="${petianoBusca.linkLattes}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="curso">*Curso :</label>
+                        <div class="controls">
+                            <select class="input-xlarge required" id="curso" name="curso">
+                                <c:choose>
+                                    <c:when test="${petianoBusca.curso==1}">
+                                        <option value=1 selected >Análise de Sistemas</option>
+                                        <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
+                                        <option value=3>Tecnologia em Redes de Computadores</option>
+                                    </c:when>
+                                    <c:when test="${petianoBusca.curso==2}">
+                                        <option value=1  >Análise de Sistemas</option>
+                                        <option value=2 selected>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
+                                        <option value=3>Tecnologia em Redes de Computadores</option>
+
+                                    </c:when>
+                                    <c:when test="${petianoBusca.curso==3}">
+                                        <option value=1  >Análise de Sistemas</option>
+                                        <option value=2>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
+                                        <option value=3 selected>Tecnologia em Redes de Computadores</option>
+                                    </c:when>
+                                </c:choose>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="endereco" class="control-label">*Endereço :</label>
+                        <div class="controls">
+                            <textarea class="input-xlarge required" id="endereco" name="endereco" rows="3" placeholder="Endereço do Petiano">${petianoBusca.endereco}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="dataEntrada" class="control-label">*Data de Entrada :</label>
+                        <div class="controls">
+                            <input class="input-xlarge required" type="text" id="dataEntrada" name="dataEntrada"  size="10" value="${petianoBusca.dataEntradaFormatada}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="dataSaida" class="control-label">*Data de Saída :</label>
+                        <div class="controls">
+                            <input  type="text" id="dataSaida" name="dataSaida" size="10" value="${petianoBusca.dataSaidaFormatada}"><//>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div><a href="petiano">Voltar</a></div>
+            </form>
+        </c:otherwise>
+    </c:choose> 
+</c:if>
 <p><a href="petiano">Voltar</a></p>

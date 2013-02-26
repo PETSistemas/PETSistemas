@@ -9,7 +9,6 @@ import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Petiano;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -48,18 +47,12 @@ public class PetianoServlet extends HttpServlet {
 
     }
 
-    /**
-     * Método responsável pela criação de um novo petiano
-     *
-     * @param request
-     */
-    private void salvarPetiano(HttpServletRequest request) {
+    public boolean validarInclusao(HttpServletRequest request) {
         String nome = request.getParameter("nome");
         String dataNasc = request.getParameter("dataNascimento");
-        Date dataNascimento = Utilitarios.stringParaData(dataNasc);
         String email = request.getParameter("email");
         String lattes = request.getParameter("lattes");
-        int curso = Integer.valueOf(request.getParameter("curso"));
+        String curso = request.getParameter("curso");
         String nomePai = request.getParameter("pai");
         String nomeMae = request.getParameter("mae");
         String rg = request.getParameter("rg");
@@ -67,47 +60,135 @@ public class PetianoServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
-        Date dataEntrada = Utilitarios.stringParaData(dataEnt);
         String dataSai = request.getParameter("dataSaida");
+
+
+        if (nome.equals("") || nome == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome é Obrigatógio!");
+            return false;
+        } else if (dataNasc.equals("") || dataNasc == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Data de Nascimento é Obrigatógio!");
+            return false;
+        } else if (nomePai.equals("") || nomePai == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome do Pai é Obrigatógio!");
+            return false;
+        } else if (nomeMae.equals("") || nomeMae == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome da Mãe é Obrigatógio!");
+            return false;
+        } else if (rg.equals("") || rg == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo RG é Obrigatógio!");
+            return false;
+        } else if (cpf.equals("") || cpf == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo CPF é Obrigatógio!");
+            return false;
+        } else if (email.equals("") || email == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome é Obrigatógio!");
+            return false;
+        } else if (lattes.equals("") || lattes == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Link do Curriculum Lattes é Obrigatógio!");
+            return false;
+        } else if (curso.equals("") || curso == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Curso é Obrigatógio!");
+            return false;
+        } else if (dataEnt.equals("") || dataEnt == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Data de Entrada é Obrigatógio!");
+            return false;
+        } else {
+            buscarPetianoCPF(request);
+            if (request.getAttribute("petianoBusca") != null) {
+                request.setAttribute("mensagemErroPetiano", "Já existe um petiano com este CPF!");
+                return false;
+            } else {
+                Date dataNascimento = Utilitarios.stringParaData(dataNasc);
+                Date dataEntrada = Utilitarios.stringParaData(dataEnt);
+                salvarPetiano(request, Integer.valueOf(curso), senha, nomePai, nomeMae, rg, cpf, dataEntrada, dataSai, endereco, nome, dataNascimento, email, lattes);
+                return true;
+            }
+        }
+    }
+
+    /**
+     * Método responsável pela criação de um novo petiano
+     *
+     * @param request
+     */
+    private void salvarPetiano(HttpServletRequest request, int curso, String senha, String nomePai, String nomeMae, String rg, String cpf, Date dataEntrada, String dataSai, String endereco, String nome, Date dataNascimento, String email, String lattes) {
+
         Date dataSaida = null;
 
-        if (dataSai != null) {
+        if (dataSai.equals("")) {
             dataSaida = Utilitarios.stringParaData(dataSai);
         }
 
         Petiano petiano = new Petiano(curso, senha, nomePai, nomeMae, rg, cpf, dataEntrada, dataSaida, endereco, nome, dataNascimento, email, lattes, null);
-        petiano.setDataEntradaFormatada(dataEnt);
-        petiano.setDataNascimentoFormatada(dataNasc);
-        if (dataSai != null) {
+        petiano.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
+        petiano.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
+
+        if (dataSai.equals("")) {
             petiano.setDataSaidaFormatada(dataSai);
         }
         controladorBD.inserir(petiano);
-        request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
     }
 
-    private void atualizarPetiano(HttpServletRequest request) {
+    public boolean validarEdição(HttpServletRequest request) {
 
         String nome = request.getParameter("nome");
         String dataNasc = request.getParameter("dataNascimento");
         Date dataNascimento = Utilitarios.stringParaData(dataNasc);
         String email = request.getParameter("email");
         String lattes = request.getParameter("lattes");
-        int curso = Integer.valueOf(request.getParameter("curso"));
+        String curso = request.getParameter("curso");
         String nomePai = request.getParameter("pai");
         String nomeMae = request.getParameter("mae");
         String rg = request.getParameter("rg");
-
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
         Date dataEntrada = Utilitarios.stringParaData(dataEnt);
         String dataSai = request.getParameter("dataSaida");
+
+
+        if (nome.equals("") || nome == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome é Obrigatógio!");
+            return false;
+        } else if (dataNasc.equals("") || dataNasc == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Data de Nascimento é Obrigatógio!");
+            return false;
+        } else if (nomePai.equals("") || nomePai == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome do Pai é Obrigatógio!");
+            return false;
+        } else if (nomeMae.equals("") || nomeMae == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome da Mãe é Obrigatógio!");
+            return false;
+        } else if (rg.equals("") || rg == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo RG é Obrigatógio!");
+            return false;
+        } else if (email.equals("") || email == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Nome é Obrigatógio!");
+            return false;
+        } else if (lattes.equals("") || lattes == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Link do Curriculum Lattes é Obrigatógio!");
+            return false;
+        } else if (curso.equals("") || curso == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Curso é Obrigatógio!");
+            return false;
+        } else if (dataEnt.equals("") || dataEnt == null) {
+            request.setAttribute("mensagemErroPetiano", "O Campo Data de Entrada é Obrigatógio!");
+            return false;
+        } else {
+            atualizarPetiano(request, Integer.valueOf(curso), nomePai, nomeMae, rg, dataEntrada, dataSai, endereco, nome, dataNascimento, email, lattes);
+            return true;
+        }
+    }
+
+    private void atualizarPetiano(HttpServletRequest request, int curso, String nomePai, String nomeMae, String rg, Date dataEntrada, String dataSai, String endereco, String nome, Date dataNascimento, String email, String lattes) {
+
         Date dataSaida = null;
 
         if (dataSai != null) {
             dataSaida = Utilitarios.stringParaData(dataSai);
         }
-        Long id = Long.parseLong(request.getParameter("id"));
 
+        Long id = Long.parseLong(request.getParameter("id"));
         Petiano petiano = controladorBD.retrieve(id);
 
         petiano.setNome(nome);
@@ -145,20 +226,7 @@ public class PetianoServlet extends HttpServlet {
         String cpf = request.getParameter("cpf");
         Petiano petiano = controladorBD.buscarPetianoPeloCPF(cpf);
 
-
         request.setAttribute("petianoBusca", petiano);
-
-        request.setAttribute("nome", petiano.getNome());
-        request.setAttribute("dataNascimento", Utilitarios.dataParaString(petiano.getDataNascimento()));
-        request.setAttribute("email", petiano.getEmail());
-        request.setAttribute("lattes", petiano.getLinkLattes());
-        request.setAttribute("curso", petiano.getCurso());
-        request.setAttribute("pai", petiano.getNomePai());
-        request.setAttribute("mae", petiano.getNomeMae());
-        request.setAttribute("rg", petiano.getRg());
-        request.setAttribute("cpf", petiano.getCpf());
-        request.setAttribute("endereco", petiano.getEndereco());
-        request.setAttribute("dataEntrada", Utilitarios.dataParaString(petiano.getDataEntrada()));
 
     }
 
@@ -189,22 +257,6 @@ public class PetianoServlet extends HttpServlet {
         }
     }
 
-    public boolean sessaoEstaAtiva(HttpServletRequest request) {
-        return request.getSession().getAttribute("login") != null;
-    }
-
-    public void iniciarSinal(HttpServletRequest request) {
-        request.getSession().setAttribute("sinal", 1);
-    }
-
-    public void apagarSinal(HttpServletRequest request) {
-        request.getSession().removeAttribute("sinal");
-    }
-
-    public boolean sinalOK(HttpServletRequest request) {
-        return request.getSession().getAttribute("sinal") != null;
-    }
-
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -232,19 +284,23 @@ public class PetianoServlet extends HttpServlet {
 
         } else if (request.getRequestURI()
                 .endsWith("/editarPetiano")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 buscarPetianoCPF(request);
                 pagina = "editarPetiano";
             }
 
         } else if (request.getRequestURI()
                 .endsWith("/atualizarPetiano")) {
-            if (sessaoEstaAtiva(request)) {
-                atualizarPetiano(request);
-                listarPetianos(request);
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+                if (validarEdição(request)) {
+                    listarPetianos(request);
+                } else {
+                    pagina = "editarPetiano";
+                }
+
             }
         } else if (request.getRequestURI().endsWith("/novoPetiano")) {
-            iniciarSinal(request);
+            Utilitarios.iniciarSinal(request);
             pagina = "novoPetiano";
 
         } else if (request.getRequestURI()
@@ -254,17 +310,20 @@ public class PetianoServlet extends HttpServlet {
 
         } else if (request.getRequestURI()
                 .endsWith("/salvarPetiano")) {
-            if (sessaoEstaAtiva(request)) {
-                if (sinalOK(request)) {
-                    salvarPetiano(request);
-                    apagarSinal(request);
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
+                if (Utilitarios.sinalOK(request)) {
+                    if (validarInclusao(request)) {
+                        Utilitarios.apagarSinal(request);
+                        listarPetianos(request);
+                    } else {
+                        pagina = "novoPetiano";
+                    }
                 }
-                listarPetianos(request);
             }
 
         } else if (request.getRequestURI()
                 .endsWith("/removerPetiano")) {
-            if (sessaoEstaAtiva(request)) {
+            if (Utilitarios.sessaoEstaAtiva(request, "login")) {
                 removerPetiano(request);
             }
             listarPetianos(request);

@@ -11,7 +11,7 @@
     <c:choose>
         <c:when test="${empty login}">
             <div class="container">
-                <form class="form-signin" method="POST" action="${pageContext.request.contextPath}/logar">
+                <form class="form-signin" method="post" action="${pageContext.request.contextPath}/logar">
                     <h2 class="form-signin-heading">Realize seu Login</h2>
                     <input type="text" class="input-block-level" id="login" name="login" placeholder="cpf">
                     <input type="password" class="input-block-level" id="senha" name="senha" placeholder="senha" >
