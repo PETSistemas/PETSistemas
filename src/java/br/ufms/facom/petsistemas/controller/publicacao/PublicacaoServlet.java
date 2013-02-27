@@ -208,6 +208,35 @@ public class PublicacaoServlet extends HttpServlet
     }
 
     /**
+     * Método que lista os autores da publicação
+     * 
+     * @param request 
+     */
+    private void listarAutores(HttpServletRequest request)
+    {
+        String idString = request.getParameter("id");
+        Long id = null;
+        if (idString != null)
+        {
+            id = Long.parseLong(idString);
+        }
+
+        Publicacao publicacao = null;
+        if (id != null)
+        {
+            publicacao = controladorBD.retrieve(id);
+        }
+
+        if (publicacao != null)
+        {
+            if (publicacao.getPessoas() != null && publicacao.getPessoas().size() > 0)
+            {
+                request.setAttribute("pessoas", publicacao.getPessoas());
+            }
+        }
+    }
+
+    /**
      * Processes requests for both HTTP
      * <code>GET</code> and
      * <code>POST</code> methods.
@@ -275,6 +304,11 @@ public class PublicacaoServlet extends HttpServlet
             {
                 listarPublicacoes(request);
                 pagina = "listarPublicacao";
+            }
+            if (request.getRequestURI().endsWith("listarAutores"))
+            {
+                listarAutores(request);
+                pagina = "listarAutores";
             }
         }
 

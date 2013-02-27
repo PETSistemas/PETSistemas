@@ -24,12 +24,12 @@
         <script type="text/javascript" src="resources/js/todos.js"></script>
     </head>
     <body>
-        <div class = "container-fluid corpo" >
+        <div class = "container-fluid corpo">
             <div class="hero-unit cabecalho">
                 <h1>PET Sistemas</h1>
             </div>
 
-            <div class="container-fluid corpo">
+            <div class="row corpo">
                 <div class = "span3 menu">
                     <div class="well sidebar-nive">
                         <ul class="nav nav-list">
@@ -176,6 +176,9 @@
 
                             <c:when test="${pagina eq 'publicacao'}">
                                 <%@ include file="site/publicacao/publicacao.jsp" %>  
+                            </c:when>
+                            <c:when test="${pagina eq 'listarAutores'}">
+                                <%@ include file="site/publicacao/listarAutores.jsp" %>  
                             </c:when>
                             <c:when test="${pagina eq 'novaPublicacao'}">
                                 <%@ include file="site/publicacao/novaPublicacao.jsp" %>  

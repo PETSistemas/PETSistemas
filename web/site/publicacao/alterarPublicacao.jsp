@@ -5,12 +5,13 @@
 --%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <form class="form-horizontal" action="salvarAlteracaoPublicacao" method="post">
     <fieldset>
-        <legend>Alterar PublicaÁ„o</legend>
+        <legend>Alterar Publica√ß√£o</legend>
 
-        <span class="info">Campos Marcados com (*) s„o obrigatÛrios</span>
+        <span class="info">Campos Marcados com (*) s√£o obrigat√≥rios</span>
 
         <div class="control-group">
             <label class="control-label" for="id">Id: </label>
@@ -20,7 +21,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="titulo">*TÌtulo da PubliÁ„o: </label>
+            <label class="control-label" for="titulo">*T√≠tulo da Publi√ß√£o: </label>
             <div class="controls">
                 <input class="input-xlarge required" type="text" id="titulo" name="titulo" value="${publicacao.titulo}"/>
             </div>
@@ -38,8 +39,8 @@
             <div class="controls">
                 <select class="input-xlarge required" name="tipo">
                     <option value="1" <c:if test="${publicacao.tipo == 1}">selected="selected"</c:if>>Artigo</option>
-                    <option value="2" <c:if test="${publicacao.tipo == 2}">selected="selected"</c:if>>RelatÛrio</option>
-                    <option value="3" <c:if test="${publicacao.tipo == 3}">selected="selected"</c:if>>TÈcnico</option>
+                    <option value="2" <c:if test="${publicacao.tipo == 2}">selected="selected"</c:if>>Relat√≥rio</option>
+                    <option value="3" <c:if test="${publicacao.tipo == 3}">selected="selected"</c:if>>T√©cnico</option>
                     <option value="4" <c:if test="${publicacao.tipo == 4}">selected="selected"</c:if>>Tutorial</option>
                     <option value="5" <c:if test="${publicacao.tipo == 5}">selected="selected"</c:if>>Manual</option>
                     <option value="6" <c:if test="${publicacao.tipo == 6}">selected="selected"</c:if>>Outros</option>
@@ -48,14 +49,14 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="dataPublicacao">Data de PublicaÁ„o:</label>
+            <label class="control-label" for="dataPublicacao">Data de Publica√ß√£o:</label>
             <div class="controls">
                 <input class="input-xlarge date" type="text" id="dataPublicacao" name="dataPublicacao" value="${publicacao.dataPublicacaoString}"/>
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="dataInclusao">*Data de Inclus„o:</label>
+            <label class="control-label" for="dataInclusao">*Data de Inclus√£o:</label>
             <div class="controls">
                 <input class="input-xlarge date required" type="text" id="dataInclusao" name="dataInclusao" value="${publicacao.dataInclusaoString}"/>
             </div>
@@ -95,8 +96,9 @@
                 <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
             </div>
         </div>
-            
+
         <input type="hidden" id="id" name="id" value="${publicacao.id}"/>
     </fieldset>
 </form>
+<a href="publicacao">Voltar</a>
 
