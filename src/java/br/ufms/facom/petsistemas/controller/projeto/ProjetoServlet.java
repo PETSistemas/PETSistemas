@@ -51,8 +51,10 @@ public class ProjetoServlet extends HttpServlet {
      * @param request
      */
     public void listarProjetos(HttpServletRequest request) {
-        List<Projeto> projetos = projetoControladorBD.listarTodosProjetos();
-        request.setAttribute("projetos", projetos);
+        List<Projeto> projetosAtivos = projetoControladorBD.listarProjetosAtivos();
+        List<Projeto> projetosConcluidos = projetoControladorBD.listarProjetosConcluidos();
+        request.setAttribute("projetosAtivos", projetosAtivos);
+        request.setAttribute("projetosConcluidos", projetosConcluidos);
     }
 
     /**
