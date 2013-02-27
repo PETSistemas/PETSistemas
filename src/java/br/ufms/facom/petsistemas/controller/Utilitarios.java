@@ -4,13 +4,14 @@
  */
 package br.ufms.facom.petsistemas.controller;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import javax.servlet.http.HttpServletRequest;
-import sun.misc.BASE64Encoder;
+
 
 /**
  * Classe genérica contendo métodos de apoio que podem ser utilizados por todas
@@ -65,15 +66,16 @@ public class Utilitarios {
     }
 
     public static String encripta(String senha) {
+        String sen = "";
+        MessageDigest md = null;
         try {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(senha.getBytes());
-            BASE64Encoder encoder = new BASE64Encoder();
-            return encoder.encode(digest.digest());
-        } catch (NoSuchAlgorithmException ns) {
-            ns.printStackTrace();
-            return senha;
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+        sen = hash.toString(16);
+        return sen;
     }
 
     public static boolean isCPF(String CPF) {
