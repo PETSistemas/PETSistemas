@@ -66,7 +66,7 @@ public class ContatoServlet extends HttpServlet {
             mensagem = mensagem + "Email: " + request.getParameter("email") + "\n";
             mensagem = mensagem + "Com a seguinte mensagem: " + request.getParameter("mensagem");
             criarMensagem(mensagem);
-            request.setAttribute("mensagem", "Obrigado por entrar emContato " + request.getParameter("nome") + " ! Em breve, responderemos por e-mail.");
+            request.setAttribute("mensagem", "Obrigado por entrar em Contato " + request.getParameter("nome") + " ! Em breve, responderemos por e-mail.");
 
             jsp = "/index.jsp";
             request.setAttribute("pagina", "contato");

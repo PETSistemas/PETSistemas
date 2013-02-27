@@ -12,7 +12,7 @@
         <fieldset>
             <legend>Contato</legend>
             <c:if test="${not empty mensagem}">
-                <br><strong>${mensagem}</strong>
+                <br><strong>${mensagem}</strong><br>
             </c:if>
 
             <span class="info">Campos Marcados com (*) são obrigatórios</span><br><br>

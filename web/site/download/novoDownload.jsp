@@ -32,7 +32,7 @@
                     <div class="control-group">
                     <label for="anexo" class="control-label">*Arquivo :</label>
                     <div class="controls">
-                        <input class="input-xlarge required" type="file" id="anexo" name="anexo" accept = "image/*, text/*, video/*"/>
+                        <input class="input-xlarge required" type="file" id="anexo" name="anexo" accept = "pdf/*, image/*, text/*, video/*, application/x-rar-compressed, application/zip"/>
                     </div>
                 </div>
                     
