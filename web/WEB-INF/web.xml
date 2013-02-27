@@ -141,12 +141,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PublicacaoServlet</servlet-name>
-        <url-pattern>/executarRemocaoPublicacao</url-pattern>
         <url-pattern>/alterarPublicacao</url-pattern>
+        <url-pattern>/executarRemocaoPublicacao</url-pattern>
         <url-pattern>/removerPublicacao</url-pattern>
         <url-pattern>/novaPublicacao</url-pattern>
-        <url-pattern>/buscarPublicacao</url-pattern>
-        <url-pattern>/exibirPublicacaoTitulo</url-pattern>
+        <url-pattern>/listarAutores</url-pattern>
         <url-pattern>/salvarPublicacao</url-pattern>
         <url-pattern>/salvarAlteracaoPublicacao</url-pattern>
         <url-pattern>/listarPublicacao</url-pattern>
