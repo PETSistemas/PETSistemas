@@ -27,7 +27,7 @@
 
                     <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40" disabled="disabled" value="${colaboradorBusca.linkLattes}"></p>
 
-                    <p>Situação: <select name="situacao">
+                    <p>Situação: <select name="situacao"  disabled="disabled">
 
                             <c:choose>
                                 <c:when test="${colaboradorBusca.situacao==1}">
@@ -41,7 +41,7 @@
                             </c:choose>
                         </select></p>
 
-
+                    <input class="btn btn-primary" type="submit" value="Excluir" id="salvar"/>
                 </fieldset>
             </form>
         </c:otherwise>
