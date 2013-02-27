@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Classe parametrizada que implementa a interface PetianoDAO.
  *
- * @author Rodrigo Kuninari
+ * @author Rebecca Alves
  */
 public class PetianoDAOImplementacao extends DAOImplementacao<Petiano, Long> implements PetianoDAO
 {

@@ -212,7 +212,6 @@ public class PetianoServlet extends HttpServlet {
         petiano.setEmail(email);
         petiano.setLinkLattes(lattes);
 
-        (new PetianoDAOImplementacao()).atualizar(petiano);
         controladorBD.atualizar(petiano);
 
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");

@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * Classe que representa a Entidade Petiano. Herda atributos e métodos da Classe
  * Pessoa.
  *
- * @author Rodrigo Kuninari
+ * @author Rebecca Alves
  */
 @Entity
 @DiscriminatorValue("P")
