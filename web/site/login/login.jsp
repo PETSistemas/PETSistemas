@@ -10,15 +10,19 @@
 <div>
     <c:choose>
         <c:when test="${empty login}">
-            <div class="container">
-                <form class="form-signin" method="post" action="logar">
-                    <h2 class="form-signin-heading">Realize seu Login</h2>
+
+            <form method="post" action="logar">
+                <fieldset>
+                    <legend>Realize seu Login</legend>
                     <input type="text" class="input-block-level" id="login" name="login" placeholder="cpf">
                     <input type="password" class="input-block-level" id="senha" name="senha" placeholder="senha" >
-                    <button class="btn btn-large btn-primary" type="submit">Logar</button>
-                </form>
-            </div>
+                    <button class="btn" type="submit">Logar <i class="icon-lock"></i></button>
+                </fieldset>
+            </form>
+
         </c:when>
+        <c:otherwise>
+            <a class="btn" href="deslogado">Sair</a>
+        </c:otherwise>
     </c:choose>    
 </div>
-
