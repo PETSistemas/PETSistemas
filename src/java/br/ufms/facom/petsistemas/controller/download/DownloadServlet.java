@@ -160,6 +160,7 @@ public class DownloadServlet extends HttpServlet {
                             categoria = Integer.parseInt(item.getString());
                         } else if (item.getFieldName().equals("id")) {
                             id = Integer.parseInt(item.getString());
+                            
                         }
                     }
                 }
@@ -169,21 +170,23 @@ public class DownloadServlet extends HttpServlet {
 
         }
         Arquivo download = controladorBD.retrieve(id);
-        download.setAnexo(anexo);
-        download.setCategoria(categoria);
-        download.setDataCriacao(dataEntrada);
-        download.setNome(nome);
-        download.setTamanho(tamanho);
         download.setTitulo(titulo);
-        (new DownloadDAOImplementacao()).atualizar(download);
+        download.setCategoria(categoria);
+        if(tamanho != 0){
+       download.setDataCriacao(dataEntrada);
+       download.setNome(nome);
+       download.setAnexo(anexo);
+       download.setTamanho(tamanho);
+        }
+       (new DownloadDAOImplementacao()).atualizar(download);
         controladorBD.atualizar(download);
 
     }
 
     private HttpServletResponse devolverDownload(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Arquivo download = controladorBD.buscarDownloadPeloTitulo(request.getParameter("titulo"));
-        ByteArrayInputStream in = null;
-        OutputStream out = null;
+        ByteArrayInputStream in;
+        OutputStream out;
         byte[] buf = new byte[1024 * 1024 * 100]; //tamanho maximo de 100mb
         int lidos;
         Arquivo temp = download;
@@ -213,6 +216,16 @@ public class DownloadServlet extends HttpServlet {
         request.setAttribute("anexo", download.getAnexo());
         request.setAttribute("id", download.getId());
     }
+    
+    void excluirDownload(HttpServletRequest request){
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Arquivo download = controladorBD.retrieve(id);
+
+        if (download != null) {
+            controladorBD.deletar(download);
+        }
+    }
 
     public boolean sessaoEstaAtiva(HttpServletRequest request) {
         return request.getSession().getAttribute("login") != null;
@@ -233,7 +246,7 @@ public class DownloadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        request.setCharacterEncoding("utf-8");
         String jsp = null;
         if (request.getRequestURI().endsWith("/index")) {
             jsp = "/index.jsp";
@@ -246,7 +259,6 @@ public class DownloadServlet extends HttpServlet {
             response = devolverDownload(request, response); //Implementar esse metodo
             response.setContentType("application/download");
             jsp = "/index.jsp";
-
             request.setAttribute("pagina", "listarDownload");
         } else if (request.getRequestURI().endsWith("/novoDownload")) {
             iniciarSinal(request);
@@ -280,10 +292,19 @@ public class DownloadServlet extends HttpServlet {
             jsp = "/index.jsp";
             request.setAttribute("pagina", "buscarDownload");
         } else if (request.getRequestURI().endsWith("/excluirDownload")) {
+            buscarDownloadTitulo(request);
             // excluirDownload(request);
             jsp = "/index.jsp";
             request.setAttribute("pagina", "excluirDownload");
-        } else {
+        }else if (request.getRequestURI().endsWith("/removerDownload")) {
+            if(Utilitarios.sessaoEstaAtiva(request, "login")){
+                excluirDownload(request); 
+            }
+            listarDownload(request);
+            jsp = "/index.jsp";
+            request.setAttribute("pagina", "download");
+        } 
+        else { 
             jsp = "/index.jsp";
             request.setAttribute("pagina", "download");
         }

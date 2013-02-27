@@ -11,7 +11,13 @@
         <fieldset>
             <legend>Alteração de Download</legend>
             <input type="hidden" name="id" size="60" value="${downloadBusca.id}">
-            <p>Titulo: <input type="text" name="titulo" size="60" value="${downloadBusca.titulo}"></p>
+            <div class="control-group">
+                    <label for="titulo" class="control-label">*Título :</label>
+                    <div class="controls">
+                        <input class="input-xlarge required" type="text" id="titulo" name="titulo" value="${downloadBusca.titulo}"/>
+                    </div>
+                </div>
+                    
             <p>Categoria </p><select name="categoria">
                 <c:choose>
                     <c:when test="${downloadBusca.categoria==1}">

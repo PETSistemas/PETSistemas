@@ -32,7 +32,7 @@
                             <td>${download.titulo}</td>
                             <td>${download.nome}</td>
                             <td><a href="alterarDownload?titulo=${download.titulo}">Alterar</a></td>
-                            <td><a href="excluirDownload?titulo=${petiano.titulo}">Apagar</a></td>
+                            <td><a href="excluirDownload?titulo=${download.titulo}">Apagar</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
