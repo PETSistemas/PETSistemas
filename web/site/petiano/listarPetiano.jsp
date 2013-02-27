@@ -22,7 +22,7 @@
                     <option value=2 <c:if test="${petiano.curso=='2'}">selected</c:if>>Tecnologia em Análise e Desenvolvimento de Sistemas</option>
                     <option value=3 <c:if test="${petiano.curso=='3'}">selected</c:if>>Tecnologia em Redes de Computadores</option>
                 </select></div>
-            <div>Entrou no PET: ${petiano.dataEntradaFormatada}</div><br>
+            <div>Entrou no PET: ${petiano.dataEntradaFormatada}</div><br><br>
         </c:forEach>
 
     </fieldset><br/><br/>
@@ -42,7 +42,7 @@
                     <option value=3 <c:if test="${petiano.curso=='3'}">selected</c:if>>Tecnologia em Redes de Computadores</option>
                 </select></div>
             <div>Entrou no PET: ${petiano.dataEntradaFormatada}</div>
-            <div>Saiu no PET: ${petiano.dataSaidaFormatada}</div><br>
+            <div>Saiu no PET: ${petiano.dataSaidaFormatada}</div><br><br>
         </c:forEach>
     
     </fieldset>

@@ -1,4 +1,3 @@
-
 <%-- 
     Document   : index
     Created on : 05/12/2012, 11:19:50
@@ -59,8 +58,6 @@
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
                         <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
-                        <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/facaParte">Faça Parte do PET</a></li>
                         <li class="divider"></li>
                         <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
@@ -83,8 +80,6 @@
 
                             <%-- ********************************************************************** --%>
                             <%-- PETIANO --%>
-
-
                             <c:when test="${pagina eq 'novoPetiano'}">
                                 <%@ include file="site/petiano/novoPetiano.jsp" %>  
                             </c:when>
@@ -101,8 +96,8 @@
                                 <%@ include file="site/petiano/petiano.jsp" %>  
                             </c:when>
 
-                          <%-- ********************************************************************** --%>
-       			<%-- TUTOR --%>
+                            <%-- ********************************************************************** --%>
+                            <%-- TUTOR --%>
 
                             <c:when test="${pagina=='novoTutor'}">
                                 <%@ include file="site/tutor/novoTutor.jsp" %>  
@@ -119,9 +114,9 @@
                             <c:when test="${pagina=='tutor'}">
                                 <%@ include file="site/tutor/tutor.jsp" %>  
                             </c:when>
-                        
-                	<%-- ********************************************************************** --%>
-       			<%-- COLABORADOR --%>
+
+                            <%-- ********************************************************************** --%>
+                            <%-- COLABORADOR --%>
 
                             <c:when test="${pagina=='novoColaborador'}">
                                 <%@ include file="site/colaborador/novoColaborador.jsp" %>  
@@ -139,7 +134,6 @@
                                 <%@ include file="site/colaborador/colaborador.jsp" %>  
                             </c:when>
                             <%-- ********************************************************************** --%>
-
                             <%-- NOTICIA --%>
 
                             <c:when test="${pagina eq 'noticia'}">
@@ -257,8 +251,8 @@
 
                             <c:when test="${pagina eq 'voltarNossaHistoria'}">
                             </c:when>
-                            
-                             <%-- ********************************************************************** --%>
+
+                            <%-- ********************************************************************** --%>
                             <%-- FACA PARTE --%>
 
                             <c:when test="${pagina eq 'facaParte'}">
@@ -273,6 +267,9 @@
                             </c:when>
                         </c:choose>
                     </c:if>
+                    <div class="logoMeio">
+                        <img alt="Logo PET Sistemas" src="imagens/pet.png"/>
+                    </div>
                 </div>
                 <div class="span2 downloads">
                     <div class="down">

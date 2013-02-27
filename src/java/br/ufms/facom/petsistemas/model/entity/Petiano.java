@@ -49,7 +49,7 @@ public class Petiano extends Pessoa implements Serializable {
     private Date dataEntrada;
     @Column(name = "dataEntradaFormatada", updatable = true, nullable = false)
     private String dataEntradaFormatada;
-    @Column(name = "dataSaida", updatable = false, nullable = true)
+    @Column(name = "dataSaida", updatable = true, nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSaida;
     @Column(name = "dataSaidaFormatada", updatable = true, nullable = true)

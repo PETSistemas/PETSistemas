@@ -4,6 +4,7 @@
  */
 package br.ufms.facom.petsistemas.controller.login;
 
+import br.ufms.facom.petsistemas.controller.Utilitarios;
 import br.ufms.facom.petsistemas.model.dao.login.LoginDAO;
 import br.ufms.facom.petsistemas.model.dao.login.LoginDAOImplementacao;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
@@ -29,7 +30,6 @@ public class LoginServlet extends HttpServlet {
     LoginDAO controladorBD;
     PetianoDAO controladorPetianoBD;
     TutorDAO controladorTutorBD;
-    
     Petiano master;
 
     /**
@@ -50,16 +50,16 @@ public class LoginServlet extends HttpServlet {
         master.setCpf("master");
         master.setNome("master");
         master.setCurso(0);
-        master.setSenha("1");
+        master.setSenha(Utilitarios.encripta("1"));
     }
 
     public boolean tentarLogar(HttpServletRequest request) {
         String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
+        String senha = Utilitarios.encripta(request.getParameter("senha"));
 
         Petiano petiano = controladorPetianoBD.buscarPetianoPeloCPF(login);
         Tutor tutor = controladorTutorBD.buscarTutorPeloCPF(login);
-        
+
         if (petiano == null && tutor == null) {
             if (login.equals(master.getCpf())) {
                 petiano = master;
@@ -67,15 +67,14 @@ public class LoginServlet extends HttpServlet {
                 return false;
             }
         }
-        
+
         // petiano ou tutor nao sao nulos
-        
+
         if (petiano != null && petiano.getSenha().equals(senha)) {
             request.getSession(true).setMaxInactiveInterval(600);
             request.getSession().setAttribute("login", petiano);
             return true;
-        }
-        // petiano eh nulo, tutor nao
+        } // petiano eh nulo, tutor nao
         else if (tutor.getSenha().equals(senha)) {
             request.getSession(true).setMaxInactiveInterval(600);
             request.getSession().setAttribute("login", tutor);
@@ -94,8 +93,7 @@ public class LoginServlet extends HttpServlet {
             jsp = "/index.jsp";
             if (!tentarLogar(request)) {
                 request.setAttribute("pagina", "loginErro");
-            }
-            else {
+            } else {
                 request.setAttribute("pagina", "index");
             }
         } else if (request.getRequestURI().endsWith("deslogado")) {

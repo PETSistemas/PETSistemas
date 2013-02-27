@@ -27,7 +27,7 @@
 
                     <p>Link Curriculum Lattes: <input type="text" name="lattes" size="40" disabled="disabled" value="${petianoBusca.linkLattes}"></p>
 
-                    <p>Curso: <select name="curso">
+                    <p>Curso: <select name="curso" disabled="disabled">
 
                             <c:choose>
                                 <c:when test="${petianoBusca.curso==1}">
