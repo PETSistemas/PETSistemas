@@ -95,6 +95,7 @@ public abstract class DAOImplementacao<T, ID extends Serializable> implements DA
         }
     }
 
+    @Override
     public List<T> executarNamedQuerySemParametro(String namedQuery) {
         Query query = criarNamedQuery(namedQuery);
 
@@ -129,6 +130,7 @@ public abstract class DAOImplementacao<T, ID extends Serializable> implements DA
         }
     }
 
+    @Override
     public T executarNamedQuerySimplesSemParametro(String namedQuery) {
         Query query = criarNamedQuery(namedQuery);
 

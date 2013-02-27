@@ -48,6 +48,7 @@ public class PetianoDAOImplementacao extends DAOImplementacao<Petiano, Long> imp
         return petianos;
     }
     
+    @Override
     public List<Petiano> buscarPetianoPelaSituacao(int situacao) {
 
 
