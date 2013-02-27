@@ -7,25 +7,57 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!--<fieldset>
+    <legend>Buscar</legend>
+    <form action="" method="">
+        <p>
+            Buscar: <input id="campo" name="campo" type="search" value="Pesquisar">
+            <input type="submit" value="Buscar">
+        </p>
+    </form>
+</fieldset>-->
 <div>
-    <fieldset>
-        <legend>Publicações</legend>
-        <c:forEach var="publicacao" items="${publicacoes}" varStatus="status">
-            <p>${status.count}</p>
-            <p>Titulo: ${publicacao.titulo}</p>
-            <p>Data Publicação: ${publicacao.dataPublicacao}</p>
-            <p>Tipo: <select name="tipo" disabled="true">
-                    <option value=1 <c:if test="${publicacao.tipo=='1'}">selected</c:if>>Artigo</option>
-                    <option value=2 <c:if test="${publicacao.tipo=='2'}">selected</c:if>>Relatório</option>
-                    <option value=3 <c:if test="${publicacao.tipo=='3'}">selected</c:if>>Técnico</option>
-                    <option value=4 <c:if test="${publicacao.tipo=='4'}">selected</c:if>>Tutorial</option>
-                    <option value=5 <c:if test="${publicacao.tipo=='5'}">selected</c:if>>Manual</option>
-                    <option value=6 <c:if test="${publicacao.tipo=='6'}">selected</c:if>>Outros</option>
-                </select>
-            </p>
-            <br><br>
-        </c:forEach>
-    </fieldset>
-    <p><a href="${pageContext.request.contextPath}/publicacao">Voltar</a></p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Data de Publicação</th>
+                <th>Data de Inclusão</th>
+                <th>Tipo</th>
+                <th>Ações<th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="publicacao" items="${publicacoes}" varStatus="status">
+                <tr>
+                    <td>${publicacao.titulo}</td>
+                    <td>${publicacao.dataPublicacaoString}</td>
+                    <td>${publicacao.dataInclusaoString}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${publicacao.tipo == 1}">
+                                Artigo
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 2}">
+                                Relatório
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 3}">
+                                Técnico
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 4}">
+                                Tutorial
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 5}">
+                                Manual
+                            </c:when>
+                            <c:when test="${publicacao.tipo == 6}">
+                                Outros
+                            </c:when>
+                        </c:choose>
+                    </td>
+                    <td><a href="listarAutores?id=${publicacao.id}">Listar Autores</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </div>
-

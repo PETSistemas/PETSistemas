@@ -177,6 +177,9 @@
                             <c:when test="${pagina eq 'publicacao'}">
                                 <%@ include file="site/publicacao/publicacao.jsp" %>  
                             </c:when>
+                            <c:when test="${pagina eq 'listarAutores'}">
+                                <%@ include file="site/publicacao/listarAutores.jsp" %>  
+                            </c:when>
                             <c:when test="${pagina eq 'novaPublicacao'}">
                                 <%@ include file="site/publicacao/novaPublicacao.jsp" %>  
                             </c:when>
