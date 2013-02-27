@@ -53,16 +53,6 @@
         <url-pattern>/exibirNoticiaTitulo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PublicacaoServlet</servlet-name>
-        <url-pattern>/novaPublicacao</url-pattern>
-        <url-pattern>/buscarPublicacao</url-pattern>
-        <url-pattern>/exibirPublicacaoTitulo</url-pattern>
-        <url-pattern>/salvarPublicacao</url-pattern>
-        <url-pattern>/listarPublicacao</url-pattern>
-        <url-pattern>/publicacao</url-pattern>
-        <url-pattern>/alterarPublicacao</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/salvarDownload</url-pattern>
         <url-pattern>/devolveDownload</url-pattern>
@@ -114,7 +104,7 @@
         <url-pattern>/novoTutor</url-pattern>
         <url-pattern>/excluirTutor</url-pattern>
         <url-pattern>/removerTutor</url-pattern>
-        <url-pattern>/salvarTutor</url-pattern>    
+        <url-pattern>/salvarTutor</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ColaboradorServlet</servlet-name>
@@ -128,7 +118,7 @@
         <url-pattern>/novoColaborador</url-pattern>
         <url-pattern>/excluirColaborador</url-pattern>
         <url-pattern>/removerColaborador</url-pattern>
-        <url-pattern>/salvarColaborador</url-pattern>    
+        <url-pattern>/salvarColaborador</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PetianoServlet</servlet-name>
@@ -149,6 +139,19 @@
         <servlet-name>FacaParteServlet</servlet-name>
         <url-pattern>/facaParte</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicacaoServlet</servlet-name>
+        <url-pattern>/executarRemocaoPublicacao</url-pattern>
+        <url-pattern>/alterarPublicacao</url-pattern>
+        <url-pattern>/removerPublicacao</url-pattern>
+        <url-pattern>/novaPublicacao</url-pattern>
+        <url-pattern>/buscarPublicacao</url-pattern>
+        <url-pattern>/exibirPublicacaoTitulo</url-pattern>
+        <url-pattern>/salvarPublicacao</url-pattern>
+        <url-pattern>/salvarAlteracaoPublicacao</url-pattern>
+        <url-pattern>/listarPublicacao</url-pattern>
+        <url-pattern>/publicacao</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -158,4 +161,3 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
-

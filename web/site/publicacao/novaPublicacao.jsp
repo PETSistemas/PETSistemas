@@ -7,61 +7,85 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div>
-    <form method="POST" action="${pageContext.request.contextPath}/salvarPublicacao">
+    <form class="form-horizontal" method="POST" action="salvarPublicacao">
         <fieldset>
             <legend>Cadastro de Publicação</legend>
 
-            <label for="titulo">Título da Publição: </label>
-            <input type="text" id ="titulo" name="titulo" size="60"><br>
+            <span class="info">Campos Marcados com (*) são obrigatórios</span>
 
-            <label for="resumo">Resumo: </label>
-            <textarea id ="resumo" name="resumo" maxlength="100"></textarea><br>
+            <div class="control-group">
+                <label for="titulo" class="control-label">*Título da Publição: </label>
+                <div class="controls">
+                    <input class="input-xlarge required" type="text" id ="titulo" name="titulo">
+                </div>
+            </div>
 
-            <label for="tipo"> Tipo de publicação: </label>
-            <select id="tipo" name="tipo">
-                <option value="1">Artigo</option>
-                <option value="2">Relatório</option>
-                <option value="3">Técnico</option>
-                <option value="4">Tutorial</option>
-                <option value="5">Manual</option>
-                <option value="6">Outros</option>
-            </select><br>
+            <div class="control-group">
+                <label for="resumo" class="control-label">*Resumo: </label>
+                <div class="controls">
+                    <textarea class="input-xlarge required" id ="resumo" name="resumo" maxlength="100"></textarea>
+                </div>
+            </div>
 
-            <label for="dataPublicacao">Data de Publicação:</label>
-            <input class="data" type="text" id="dataPublicacao" name="dataPublicacao"/><br>
+            <div class="control-group">
+                <label for="tipo" class="control-label">*Tipo de publicação: </label>
+                <div class="controls">
+                    <select class="input-xlarge required" id="tipo" name="tipo">
+                        <option value="1">Artigo</option>
+                        <option value="2">Relatório</option>
+                        <option value="3">Técnico</option>
+                        <option value="4">Tutorial</option>
+                        <option value="5">Manual</option>
+                        <option value="6">Outros</option>
+                    </select>
+                </div>
+            </div>
 
-            <label for="dataInclusao">Data de Inclusão:</label>
-            <input class="data" type="text" id="dataInclusao" name="dataInclusao"/><br>
+            <div class="control-group">
+                <label for="dataPublicacao" class="control-label">Data de Publicação:</label>
+                <div class="controls">
+                    <input class="input-xlarge date" type="text" id="dataPublicacao" name="dataPublicacao"/>
+                </div>
+            </div>
 
-            <label for="anexo">Anexo: </label>
-            <input type="file" id="anexo" name="anexo" size="25"><br>
-
-            <label>Autor: </label>
-            <div class="lista_dupla">
-                <div>
-                    <label for="lista_pessoas">Pessoas</label>
-                    <select class="lista_dupla_box" id="lista_pessoas" multiple="multiple">
+            <div class="control-group">
+                <label for="dataInclusao" class="control-label">*Data de Inclusão:</label>
+                <div class="controls">
+                    <input class="input-xlarge date required" type="text" id="dataInclusao" name="dataInclusao"/>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="lista_pessoas">Pessoas:</label>
+                <div class="controls">
+                    <select class="input-xlarge" id="lista_pessoas" multiple="multiple">
                         <c:forEach var="pessoa" begin="0" items="${requestScope.pessoas}">
                             <option value="${pessoa.id}">${pessoa.nome}</option>
                         </c:forEach>
+                    </select>    
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn span1" type="button" id="inserir">&downarrow;</button>
+                    <button class="btn span1" type="button" id="remover">&uparrow;</button> 
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="pessoas_selecionadas">*Autor(es):</label>
+                <div class="controls">
+                    <select class="input-xlarge required" id="pessoas_selecionadas" name="pessoas_selecionadas" multiple="multiple">
                     </select>
                 </div>
+            </div>
 
-                <div class="lista_dupla_buttons">
-                    <button type="button" id="inserir">&rightarrow;</button>
-                    <button type="button" id="remover">&leftarrow;</button>
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-primary" type="submit" value="Salvar" id="salvar"/>
                 </div>
-
-                <div>
-                    <label for="pessoas_selecionadas">Pessoas Selecionadas</label>
-                    <select class="lista_dupla_box" id="pessoas_selecionadas" name="pessoas_selecionadas" multiple="multiple">
-
-                    </select>
-                </div>
-            </div><br>
-
-            <input type="submit" value="Salvar">
-            <input type="reset" value="Limpar">
+            </div>
         </fieldset>
     </form>
     <p><a href="${pageContext.request.contextPath}/publicacao">Voltar</a></p>

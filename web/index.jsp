@@ -201,21 +201,12 @@
                             <c:when test="${pagina eq 'salvarPublicacao'}">
                                 <%@ include file="site/publicacao/salvarPublicacao.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina eq 'buscarPublicacao'}">
-                                <%@ include file="site/publicacao/buscarPublicacao.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'exibirPublicacaoTitulo'}">
-                                <%@ include file="site/publicacao/exibirPublicacaoTitulo.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'listarPublicacao'}">
-                                <%@ include file="site/publicacao/publicacaoADM.jsp" %>  
-                            </c:when>
                             <c:when test="${pagina eq 'alterarPublicacao'}">
                                 <%@ include file="site/publicacao/alterarPublicacao.jsp" %>  
                             </c:when>
-                            <%--<c:when test="${pagina eq 'excluirPublicacao'}">
-                                <%@ include file="site/publicacao/excluirPublicacao.jsp" %>  
-                            </c:when>--%>
+                            <c:when test="${pagina eq 'removerPublicacao'}">
+                                <%@ include file="site/publicacao/removerPublicacao.jsp" %>  
+                            </c:when>
 
                             <%-- ********************************************************************** --%>
                             <%-- DOWNLOAD --%>

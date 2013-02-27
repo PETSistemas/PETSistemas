@@ -5,6 +5,7 @@
 package br.ufms.facom.petsistemas.controller.publicacao;
 
 import br.ufms.facom.petsistemas.controller.Utilitarios;
+import br.ufms.facom.petsistemas.model.dao.pessoa.PessoaDAO;
 import br.ufms.facom.petsistemas.model.dao.pessoa.PessoaDAOImplementacao;
 import br.ufms.facom.petsistemas.model.dao.publicacao.PublicacaoDAO;
 import br.ufms.facom.petsistemas.model.dao.publicacao.PublicacaoDAOImplementacao;
@@ -28,6 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 public class PublicacaoServlet extends HttpServlet
 {
 
+    PessoaDAO pessoaControladorBD;
+
     PublicacaoDAO controladorBD;
 
     /**
@@ -39,6 +42,7 @@ public class PublicacaoServlet extends HttpServlet
     public void init() throws ServletException
     {
         controladorBD = new PublicacaoDAOImplementacao();
+        pessoaControladorBD = new PessoaDAOImplementacao();
     }
 
     /**
@@ -86,7 +90,6 @@ public class PublicacaoServlet extends HttpServlet
         Publicacao publicacao = new Publicacao(titulo, resumo, tipo, dataPublicacao, dataInclusao);
         publicacao.setPessoas(pessoas);
         controladorBD.inserir(publicacao);
-        request.setAttribute("mensagem", "Publicação cadastrada com sucesso!");
     }
 
     /**
@@ -113,23 +116,35 @@ public class PublicacaoServlet extends HttpServlet
      */
     private void buscarPublicacaoId(HttpServletRequest request)
     {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Publicacao publicacao = controladorBD.retrieve(id);
+        String idString = request.getParameter("id");
+        Long id = null;
+        if (idString != null)
+        {
+            id = Long.parseLong(idString);
+        }
 
-        request.setAttribute("publicacao", publicacao);
-        request.setAttribute("id", publicacao.getId());
-        request.setAttribute("titulo", publicacao.getTitulo());
-        request.setAttribute("resumo", publicacao.getResumo());
-        request.setAttribute("tipo", publicacao.getTipo());
-        request.setAttribute("dataPublicacao", Utilitarios.dataParaString(publicacao.getDataPublicacao()));
-        request.setAttribute("dataInclusao", Utilitarios.dataParaString(publicacao.getDataInclusao()));
+        Publicacao publicacao = null;
+        if (id != null)
+        {
+            publicacao = controladorBD.retrieve(id);
+        }
 
+        if (publicacao != null)
+        {
+            request.setAttribute("publicacao", publicacao);
+
+            List<Pessoa> pessoas = pessoaControladorBD.listarPessoas();
+            pessoas.removeAll(publicacao.getPessoas());
+            request.setAttribute("lista_pessoas", pessoas);
+
+            request.setAttribute("pessoas_selecionadas", publicacao.getPessoas());
+        }
     }
 
     /**
      * Método responsável por salvar as alterações que a publicação teve
-     * 
-     * @param request 
+     *
+     * @param request
      */
     private void salvarAlteracaoPublicacao(HttpServletRequest request)
     {
@@ -141,10 +156,55 @@ public class PublicacaoServlet extends HttpServlet
         Date dataInclusao = Utilitarios.stringParaData(request.getParameter("dataInclusao"));
         String[] pessoas_selecionadas = request.getParameterValues("pessoas_selecionadas");
         Long[] ids = new Long[pessoas_selecionadas.length];
-        for (int i = 0; i < pessoas_selecionadas.length; i++) {
+        for (int i = 0; i < pessoas_selecionadas.length; i++)
+        {
             ids[i] = Long.valueOf(pessoas_selecionadas[i]);
         }
         List<Pessoa> pessoas = (new PessoaDAOImplementacao()).buscaPessoas(ids);
+
+        Publicacao publicacao = controladorBD.retrieve(id);
+
+        if (titulo != null)
+        {
+            publicacao.setTitulo(titulo);
+        }
+
+        if (resumo != null)
+        {
+            publicacao.setResumo(resumo);
+        }
+
+        if (dataInclusao != null)
+        {
+            publicacao.setDataInclusao(dataInclusao);
+        }
+
+        publicacao.setDataPublicacao(dataPublicacao);
+        publicacao.setTipo(tipo);
+        publicacao.setPessoas(pessoas);
+
+        controladorBD.atualizar(publicacao);
+    }
+
+    /**
+     * Método responsável por remover a publicação
+     *
+     * @param request
+     */
+    private void executarRemocaoPublicacao(HttpServletRequest request)
+    {
+        String idString = request.getParameter("id");
+        if (idString != null)
+        {
+            Long id = Long.parseLong(idString);
+
+            Publicacao publicacao = controladorBD.retrieve(id);
+
+            if (publicacao != null)
+            {
+                controladorBD.deletar(publicacao);
+            }
+        }
     }
 
     /**
@@ -160,61 +220,66 @@ public class PublicacaoServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
+        String pagina = "publicacao";
         String jsp = "/index.jsp";
 
-        //redirect for the correct method in accordance with to received uri:
-        if (request.getRequestURI().endsWith("/publicacao"))
+        /* Verfica se está feito login */
+        if (Utilitarios.sessaoEstaAtiva(request, "login"))
         {
-            listarPublicacoes(request);
-            request.setAttribute("pagina", "publicacao");
-        }
-        else if (request.getRequestURI().endsWith("/novaPublicacao"))
-        {
-            novaPublicacao(request);
-            request.setAttribute("pagina", "novaPublicacao");
-        }
-        else if (request.getRequestURI().endsWith("/salvarPublicacao"))
-        {
-            salvarPublicacao(request);
-            request.setAttribute("pagina", "salvarPublicacao");
-        }
-        else if (request.getRequestURI().endsWith("/buscarPublicacao"))
-        {
-            request.setAttribute("pagina", "buscarPublicacao");
-        }
-        else if (request.getRequestURI().endsWith("/exibirPublicacaoTitulo"))
-        {
-            buscarPublicacaoTitulo(request);
-            request.setAttribute("pagina", "exibirPublicacaoTitulo");
-        }
-        else if (request.getRequestURI().endsWith("/listarPublicacao"))
-        {
-            listarPublicacoes(request);
-            request.setAttribute("pagina", "listarPublicacao");
-        }
-        else if (request.getRequestURI().endsWith("/alterarPublicacao"))
-        {
-            buscarPublicacaoId(request);
-            request.setAttribute("pagina", "alterarPublicacao");
-        }
-        else if (request.getRequestURI().endsWith("/salvarAlteracaoPublicacao"))
-        {
-            request.setAttribute("pagina", "salvarAlteracaoPublicacao");
+            /* Acesso Administrativo */
+            if (request.getRequestURI().endsWith("/novaPublicacao"))
+            {
+                novaPublicacao(request);
+                Utilitarios.iniciarSinal(request);
+                pagina = "novaPublicacao";
+            }
+            else if (request.getRequestURI().endsWith("/salvarPublicacao"))
+            {
+                if (Utilitarios.sinalOK(request))
+                {
+                    salvarPublicacao(request);
+                    Utilitarios.apagarSinal(request);
+                }
+                listarPublicacoes(request);
+            }
+            else if (request.getRequestURI().endsWith("/alterarPublicacao"))
+            {
+                buscarPublicacaoId(request);
+                pagina = "alterarPublicacao";
+            }
+            else if (request.getRequestURI().endsWith("/salvarAlteracaoPublicacao"))
+            {
+                salvarAlteracaoPublicacao(request);
+                listarPublicacoes(request);
+            }
+            else if (request.getRequestURI().endsWith("removerPublicacao"))
+            {
+                buscarPublicacaoId(request);
+                pagina = "removerPublicacao";
+            }
+            else if (request.getRequestURI().endsWith("executarRemocaoPublicacao"))
+            {
+                executarRemocaoPublicacao(request);
+                listarPublicacoes(request);
+            }
+            else
+            {
+                listarPublicacoes(request);
+            }
         }
         else
         {
-            request.setAttribute("pagina", "publicacao");
+            if (request.getRequestURI().endsWith("listarPublicacao"))
+            {
+                listarPublicacoes(request);
+                pagina = "listarPublicacao";
+            }
         }
 
-        if (jsp == null)
-        {
-            response.sendRedirect(request.getContextPath() + "/index");
-        }
-        else if (!"empty".equals(jsp))
-        {
-            request.getRequestDispatcher(jsp).forward(request, response);
-        }
+        request.setAttribute("pagina", pagina);
+        request.getRequestDispatcher(jsp).forward(request, response);
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
