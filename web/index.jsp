@@ -267,9 +267,11 @@
                             </c:when>
                         </c:choose>
                     </c:if>
-                    <div class="logoMeio">
-                        <img alt="Logo PET Sistemas" src="imagens/pet.png"/>
-                    </div>
+                            <c:if test="${empty pagina or pagina eq 'index'}">
+                        <div class="logoMeio">
+                            <img alt="Logo PET Sistemas" src="imagens/pet.png"/>
+                        </div>
+                    </c:if>
                 </div>
                 <div class="span2 downloads">
                     <div class="down">
