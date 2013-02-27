@@ -38,7 +38,14 @@
                         </div>
                     </div>
 
-                     <div class="control-group">
+                    <div class="control-group">
+                        <label for="email" class="control-label">*Email :</label>
+                        <div class="controls">
+                            <input class="input-xlarge email required" type="text" id="email" name="email" size="40" value="${colaboradorBusca.email}"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <label for="lattes" class="control-label">*Link do Lattes :</label>
                         <div class="controls">
                             <input class="input-xlarge required" type="text" id="lattes" name="lattes" size="40" value="${colaboradorBusca.linkLattes}"/>
@@ -58,7 +65,7 @@
                                         <option value=1  >Ativo</option>
                                         <option value=2 selected>Desativo</option>
                                     </c:when>
-                                  </c:choose>
+                                </c:choose>
                             </select>
                         </div>
                     </div>
