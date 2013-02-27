@@ -198,8 +198,8 @@
                             <c:when test="${pagina eq 'novaPublicacao'}">
                                 <%@ include file="site/publicacao/novaPublicacao.jsp" %>  
                             </c:when>
-                            <c:when test="${pagina eq 'salvarPublicacao'}">
-                                <%@ include file="site/publicacao/salvarPublicacao.jsp" %>  
+                            <c:when test="${pagina eq 'listarPublicacao'}">
+                                <%@ include file="site/publicacao/listarPublicacao.jsp" %>  
                             </c:when>
                             <c:when test="${pagina eq 'alterarPublicacao'}">
                                 <%@ include file="site/publicacao/alterarPublicacao.jsp" %>  
