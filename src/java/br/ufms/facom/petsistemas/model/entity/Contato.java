@@ -22,8 +22,8 @@ public class Contato {
             email.setMsg(mensagem);
             email.setSubject("Contato");
 
-            email.setSSL(true);
-            email.setTLS(true); // utiliza TLS na encriptação    
+            email.setSSLOnConnect(true);
+            email.setStartTLSEnabled(true); // utiliza TLS na encriptação    
             email.setSmtpPort(465);
             email.setAuthentication(userName, userPassword);
 

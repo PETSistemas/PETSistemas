@@ -40,7 +40,7 @@ public class Arquivo implements Serializable
     private Long id;
 
     @Lob
-    @Column(name = "anexo", updatable = true, nullable = false, columnDefinition="mediumblob" )
+    @Column(name = "anexo", updatable = true, nullable = false )
     private byte[] anexo;
 
     @Column(name = "dataCriacao", updatable = false, nullable = false)

@@ -44,5 +44,4 @@ public class PessoaDAOImplementacao extends DAOImplementacao<Pessoa, Long> imple
         }
         return null;
     }
-    
 }

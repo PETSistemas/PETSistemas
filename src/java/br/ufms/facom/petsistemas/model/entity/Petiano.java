@@ -42,7 +42,7 @@ public class Petiano extends Pessoa implements Serializable {
     private String nomeMae;
     @Column(name = "rg", updatable = false, nullable = false, length = 30)
     private String rg;
-    @Column(name = "senha", updatable = false, nullable = false, length = 30)
+    @Column(name = "senha", updatable = false, nullable = false, length = 64)
     private String senha;
     @Column(name = "dataEntrada", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)

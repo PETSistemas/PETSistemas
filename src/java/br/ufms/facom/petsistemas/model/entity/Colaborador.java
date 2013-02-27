@@ -29,7 +29,7 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "Colaborador.buscarColaboradorPeloNome", query = "SELECT p FROM Colaborador AS p WHERE p.nome like :nome ORDER BY p.nome"),
     @NamedQuery(name = "Colaborador.buscarColaboradorPeloCPF", query = "SELECT p FROM Colaborador AS p WHERE p.cpf = :cpf ORDER BY p.nome"),
     @NamedQuery(name = "Colaborador.buscarColaboradorAtivo", query = "SELECT p FROM Colaborador AS p WHERE p.situacao = 1"),
-    @NamedQuery(name = "Colaborador.buscarColaboradorDesativo", query = "SELECT p FROM Colaborador AS p WHERE p.situacao = 0")
+    @NamedQuery(name = "Colaborador.buscarColaboradorDesativo", query = "SELECT p FROM Colaborador AS p WHERE p.situacao = 2")
 })
 public class Colaborador extends Pessoa implements Serializable {
 

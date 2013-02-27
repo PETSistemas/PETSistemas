@@ -102,10 +102,13 @@ public class TutorServlet extends HttpServlet {
         tutor.setNome(nome);
         tutor.setDataEntrada(dataEntrada);
         tutor.setDataNascimento(dataNascimento);
+        
         tutor.setDataSaida(dataSaida);
         tutor.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
         if (dataSaida != null) {
             tutor.setDataSaidaFormatada(Utilitarios.dataParaString(dataSaida));
+        } else {
+            tutor.setDataSaidaFormatada("");
         }
         tutor.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
 
@@ -113,7 +116,6 @@ public class TutorServlet extends HttpServlet {
         tutor.setEmail(email);
         tutor.setLinkLattes(lattes);
 
-        (new TutorDAOImplementacao()).atualizar(tutor);
         controladorBD.atualizar(tutor);
 
         request.setAttribute("mensagem", "Tutor " + nome + " cadastrado com sucesso!");

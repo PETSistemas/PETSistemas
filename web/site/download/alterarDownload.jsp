@@ -58,7 +58,7 @@
 
                 </c:choose>
                         
-                      <br/>   <label>Arquivo: </label><input type="file" name="anexo"/><br/>
+                      <br/>   <label>Arquivo: </label><input type="file" name="anexo" accept = "image/*, text/*, video/*"/><br/>
                 <p><input type="submit" value="Atualizar"></p>
         </fieldset>
     </form>
