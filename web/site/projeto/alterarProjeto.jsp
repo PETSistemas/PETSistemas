@@ -3,7 +3,7 @@
     Created on : Jan 29, 2013, 11:24:48 PM
     Author     : daivid
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:if test="${projeto != null}">
@@ -13,7 +13,7 @@
             <legend>Alterar Projeto</legend>
 
 
-            <span class="info">Campos Marcados com (*) s„o obrigatÛrios</span>
+            <span class="info">Campos Marcados com (*) s√£o obrigat√≥rios</span>
 
             <div class="control-group">
                 <label for="nome" class="control-label">*Nome do Projeto:</label>
@@ -34,7 +34,7 @@
                         </label>
 
                         <label class="checkbox">
-                            <input type="checkbox" name="tipo" id="tipo" value="4" <c:if test="${extensao == true}">checked="checked"</c:if>/>Extens„o
+                            <input type="checkbox" name="tipo" id="tipo" value="4" <c:if test="${extensao == true}">checked="checked"</c:if>/>Extens√£o
                         </label>
                     </div>
                 </div>
@@ -47,14 +47,14 @@
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label" for="data_inicio">*Data de InÌcio:</label>
+                    <label class="control-label" for="data_inicio">*Data de In√≠cio:</label>
                     <div class="controls">
                         <input type="text" class="date required input-xlarge" id="data_inicio" name="data_inicio" value="${projeto.dataInicioString}"/>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="data_termino">Data de TÈrmino:</label>
+                <label class="control-label" for="data_termino">Data de T√©rmino:</label>
                 <div class="controls">
                     <input type="text" class="date input-xlarge" id="data_termino" name="data_termino" value="${projeto.dataTerminoString}"/>
                 </div>

@@ -4,6 +4,7 @@
  */
 package br.ufms.facom.petsistemas.model.entity;
 
+import br.ufms.facom.petsistemas.controller.Utilitarios;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,6 +91,14 @@ public class Publicacao implements Serializable
         this.pessoas = new ArrayList<Pessoa>();
     }
 
+    public String getDataPublicacaoString(){
+        return dataPublicacao != null ? Utilitarios.dataParaString(dataPublicacao) : "";
+    }
+    
+    public String getDataInclusaoString(){
+        return dataInclusao != null ? Utilitarios.dataParaString(dataInclusao) : "";
+    }
+    
     public Long getId()
     {
         return id;

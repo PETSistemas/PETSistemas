@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
  * Classe abstrata que representa a Entidade Pessoa. Seus atributos irão ser
  * criados nas Entidades Filhas.
  *
- * @author Rodrigo Kuninari
+ * @author Rebecca Alves
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

@@ -14,6 +14,7 @@ import br.ufms.facom.petsistemas.model.entity.Projeto;
 import br.ufms.facom.petsistemas.controller.Utilitarios;
 import br.ufms.facom.petsistemas.model.dao.pessoa.PessoaDAO;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,8 +51,10 @@ public class ProjetoServlet extends HttpServlet {
      * @param request
      */
     public void listarProjetos(HttpServletRequest request) {
-        List<Projeto> projetos = projetoControladorBD.listarTodosProjetos();
-        request.setAttribute("projetos", projetos);
+        List<Projeto> projetosAtivos = projetoControladorBD.listarProjetosAtivos();
+        List<Projeto> projetosConcluidos = projetoControladorBD.listarProjetosConcluidos();
+        request.setAttribute("projetosAtivos", projetosAtivos);
+        request.setAttribute("projetosConcluidos", projetosConcluidos);
     }
 
     /**
@@ -108,7 +111,7 @@ public class ProjetoServlet extends HttpServlet {
      *
      * @param request
      */
-    public void salvarAlteracao(HttpServletRequest request) {
+    public void salvarAlteracao(HttpServletRequest request) throws UnsupportedEncodingException {
         String nome = request.getParameter("nome");
         String[] tipos = request.getParameterValues("tipo");
         int tipo = 0;
@@ -227,7 +230,8 @@ public class ProjetoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=UTF-8");
 
         String uri = request.getRequestURI();
         String pagina = "projeto";

@@ -13,7 +13,7 @@ import java.util.List;
  * básicas que a Entidade Petiano irá realizar no Banco de Dados. Operacoes do
  * CRUD.
  *
- * @author Rodrigo Kuninari
+ * @author Rebecca Alves
  */
 public interface PetianoDAO extends DAO<Petiano, Long> {
 

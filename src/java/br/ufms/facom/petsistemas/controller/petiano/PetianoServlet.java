@@ -7,7 +7,10 @@ package br.ufms.facom.petsistemas.controller.petiano;
 import br.ufms.facom.petsistemas.controller.Utilitarios;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAO;
 import br.ufms.facom.petsistemas.model.dao.petiano.PetianoDAOImplementacao;
+import br.ufms.facom.petsistemas.model.dao.tutor.TutorDAO;
+import br.ufms.facom.petsistemas.model.dao.tutor.TutorDAOImplementacao;
 import br.ufms.facom.petsistemas.model.entity.Petiano;
+import br.ufms.facom.petsistemas.model.entity.Tutor;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PetianoServlet extends HttpServlet {
 
     PetianoDAO controladorBD;
+    TutorDAO controladorTutorBD;
 
     /**
      * Método executado na inicialização da Classe
@@ -57,13 +61,15 @@ public class PetianoServlet extends HttpServlet {
         String nomeMae = request.getParameter("mae");
         String rg = request.getParameter("rg");
         String cpf = request.getParameter("cpf");
-        String senha = request.getParameter("senha");
+        String senha = Utilitarios.encripta(request.getParameter("senha"));
         String endereco = request.getParameter("endereco");
         String dataEnt = request.getParameter("dataEntrada");
         String dataSai = request.getParameter("dataSaida");
 
-
-        if (nome.equals("") || nome == null) {
+        if (!Utilitarios.isCPF(cpf)) {
+            request.setAttribute("mensagemErroPetiano", "O número: " + cpf +" não é um CPF válido!");
+            return false;
+        } else if (nome.equals("") || nome == null) {
             request.setAttribute("mensagemErroPetiano", "O Campo Nome é Obrigatógio!");
             return false;
         } else if (dataNasc.equals("") || dataNasc == null) {
@@ -95,8 +101,13 @@ public class PetianoServlet extends HttpServlet {
             return false;
         } else {
             buscarPetianoCPF(request);
+            controladorTutorBD = new TutorDAOImplementacao();
+            Tutor tutor = controladorTutorBD.buscarTutorPeloCPF(cpf);
             if (request.getAttribute("petianoBusca") != null) {
                 request.setAttribute("mensagemErroPetiano", "Já existe um petiano com este CPF!");
+                return false;
+            } else if (tutor != null) {
+                request.setAttribute("mensagemErroPetiano", "Já existe um tutor com este CPF!");
                 return false;
             } else {
                 Date dataNascimento = Utilitarios.stringParaData(dataNasc);
@@ -116,7 +127,7 @@ public class PetianoServlet extends HttpServlet {
 
         Date dataSaida = null;
 
-        if (dataSai.equals("")) {
+        if (!dataSai.equals("")) {
             dataSaida = Utilitarios.stringParaData(dataSai);
         }
 
@@ -186,7 +197,7 @@ public class PetianoServlet extends HttpServlet {
 
         Date dataSaida = null;
 
-        if (dataSai != null) {
+        if (!dataSai.equals("")) {
             dataSaida = Utilitarios.stringParaData(dataSai);
         }
 
@@ -199,7 +210,9 @@ public class PetianoServlet extends HttpServlet {
         petiano.setDataSaida(dataSaida);
         petiano.setDataEntradaFormatada(Utilitarios.dataParaString(dataEntrada));
         if (dataSaida != null) {
-            petiano.setDataSaidaFormatada(Utilitarios.dataParaString(dataSaida));
+            petiano.setDataSaidaFormatada(dataSai);
+        } else {
+            petiano.setDataSaidaFormatada("");
         }
         petiano.setDataNascimentoFormatada(Utilitarios.dataParaString(dataNascimento));
 
@@ -212,7 +225,6 @@ public class PetianoServlet extends HttpServlet {
         petiano.setEmail(email);
         petiano.setLinkLattes(lattes);
 
-        (new PetianoDAOImplementacao()).atualizar(petiano);
         controladorBD.atualizar(petiano);
 
         request.setAttribute("mensagem", "Petiano " + nome + " cadastrado com sucesso!");
@@ -271,6 +283,7 @@ public class PetianoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         String pagina = "petiano";
 

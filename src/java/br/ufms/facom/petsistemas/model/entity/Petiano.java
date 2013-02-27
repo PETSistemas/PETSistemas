@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * Classe que representa a Entidade Petiano. Herda atributos e métodos da Classe
  * Pessoa.
  *
- * @author Rodrigo Kuninari
+ * @author Rebecca Alves
  */
 @Entity
 @DiscriminatorValue("P")
@@ -42,14 +42,14 @@ public class Petiano extends Pessoa implements Serializable {
     private String nomeMae;
     @Column(name = "rg", updatable = false, nullable = false, length = 30)
     private String rg;
-    @Column(name = "senha", updatable = false, nullable = false, length = 30)
+    @Column(name = "senha", updatable = false, nullable = false, length = 64)
     private String senha;
     @Column(name = "dataEntrada", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataEntrada;
     @Column(name = "dataEntradaFormatada", updatable = true, nullable = false)
     private String dataEntradaFormatada;
-    @Column(name = "dataSaida", updatable = false, nullable = true)
+    @Column(name = "dataSaida", updatable = true, nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSaida;
     @Column(name = "dataSaidaFormatada", updatable = true, nullable = true)

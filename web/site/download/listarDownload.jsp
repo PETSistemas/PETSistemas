@@ -8,25 +8,35 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-        <div>
-        <h4>Apostilas</h4>
+<div>
+    <fieldset>
+        <legend>Apostilas </legend>
         <c:forEach var="download" items="${apostila}" >
             <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
-            </c:forEach>
-        <h4>Material de Cursos</h4>
-        <c:forEach var="download" items="${material}" >
-            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
-            </c:forEach>
-        <h4>Documentos</h4>
-        <c:forEach var="download" items="${documento}" >
-            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
-            </c:forEach>
-        <h4>Seminários</h4>
-        <c:forEach var="download" items="${seminario}" >
-            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
-            </c:forEach>
-        <h4>Diversos</h4>
-        <c:forEach var="download" items="${diverso}" >
-            <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
-            </c:forEach>
-        </div>
+        </c:forEach>
+    </fieldset>
+    <fieldset>
+        <legend>Material de Cursos </legend>
+    <c:forEach var="download" items="${material}" >
+        <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+    </c:forEach>
+    </fieldset>
+    <fieldset>
+        <legend>Documentos </legend>
+    <c:forEach var="download" items="${documento}" >
+        <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+    </c:forEach>
+   </fieldset>
+    <fieldset>
+        <legend>Seminários </legend>
+    <c:forEach var="download" items="${seminario}" >
+        <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+    </c:forEach>
+   </fieldset>
+    <fieldset>
+        <legend>Diversos </legend>
+    <c:forEach var="download" items="${diverso}" >
+        <p><a href="${pageContext.request.contextPath}/devolveDownload?titulo=${download.titulo}" >${download.titulo}</a></p>
+    </c:forEach>
+    </fieldset>
+</div>
