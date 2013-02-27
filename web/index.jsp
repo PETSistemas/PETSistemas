@@ -43,15 +43,11 @@
                             <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></li>
                             <li class="divider"></li>
-                            <li><a href="${pageContext.request.contextPath}/noticia">Noticias</a></li>
-                            <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></li>
                             <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
                             <li class="divider"></li>
                             <li><a href="${pageContext.request.contextPath}/facaParte">Faça Parte do PET</a></li>
-                            <li class="divider"></li>
-                            <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
                         </ul>
                     </div>
                 </div>
@@ -114,24 +110,6 @@
                             </c:when>
                             <c:when test="${pagina=='colaborador'}">
                                 <%@ include file="site/colaborador/colaborador.jsp" %>  
-                            </c:when>
-                            <%-- ********************************************************************** --%>
-                            <%-- NOTICIA --%>
-
-                            <c:when test="${pagina eq 'noticia'}">
-                                <%@ include file="site/noticia/noticia.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'novaNoticia'}">
-                                <%@ include file="site/noticia/novaNoticia.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'salvarNoticia'}">
-                                <%@ include file="site/noticia/salvarNoticia.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'buscarNoticia'}">
-                                <%@ include file="site/noticia/buscarNoticia.jsp" %>  
-                            </c:when>
-                            <c:when test="${pagina eq 'exibirNoticiaTitulo'}">
-                                <%@ include file="site/noticia/exibirNoticiaTitulo.jsp" %>  
                             </c:when>
 
                             <%-- ********************************************************************** --%>                        
@@ -233,13 +211,6 @@
 
                             <c:when test="${pagina eq 'facaParte'}">
                                 <%@ include file="site/facaParte/facaParte.jsp" %>  
-                            </c:when>
-
-                            <%-- ********************************************************************** --%>
-                            <%-- CONTATO --%>
-
-                            <c:when test="${pagina eq 'contato'}">
-                                <%@ include file="site/contato/contato.jsp" %>  
                             </c:when>
                         </c:choose>
                     </c:if>
