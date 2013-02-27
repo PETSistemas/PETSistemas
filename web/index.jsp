@@ -27,54 +27,36 @@
         <div class = "container-fluid corpo" >
             <div class="hero-unit cabecalho">
                 <h1>PET Sistemas</h1>
-                <div class="span1 login">
-                    <c:choose>
-                        <c:when test="${empty login}">
-                            <a class="btn loginbotao" href="login">Login <i class="icon-lock"></i> </a>
-                        </c:when>
-                        <c:otherwise>
-                            <p class="sair">Olá ${login.nome}!   <a href="deslogado" class="btn btn-danger">Sair</a></p>
-                        </c:otherwise>
-                    </c:choose>                
-                </div>
             </div>
 
-            <div class = "span3 menu">
-                <div class="well sidebar-nive">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Opções</li>
-                        <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
-                        <li class="divider"></li>
-                        <li class="nav-header">Pessoa</li>
-                        <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
-                        <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
-                        <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/noticia">Noticias</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/facaParte">Faça Parte do PET</a></li>
-                        <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
-                    </ul>
-                </div>
-                <div class="linksuteis">  
+            <div class="container-fluid corpo">
+                <div class = "span3 menu">
                     <div class="well sidebar-nive">
                         <ul class="nav nav-list">
-                            <li class="nav-header">Links Uteis:</li>
-                            <a href='http://www.ufms.br' ><img src = 'imagens/logo-ufms.png'/>  </a></br></br>
-                            <a href='http://www.facom.ufms.br' ><img src = 'imagens/logo-facom.png'/></a><br/
-                        </ul>    
+                            <li class="nav-header">Opções</li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/index">Página Inicial</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-header">Pessoa</li>
+                            <li><a href="${pageContext.request.contextPath}/tutor">Tutor</a></li>
+                            <li><a href="${pageContext.request.contextPath}/petiano">Petiano</a></li>
+                            <li><a href="${pageContext.request.contextPath}/colaborador">Colaborador</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/nossaHistoria">Nossa História</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/noticia">Noticias</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/publicacao">Publicação</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/projeto">Projetos</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/facaParte">Faça Parte do PET</a></li>
+                            <li class="divider"></li>
+                            <li><a href="${pageContext.request.contextPath}/contato">Fale Conosco</a></li>
+                        </ul>
                     </div>
                 </div>
-            </div>          
-            <div class="row meio">
-                <div class= "span10 meio2">
+
+                <div class="span10 well meio">
                     <c:if test="${not empty pagina}">
                         <c:choose>
 
@@ -258,23 +240,36 @@
                             </c:when>
                         </c:choose>
                     </c:if>
-                            <c:if test="${empty pagina or pagina eq 'index'}">
+                    <c:if test="${empty pagina or pagina eq 'index'}">
                         <div class="logoMeio">
                             <img alt="Logo PET Sistemas" src="imagens/pet.png"/>
                         </div>
-                    </c:if>
+                    </c:if>  
                 </div>
-                <div class="span2 downloads">
-                    <div class="down">
+
+
+                <div class="span3 meio2">
+                    <div class="well login">
+                        <%@ include file="site/login/login.jsp" %>                
+                    </div>
+                    <div class="well sidebar-nive">
+                        <ul class="nav nav-list">
+                            <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
+                        </ul>
+                    </div>
+                    <div class="linksuteis">  
                         <div class="well sidebar-nive">
                             <ul class="nav nav-list">
-                                <li><a href="${pageContext.request.contextPath}/download">Downloads</a></li>
-                            </ul>
+                                <li class="nav-header">Links Uteis:</li>
+                                <a href='http://www.ufms.br' ><img src = 'imagens/logo-ufms.png'/>  </a></br></br>
+                                <a href='http://www.facom.ufms.br' ><img src = 'imagens/logo-facom.png'/></a><br/
+                            </ul>    
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>    
+
+            </div>    
+        </div>  
     </body>
 </html>
 
