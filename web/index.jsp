@@ -24,12 +24,12 @@
         <script type="text/javascript" src="resources/js/todos.js"></script>
     </head>
     <body>
-        <div class = "container-fluid corpo" >
+        <div class = "container-fluid corpo">
             <div class="hero-unit cabecalho">
                 <h1>PET Sistemas</h1>
             </div>
 
-            <div class="container-fluid corpo">
+            <div class="row corpo">
                 <div class = "span3 menu">
                     <div class="well sidebar-nive">
                         <ul class="nav nav-list">
