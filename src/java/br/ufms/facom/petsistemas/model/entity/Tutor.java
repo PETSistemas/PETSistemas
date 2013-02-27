@@ -35,7 +35,7 @@ public class Tutor extends Pessoa implements Serializable {
 
     @Column(name = "rg", updatable = false, nullable = false, length = 30)
     private String rg;
-    @Column(name = "senha", updatable = false, nullable = false, length = 30)
+   @Column(name = "senha", updatable = false, nullable = false, length = 64)
     private String senha;
     @Column(name = "dataEntrada", updatable = false, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -45,7 +45,7 @@ public class Tutor extends Pessoa implements Serializable {
     @Column(name = "dataSaida", updatable = false, nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataSaida;
-    @Column(name = "dataSaidaFormatada", updatable = true, nullable = false)
+    @Column(name = "dataSaidaFormatada", updatable = true, nullable = true)
     private String dataSaidaFormatada;
     @OneToMany(mappedBy = "tutor")
     private List<Noticia> noticias;
