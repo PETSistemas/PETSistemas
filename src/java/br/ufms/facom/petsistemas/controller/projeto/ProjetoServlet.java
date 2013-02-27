@@ -14,6 +14,7 @@ import br.ufms.facom.petsistemas.model.entity.Projeto;
 import br.ufms.facom.petsistemas.controller.Utilitarios;
 import br.ufms.facom.petsistemas.model.dao.pessoa.PessoaDAO;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,11 @@ public class ProjetoServlet extends HttpServlet {
     ProjetoDAO projetoControladorBD;
     PessoaDAO pessoaControladorBD;
 
+    /**
+     * Inicia os controladores de banco de dados de Pessoa e Projeto
+     *
+     * @throws ServletException
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -38,16 +44,40 @@ public class ProjetoServlet extends HttpServlet {
         pessoaControladorBD = new PessoaDAOImplementacao();
     }
 
+    /**
+     * Dado o HttpServletRequest request, carrega a lista de todos os projetos
+     * no atributo projetos
+     *
+     * @param request
+     */
     public void listarProjetos(HttpServletRequest request) {
-        List<Projeto> projetos = projetoControladorBD.listarTodosProjetos();
-        request.setAttribute("projetos", projetos);
+        List<Projeto> projetosAtivos = projetoControladorBD.listarProjetosAtivos();
+        List<Projeto> projetosConcluidos = projetoControladorBD.listarProjetosConcluidos();
+        request.setAttribute("projetosAtivos", projetosAtivos);
+        request.setAttribute("projetosConcluidos", projetosConcluidos);
     }
 
+    /**
+     * Dado o HttpServletRequest request, carrega a lista de todas a pessoas no
+     * atributo pessoas
+     *
+     * @param request
+     */
     public void novoProjeto(HttpServletRequest request) {
         List<Pessoa> pessoas = pessoaControladorBD.listarPessoas();
         request.setAttribute("pessoas", pessoas);
     }
 
+    /**
+     * Dado o HttpServletRequest request e o boolean listarPessoas, obtem um
+     * projeto com id "id" (parametro contido na request). Lista todas as
+     * pessoas que não pertencem a o projeto no atributo "lista_pessoas", se
+     * listarPessoas for true. Lista todas os participantes do projeto no
+     * atributo "pessoas_selecionadas"
+     *
+     * @param request
+     * @param listarPessoas
+     */
     public void obterProjeto(HttpServletRequest request, boolean listarPessoas) {
         String s_id = request.getParameter("id");
         Long id = null;
@@ -76,7 +106,12 @@ public class ProjetoServlet extends HttpServlet {
         }
     }
 
-    public void salvarAlteracao(HttpServletRequest request) {
+    /**
+     * Salva as alterações feitas em um projeto.
+     *
+     * @param request
+     */
+    public void salvarAlteracao(HttpServletRequest request) throws UnsupportedEncodingException {
         String nome = request.getParameter("nome");
         String[] tipos = request.getParameterValues("tipo");
         int tipo = 0;
@@ -117,6 +152,11 @@ public class ProjetoServlet extends HttpServlet {
 
     }
 
+    /**
+     * Cria um novo projeto
+     *
+     * @param request
+     */
     public void salvarProjeto(HttpServletRequest request) {
         String nome = request.getParameter("nome");
         String[] tipos = request.getParameterValues("tipo");
@@ -143,6 +183,11 @@ public class ProjetoServlet extends HttpServlet {
         projetoControladorBD.inserir(projeto);
     }
 
+    /**
+     * Remove um projeto
+     *
+     * @param request
+     */
     public void removerProjeto(HttpServletRequest request) {
         String s_id = request.getParameter("id");
         if (s_id != null) {
@@ -159,6 +204,10 @@ public class ProjetoServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Obtem todos os participantes do projeto, a partir do id contido na request
+     * @param request
+     */
     public void obterParticipantes(HttpServletRequest request) {
         Long id = Long.valueOf(request.getParameter("id"));
 
@@ -171,9 +220,18 @@ public class ProjetoServlet extends HttpServlet {
         }
     }
 
+    
+    /**
+     * Processa as requisições de projetos
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=UTF-8");
 
         String uri = request.getRequestURI();
         String pagina = "projeto";

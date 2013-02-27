@@ -16,9 +16,8 @@ import java.util.List;
  */
 public interface ProjetoDAO extends DAO<Projeto, Long> {
     public List<Projeto> buscarProjetoPorNome(String nome);
-    public List<Projeto> buscarProjetoPorDataDeInicio(Date inicio);
-    public List<Projeto> buscarProjetoPorDataDeTermino(Date termino);
     public List<Projeto> buscarProjetoPorTipo(int tipo);
-    public List<Projeto> buscarProjetoPorPessoa(Pessoa pessoa);
     public List<Projeto> listarTodosProjetos();
+    public List<Projeto> listarProjetosConcluidos();
+    public List<Projeto> listarProjetosAtivos();
 }

@@ -28,8 +28,8 @@ import org.hibernate.annotations.NamedQuery;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Projeto.buscarProjetoPorNome", query = "Select p From Projeto p Where p.nome LIKE '%:nome%'"),
-        @NamedQuery(name = "Projeto.buscarProjetoPorTipo", query = "Select p From Projeto p Where p.tipo = :tipo")
+        @NamedQuery(name = "Projeto.buscarProjetosAtivos", query = "Select p From Projeto p where p.dataTermino is not null"),
+        @NamedQuery(name = "Projeto.buscarProjetosConcluidos", query = "Select p From Projeto p Where p.dataTermino is null")
 })
 public class Projeto implements Serializable {
     private static final long serialVersionUID = 1L;

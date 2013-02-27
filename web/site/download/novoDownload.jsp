@@ -10,9 +10,15 @@
         <form method="POST" action="${pageContext.request.contextPath}/salvarDownload" enctype="multipart/form-data" name="form">
                 <fieldset>
                     <legend>Cadastro de Download</legend>
-                    <label>Título: <input type="text" name="titulo" size="60"></label><br/>
+                    
+                    <div class="control-group">
+                    <label for="titulo" class="control-label">*Título :</label>
+                    <div class="controls">
+                        <input class="input-xlarge required" type="text" id="titulo" name="titulo"/>
+                    </div>
+                </div>
+                    
                     <label>Categoria: </label> <select name="categoria">
-                            <option value=></option>
                             <option value=1>Apostila</option>
                             <option value=2>Material de cursos</option>
                             <option value=3>Documentos</option>
@@ -23,7 +29,14 @@
                         <%--  <label>Data de inclusão: <input type="text" name="dataCriacao" size="10"></label><br/>
                     <label>Tamanho: <input type="text" name="tamanho" size="20">MB</label><br/> --%>
                     <label>Público: <input type="radio" name="tipo" value="1" checked="checked">Sim</label><br/>
-                    <label>Arquivo: </label><input type="file" name="anexo"/><br/>
+                    <div class="control-group">
+                    <label for="anexo" class="control-label">*Arquivo :</label>
+                    <div class="controls">
+                        <input class="input-xlarge required" type="file" id="anexo" name="anexo"/>
+                    </div>
+                </div>
+                    
+                    
                     <input type="submit" value="Salvar">
                         <input type="reset" value="Limpar">
                 </fieldset>
